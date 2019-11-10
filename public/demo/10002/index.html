@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>轮播</title>
+<link href="static/css/style.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="static/js/jquery.js"></script>
+<script type="text/javascript" src="static/js/jquery.superslide.2.1.1.js"></script>
+</head>
+<body>
+<div class="banner-content">
+<div class="banner-slide">
+<div class="banner-slide-circle hd">
+<ul>
+<li class="on"></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+</div>
+<div class="banner-slide-image bd">
+<ul>
+<li>
+<a href="#">
+<img src="static/picture/banner1.jpg" alt="">
+</a>
+</li>
+<li>
+<a href="#">
+<img src="static/picture/banner2.jpg" alt="">
+</a>
+</li>
+<li>
+<a href="#">
+<img src="static/picture/banner3.jpg" alt="">
+</a>
+</li>
+<li>
+<a href="#">
+<img src="static/picture/banner4.jpg" alt="">
+</a>
+</li>
+<li>
+<a href="#">
+<img src="static/picture/banner5.jpg" alt="">
+</a>
+</li>
+<li>
+<a href="#">
+<img src="static/picture/banner6.jpg" alt="">
+</a>
+</li>
+<li>
+<a href="#">
+<img src="static/picture/banner7.jpg" alt="">
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class="banner-hidden">
+<div class="banner-background-01"></div>
+<div class="banner-background-02"></div>
+</div>
+</div>
+<script type="text/javascript">
+            
+            jQuery(".banner-slide").slide({mainCell:".bd ul",autoPlay:true,delayTime:2000});
+        
+        </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'/> 
+<title>404错误 - 素材牛</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<style type="text/css">
+a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,i,iframe,img,input,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,select,small,span,strike,strong,sub,summary,sup,table,tbody,td,textarea,tfoot,th,thead,time,tr,tt,u,ul,var,video{margin:0;padding:0}
+a{text-decoration:none;outline:0;blr:expression(this.onFocus=this.blur())}
+a:link{color:#000}
+a:visited{color:#000}
+a:active,a:focus,a:hover{color:#f35d34}
+img{border:none}
+body{background:#fff}
+.error404{margin:0 auto;width:1000px;margin:0 auto;font-size:12px;font-family:Arial,Microsoft YaHei,SimSun}
+.error404 .info{width:100%;padding-left:2%}
+.error404 .info h1{font-size:102px;font-weight:700;margin-top:130px;line-height:105px;color:#f35d34;text-transform:uppercase}
+.error404 .info h2{font-size:33px;line-height:33px;font-weight:700;text-transform:uppercase;margin-bottom:20px;margin-top:20px}
+.error404 .info p.p1{font-size:12px}
+.error404 .info .menu{font-size:16px;line-height:24px;font-weight:300;color:#000;text-transform:uppercase;margin:15px 0}
+.error404 .info .menu a{white-space:nowrap;padding-left:5px;padding-right:5px}
+.error404 .info .btn{font-size:18px;font-weight:600;color:#fff;border:0 solid;border-bottom:2px solid;border-color:#ef6d00;padding:10px 41px;border-radius:5px;background:0 0;text-transform:uppercase;display:inline-block;margin:20px 20px 0 0;background-color:#ff8000;-webkit-transition:all .5s ease-in-out;-moz-transition:all .5s ease-in-out;-ms-transition:all .5s ease-in-out;-o-transition:all .5s ease-in-out;transition:all .5s ease-in-out;text-decoration:none;cursor:pointer}
+.error404 .info .btn:hover{background:#ef6d00;color:#fff;text-decoration:none}
+.error404 .info .btn-brown{border-color:#7b7b7b;background-color:#9f9f9f}
+.error404 .info .btn-brown:hover{background:#7b7b7b}
+.error404 .pic{width:30%;float:right;margin-top:70px;text-align:right}
+.error404 .pic img{max-width:350px}
+@media (max-width:1280px){.error404{width:100%}
+.error404 .info{width:65%}
+.error404 .pic{width:33%;margin-top:100px}
+.error404 .pic img{max-width:318px}
+.error404 .info h2{font-size:30px}
+}
+@media (max-width:1050px){.error404{width:100%}
+.error404 .info{width:60%}
+.error404 .pic{width:38%}
+.error404 .info h1{font-size:98px}
+.error404 .info h2{font-size:23px}
+.error404 .pic img{max-width:280px;margin-top:40px}
+}
+@media (max-width:768px){.error404{width:100%;text-align:center}
+.error404 .info{width:98%;padding-left:1%;padding-right:1%;clear:both}
+.error404 .info h1{margin-top:10px;margin-bottom:10px}
+}
+.copyright{margin:0 auto;width:1000px;padding:20px 0;color:#999}
+.copyright p{padding-left:20px}
+.copyright a{color:#666;text-decoration:none}
+</style>
+<script type="text/javascript">setTimeout(function(){top.location='/';},5000)</script> 
+</head>
+<body>		
+<div class="error404">
+		<div class="info">
+			<h1>404</h1>
+			<h2>抱歉，您输入的网址不正确或该网页不存在！ (｡•ˇ‸ˇ•｡)</h2>
+			<p class="p1">5秒钟后将带您返回首页</p>
+			<!--<p>The page you are looking for was moved, removed, renamed or might never existed.</p>-->
+			<div class="menu">
+				<a href="/" class="current">首 页</a>
+                <a href="/jquery.html">网页特效</a>
+                <a href="/source.html">整站源码</a>
+                <a href="/php.html">PHP教程</a>
+                <a href="/templates.html">网站模版</a>
+                <a href="/codelist.html">常用代码</a>
+                <a href="/video-view.html">视频教程</a>
+                <a href="/games.html">游戏源码</a>
+                <a href="/forum.html">论坛</a>
+                <a href="/tools.html">在线工具箱</a>
+			</div>			
+			<a href="/" class="btn">返回首页</a>
+			<a href="javascript:history.go(-1);" class="btn btn-brown">返回上一步</a>
+		</div>
+		
+	</div>
+
+<div class="copyright">
+<p><a title="素材牛" href="http://www.sucainiu.com">素材牛（www.sucainiu.com）</a></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+@charset "utf-8";
+/* CSS Document */
+
+.mb{border: 1px solid #ddd;padding:0px 15px;width:1140px;}
+.nb{border:none;width:1172px; height:377px;}
+
+.tool-model{min-height:575px}
+.tool-small ul{margin:auto;left:0;right:0;top:58px;padding:5px 0;box-shadow:0 2px 4px rgba(0,0,0,.12);border:1px solid #e8e8e8;position:absolute}
+.tool-small ul a{padding: 8px 0;}
+.tool-men .tool-small{position:relative;z-index:1}
+.tool-men .tool-small span{padding:20px;width:150px}
+.tool-title{padding:10px 15px;border-bottom:1px solid #ddd;border-top:1px solid #fff;background-color:#fafafa;display: block;}
+.tool-main{border-top-left-radius:4px; border-top-right-radius:4px;margin:20px auto;border:1px solid #ddd;position: relative; width:1200px; overflow:hidden;}
+.tool-title h4{margin-bottom: 5px;font-style: normal;font-weight: normal;margin: 0 0 15px 0;color: #333;line-height: 1.3em; font-size:18px;}
+.text-center-all{line-height:19px;padding-top:8px;}
+
+.jsontext .linedwrap{border:1px solid #ccc;border-radius: 4px;overflow: hidden;}
+.piece{padding:15px; background-color:#FFF;}
+.jsontext .lines{color:#afafaf;background-color:#F5F5F5;border-right:1px solid #e1e1e8;border-top-left-radius:4px;border-bottom-left-radius:4px;padding:8px 0;margin-right: 11px;}
+.jsontext .linedwrap .lines .lineno{text-align:right;padding:0 .5em 0 1em}
+.bat{font-size:0;padding: 15px 0}
+.tool-btn{height:32px;padding:0 18px;background-color:#2789E9;border:1px solid #2079D0;display:inline-block;color: #fff;}
+.tool-btn:hover{opacity:.8;}
+.bat .del{border-radius:0 2px 2px 0;border:1px solid #e44040;background-color: #FF5E52;}
+.tool-btn:first-child{border-radius:2px 0 0 2px}
+.tool-btn+.tool-btn{margin-left:-1px}
+input,button,textarea{font-family:inherit;outline:none}
+.error{background:#FBE3E4;color:#D12F19;border:1px solid #FBC2C4}
+.success{background:#2aa53a;color:white;border:1px solid #1A941A}
+.success,.error{padding:10px}
+
+.bat2{padding-top:10px;font-size:15px;}
+.bat2 span{margin-right:20px;}
+
+/*评论*/
+.megModel{background-color:#fafafa;}
+.pl{border: 1px solid #e8e8e8;padding:4px;border-radius: 5px;margin-left: 67px;position: relative;margin-top: 20px;background-color:#FFF; width:auto;}

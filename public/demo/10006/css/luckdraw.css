@@ -1,0 +1,54 @@
+@charset "UTF-8";
+.luckdraw{
+    box-sizing: border-box;
+    width: 800px;
+    margin: 40px auto;
+    padding: 40px;
+    background: #f33;
+}
+
+.luckdraw h2{
+    text-align: center;
+    font-weight: normal;
+    font-size: 30px;
+    color: #fff;
+    margin-top: -15px;
+}
+
+.luckdraw ul{
+    position: relative;
+    width: 700px;
+    height: 310px;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.luckdraw li{
+    width: 175px;
+    height: 100px;
+    background: #fff;
+    text-align: center;
+    line-height: 100px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.luckdraw li.on{
+    background: #ff0;
+}
+
+.luckdraw-go{
+    position: absolute;
+    top: 105px;
+    left: 180px;
+    width: 355px;
+    height: 100px;
+    overflow: hidden;
+    background: #ff0;
+    text-align: center;
+    line-height: 100px;
+    cursor: pointer;
+}

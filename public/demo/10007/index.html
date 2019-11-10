@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+<title>jQuery手机年月日选择代码</title>
+
+<link rel="stylesheet" href="style/style.css">
+<link rel="stylesheet" href="style/mobileSelect.css">
+
+<script>
+	var phoneWidth = parseInt(window.screen.width);
+	var phoneScale = phoneWidth / 640;
+	var ua = navigator.userAgent;//判断浏览器类型
+	if (/Android (\d+\.\d+)/.test(ua)) {
+		var version = parseFloat(RegExp.$1);
+		if (version > 2.3) {
+			document.write('<meta name="viewport" content="width=640, minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">');
+		} else {
+			document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+		}
+	} else {
+		document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+	}
+</script>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/mobileSelect.js"></script>
+<style>
+.btn {
+   background: #0a8ddf;
+	border-radius: 10px;
+	padding: 5px 15px;
+	color: #ffffff;
+}
+</style>
+
+</head>
+<body>
+
+<ul>
+	<li id="date"></li>
+</ul>
+
+<div class="txt"></div>
+
+<script type="text/javascript" src="js/selectDate.js"></script>
+<script type="text/javascript">
+$.selectDate("#date", {
+	start: 1939,
+	end: 2058,
+	select: [2000, 8, 8],
+	title: ' '
+}, function (data) {
+//        获取年月日
+	console.log(data);
+	$('.txt').text(data.year+'年'+data.month+'月'+data.day+'日')
+});
+</script>
+
+</body>
+</html>

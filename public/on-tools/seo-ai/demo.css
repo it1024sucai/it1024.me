@@ -1,0 +1,35 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{font-family:"微软雅黑",Arial;}
+html,body,h1,h2,h3,h4,h5,h6,div,dl,dt,dd,ul,ol,li,p,blockquote,pre,hr,figure,table,caption,th,td,form,fieldset,legend,input,button,textarea,menu{margin:0;padding:0;}  
+header,footer,section,article,aside,nav,hgroup,address,figure,figcaption,menu,details{display:block;}  
+caption,th{text-align:left;font-weight:normal;}  
+html,body,fieldset,img,iframe,abbr{border:0;}  
+i,cite,em,var,address,dfn{font-style:normal;}  
+[hidefocus],summary{outline:0;}  
+li{list-style:none;}  
+h1,h2,h3,h4,h5,h6,small{font-size:100%;}  
+sup,sub{font-size:83%;}  
+pre,code,kbd,samp{font-family:inherit;}  
+q:before,q:after{content:none;}  
+textarea{overflow:auto;resize:none;}  
+label,summary{cursor:default;}  
+a,button{cursor:pointer;}  
+h1,h2,h3,h4,h5,h6,em,strong,b{font-weight:bold;}  
+del,ins,u,s,a,a:hover{text-decoration:none;}  
+body,textarea,input,button,select,keygen,legend{font:12px/1.14 arial,\5b8b\4f53;color:#333;outline:0;}  
+body{background-color:#FFF;background-repeat: repeat-x;background-position: center top;}
+a{color:#0072c6;}
+a:hover{color:#F00;text-decoration: none; transition:all .5s ease-out 0s;}
+.w1000{width:1200px; margin:auto;}
+.fl{float:left;}
+.fr{float:right;}
+.clear{clear:both;}
+.red {color: red;}
+
+.wrapper{background-color: #fff;border: 1px solid #e8e8e8;border-radius: 5px; width:700px; margin:50px auto; overflow:hidden;}
+.wrapper .demo .title{height: 60px;line-height: 60px;background: #f8f8f8;border-bottom: 1px solid #ebebeb;padding: 0 20px;font-size: 20px;}
+.wrapper .demo .notice{ border-bottom:1px solid #e8e8e8;padding:20px; font-size:13px; color:#666; line-height:22px;}
+.wrapper .demo .cont{padding:20px; font-size:15px;}
+.wrapper .demo .cont ul li{list-style: none; height:30px; line-height:30px; overflow:hidden;}

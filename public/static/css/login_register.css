@@ -1,0 +1,56 @@
+@charset "utf-8";
+/* CSS Document */
+
+.wrapper{background-color: #FFF;border: 1px solid #e5e5e5;}
+.wrapper .admodel{height:400px;width:550px;margin-top: 20px;background-image: url(../images/tg-chang1ea8a2.png);background-repeat: no-repeat;background-position: right center;position:relative;}
+.wrapper .admodel .text{position:absolute; width:240px; height:150px; top:65px;left:50px; font-size:15px; line-height:30px; color:#999}
+.wrapper .loginRegister{width:600px; margin:auto; min-height:345px; border-left:1px solid #e5e5e5;}
+.wrapper .tabNav{display:block; height:40px; line-height:40px; border-bottom:#ff6600 2px solid; font-size:18px; font-weight:bold; margin-bottom:15px; padding:0px 15px;}
+.wrapper .tabNav span.fr a{ font-size:16px; font-weight:normal;}
+.wrapper table{ font-size:16px; font-weight:bold;}
+.wrapper table .int{ height:30px; line-height:30px; border:#CCC 1px inset; padding-left:5px; width:230px;}
+.wrapper table .reminder{font-size:14px;font-weight:normal;}
+.wrapper table .reminder a{color:#ff6600;}
+.anniu{border: 1px solid #ff5c5c;background:#ff6600;height:40px; line-height:40px;cursor:pointer; width:150px;text-align: center;border-radius:3px;color: #fff; font-size:16px;}
+
+/*==========表单验证===========*/
+.Validform_checktip{margin-left:8px;line-height:20px;height:20px;overflow:hidden;color:#999;font-size:12px;}
+.Validform_right{color:#71b83d;padding-left:20px;background:url(../images/right.png) no-repeat left center;}
+.Validform_wrong{color:red;padding-left:20px;white-space:nowrap;background:url(../images/error.png) no-repeat left center;}
+.Validform_loading{padding-left:20px;background:url(../images/onLoad.gif) no-repeat left center;}
+.Validform_error{background-color:#ffe7e7;}
+#Validform_msg{color:#7d8289; font: 12px/1.5 tahoma, arial, \5b8b\4f53, sans-serif; width:280px; -webkit-box-shadow:2px 2px 3px #aaa; -moz-box-shadow:2px 2px 3px #aaa; background:#fff; position:absolute; top:0px; right:50px; z-index:99999; display:none;filter: progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=135, Color='#999999'); box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);}
+#Validform_msg .iframe{position:absolute; left:0px; top:-1px; z-index:-1;}
+#Validform_msg .Validform_title{line-height:25px; height:25px; text-align:left; font-weight:bold; padding:0 8px; color:#fff; position:relative; background-color:#999;
+    background: -moz-linear-gradient(top, #999, #666 100%); background: -webkit-gradient(linear, 0 0, 0 100%, from(#999), to(#666)); filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#999999', endColorstr='#666666');}
+#Validform_msg a.Validform_close:link,#Validform_msg a.Validform_close:visited{line-height:22px; position:absolute; right:8px; top:0px; color:#fff; text-decoration:none;}
+#Validform_msg a.Validform_close:hover{color:#ccc;}
+#Validform_msg .Validform_info{padding:8px;border:1px solid #bbb; border-top:none; text-align:left;}
+
+/*密码强度验证*/
+.passwordStrength{}
+.passwordStrength b{font-weight:normal;}
+.passwordStrength b,.passwordStrength span{display:inline-block; vertical-align:middle;line-height:20px;height:20px; font-weight:normal; font-size:13px;}
+.passwordStrength span{width:45px; text-align:center; background-color:#d0d0d0; border-right:1px solid #fff;}
+.passwordStrength .last{border-right:none;}
+.passwordStrength .bgStrength{color:#fff;background-color:#71b83d;}
+
+/*注册样式*/
+.RegisterFormModel{width:366px;background-color:#fff; margin:auto;}
+.RegisterFormModel .con{padding:15px 30px;color:#5188a6}
+.RegisterFormModel .con .l_inp{border:1px solid #bdbdbd;height:38px;line-height:38px;width:304px;margin-bottom:15px;border-radius: 3px; overflow:hidden;}
+.RegisterFormModel .con .l_inp span.fl{width:52px; text-align:center;display:block;border-right:1px solid #bdbdbd;background-color:#f3f3f3;padding:0 10px}
+.RegisterFormModel .con .l_inp input.inp{border:0;background-color:#fff;width:221px;padding-left:10px;height:38px;font-size:14px;}
+.RegisterFormModel .con .l_inp input.Validform_error{background-color: #ffe7e7;}
+.RegisterFormModel .RegisterBtn{border-radius:3px;background-color:#ff6600;color:#fff;display:inline-block;height:40px;line-height:40px;text-align:center;width:306px;transition:background-color .2s linear 0s;border:0;cursor:pointer}
+
+.oauth-model{width:360px;float:left;margin:51px 0 0 120px}
+.oauth-model .oauth-title-highlight{color:#f2a333}
+.oauth-model .oauth-title{font-size:14px;line-height:20px}
+.oauth-model .oauth-links{margin-top:70px;padding:0 42px}
+.oauth-model .oauth-links .oauth-link{display:block;float:left;padding:0 105px;text-decoration:none}
+.oauth-model .oauth-links .oauth-link .oauth-icon-github{background:url(../images/github.png) repeat scroll -106px 0;height:53px;width:53px}
+.oauth-model .oauth-links .oauth-link .oauth-icon-qq{background:url(../images/oauth-logo.png) repeat scroll 0 0;height:53px;width:53px}
+.oauth-model .oauth-links .oauth-link .oauth-link-text{color:#000;font-size:14px;line-height:18px;margin-top:10px;text-align:center}
+.oauth-model .oauth-links .oauth-link .oauth-icon-wechat{background:url(../images/oauth-logo.png) repeat scroll -53px 0;height:53px;width:53px}
+.oauth-model .oauth-links .oauth-link .oauth-icon-weibo{background:url(../images/oauth-logo.png) repeat scroll -106px 0;height:53px;width:53px}

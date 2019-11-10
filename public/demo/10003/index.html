@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="viewport" content="width=device-width, initial-scale=1" /> 
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>jQuery手机端欢乐砸金蛋代码 - 1024素材</title>
+
+<link href="css/style.css" rel="stylesheet" type="text/css">
+
+<script src="js/jquery.min.js"></script>
+
+</head>
+<body>
+
+<section class="Title">欢乐砸金蛋</section>
+<section id="main">
+	<div class="egg">
+		<div class="Opportunity">你还有<strong><font id="chance">1</font></strong>次机会</div>
+		<div class="eggList">
+			<p style="left: 234px;" class="hammer" id="hammer">锤子</p>
+			<div class="resultTip" id="resultTip"><b id="result"></b></div>
+			<div class="eggbtn"><span></span></div>
+		</div>
+	</div>
+	<div class="bg"></div>
+</section>
+<section class="InfoBox">
+	<div class="winners_user">
+		<div class="ico"></div>
+		<div id="winners_user">
+			<div id="winners_info">
+				<ul id="init_data">
+                	<li>哈哈**获得<span>iphone6 一部</span>2019-07-07 12:00:00</li>
+                 	<li>的发**获得<span>iphone6 一部</span>2019-07-07 12:00:00</li>
+                  	<li>试试**获得<span>美女一枚</span>2019-07-07 12:00:00</li>
+                   	<li>搜索**获得<span>iphone6 一部</span>2019-07-07 12:00:00</li>
+                    <li>哈哈**获得<span>iphone6 一部</span>2019-07-07 12:00:00</li>
+                </ul>
+			</div>
+		</div>
+	</div>
+	<div class="relevant-list">
+		<div class="award_list_ico">
+			<a href="javascript:;" onClick="showaward();" >
+				<span></span>
+				<strong>奖品列表</strong>
+			</a>
+		</div>
+		<div class="my_list_ico">
+			<a href="javascript:;" onClick="showmyprize();" >
+				<span></span>
+				<strong>我的奖品</strong>
+			</a>
+		</div>
+		<div class="rule_ico">
+			<a id="rule_btn" href="#">
+				<span></span>
+				<strong>规则说明</strong>
+			</a>
+		</div>			
+	</div>
+	
+	<div id="rule_box" style="display:none;" class="prompt_box">
+		<div class="column"><span class="close" onClick="easyDialog.close();">X</span><h3>规则说明</h3></div>
+		<div class="prompt_info" style="height:200px; overflow-y:scroll;" id="huodong_desc_div">
+			
+		</div>
+	</div>
+</section>
+
+<script type="text/javascript" src="js/extend.js"></script>
+<script type="text/javascript">
+
+	$(".eggbtn").click(function() {
+		eggClick($(this));
+	});
+
+	function eggClick(obj) {
+		var _this = $(".eggbtn");
+		if(_this.hasClass("curr")){
+			if(confirm("蛋都碎了，别砸了！刷新再来.")){
+				window.location=window.location;	
+			}
+			return;
+		}
+
+	$(".hammer").css({"top":_this.position().top-55,"left":_this.position().left+185});
+	$(".hammer").animate({
+		"top":_this.position().top-25,
+		"left":_this.position().left+125
+		},30,function(){
+			_this.addClass("curr"); //蛋碎效果
+			$(".hammer").hide();
+			$("#result").empty();
+			$('.resultTip').css({display:'block',top:'50px',left:_this.position().left+80,opacity:0}).animate({top: '10px',opacity:1},300,function(){
+					// 获取随机数
+					var rand = rnd(1,7);
+					// 根据随机数显示奖项，可用 ajax 返回值控制奖项
+					zhaung(rand);
+					var chance = parseInt($('#chance').html());
+					chance = chance - 1;
+					if(chance<0){
+						chance = 0;
+					} 
+					$('#chance').html(chance);
+			});	
+		}
+	);
+	}
+	
+	//随机数
+	function rnd(n, m){
+		return Math.floor(Math.random()*(m-n+1)+n)
+	}
+	// 奖项
+	function zhaung(nums){
+		var shu = parseInt(nums)
+		switch (shu) {
+			case 1:
+				$("#result").html("一等奖!");
+				break;
+			case 2:
+				$("#result").html("二等奖!");
+				break;
+			case 3:
+				$("#result").html("三等奖!");
+				break;
+			case 4:
+				$("#result").html("四等奖!");
+				break;
+			case 5:
+				$("#result").html("五等奖!");
+				break;
+			case 6:
+				$("#result").html("安慰奖!");
+				break;
+			case 7:
+				$("#result").html("未中奖!");
+				break;
+		}
+	}
+
+
+</script>
+
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+<p>适用浏览器：360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗. 不支持IE8及以下浏览器。</p>
+<p>来源：<a href="http://it1024.me" target="_blank">1024素材</a></p>
+</div>
+</body>
+</html>
