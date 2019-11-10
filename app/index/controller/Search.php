@@ -5,6 +5,7 @@ namespace app\index\controller;
 
 use app\model\Resources;
 use it1024sucai\PhpAnalysis;
+use think\facade\Db;
 use think\facade\View;
 
 class Search extends Common
@@ -40,35 +41,36 @@ class Search extends Common
         $page    = input('page/d');
         $channel = input('channel/s') ?: 'index';
 
-        $map1[]      = ['a.status', '=', 1];
-        $path        = $page ? '/search-index-p' . $page . '.html' : '/search-index.html';
-        $page_config = [
+        $map1['a.status'] = 1;
+        $path             = $page ? '/search-index-p' . $page . '.html' : '/search-index.html';
+        $page_config      = [
             'list_rows' => 12, 'path' => $path, 'page' => $page,
         ];
 
         if ($channel !== 'index')
-            $map1[] = ['a.channel', '=', $channel];
+            $map1['a.channel'] = $channel;
 
         $path                = $page ? '/search-' . $channel . '-p' . $page . '.html' : '/search-' . $channel . '.html';
         $page_config['path'] = $path;
-
 
         if ($wd) {
             $path                = $page ? '/search-' . $channel . '-' . $wd . '-p' . $page . '.html' : '/search-' . $channel . '-' . $wd . '.html';
             $page_config['path'] = $path;
             $wds                 = $this->getPa($wd);
             foreach ($wds as $v) {
-                $map2[] = ['a.title', 'like', '%' . $v . '%'];
+
+                $map2[] = ['title','like', '%' . $v . '%'];
             }
 
             $list = Resources::alias('a')->field('a.id,a.title,a.create_time,a.channel,a.description,b.thumb')
-                ->leftJoin('attachments b', 'a.thumb=b.id')->where($map1)->whereOr($map2)->order('create_time desc')
+                ->leftJoin('attachments b', 'a.thumb=b.id')->whereOr($map2)->where($map1)->order('create_time desc')
                 ->paginate($page_config);
         } else {
             $list = Resources::alias('a')->field('a.id,a.title,a.create_time,a.channel,a.description,b.thumb')
                 ->leftJoin('attachments b', 'a.thumb=b.id')->where($map1)->order('create_time desc')
                 ->paginate($page_config);
         }
+
 
         //dump(Db::table('resources')->getLastSql());
 
@@ -78,30 +80,29 @@ class Search extends Common
         //dump($list);
 
         $data = [
-            '_channel' => $channel, 'wd' => $wd, 'wds' => $wds, 'list' => $list, 'path_tpl' => $path_tpl
+            'channel' => $channel, 'wd' => $wd, 'wds' => $wds, 'list' => $list, 'path_tpl' => $path_tpl
         ];
 
         View::assign($data);
         return View::fetch();
     }
 
-    public function tags(){
+    public function tags()
+    {
         $tag = input('tag/s');
-        if(!$tag){
+        if (!$tag) {
             $this->error('参数错误~');
         }
 
-        $map = [
-            ['atatus','=',1],
-            ['tags','like','%'.$tag.'%']
+        $map  = [
+            ['a.status', '=', 1], ['tags', 'like', '%' . $tag . '%']
         ];
         $list = Resources::alias('a')->field('a.id,a.title,a.create_time,a.channel,a.description,b.thumb')
-            ->leftJoin('attachments b', 'a.thumb=b.id')->where($map)->order('create_time desc')
-            ->paginate(12);
+            ->leftJoin('attachments b', 'a.thumb=b.id')->where($map)->order('create_time desc')->paginate(12);
 
         $path_tpl = $list->render();
         $list     = $list->toArray();
-        View::assign('list',$list);
+        View::assign('list', $list);
         return View::fetch();
     }
 }

@@ -4,7 +4,9 @@
     {include file="meta"/}
     
     <link rel="stylesheet" type="text/css" href="/static/css/themes.css"/>
-    <script type="text/javascript" src="/static/js/blocksit.min.js"></script>
+    <script type="application/javascript">
+        var channel = '{$channel}'
+    </script>
 </head>
 <body>
 <!--头部内容-->
@@ -15,10 +17,10 @@
     </div>
     <div id="pgsearch" class="w1000">
         <ul class="sh-sw clearfix">
-            <li class="{$_channel == 'index' ? 'cur' : ''}"><a href="/search-index{$wd?'-':''}{$wd}.html">全站搜索</a></li>
-            <li class="{$_channel == 'jquery' ? 'cur' : ''}"><a href="/search-jquery{$wd?'-':''}{$wd}.html">网页特效</a></li>
-            <li class="{$_channel == 'source' ? 'cur' : ''}"><a href="/search-source{$wd?'-':''}{$wd}.html">整站源码</a></li>
-            <li class="{$_channel == 'templates' ? 'cur' : ''}"><a href="/search-templates{$wd?'-':''}{$wd}.html">网页模版</a></li>
+            <li class="{$channel == 'index' ? 'cur' : ''}"><a href="/search-index{$wd?'-':''}{$wd}.html">全站搜索</a></li>
+            <li class="{$channel == 'jquery' ? 'cur' : ''}"><a href="/search-jquery{$wd?'-':''}{$wd}.html">网页特效</a></li>
+            <li class="{$channel == 'source' ? 'cur' : ''}"><a href="/search-source{$wd?'-':''}{$wd}.html">整站源码</a></li>
+            <li class="{$channel == 'templates' ? 'cur' : ''}"><a href="/search-templates{$wd?'-':''}{$wd}.html">网页模版</a></li>
         </ul>
         <div class="sh-sw-ct">
             <form target="_self" method="get" action="/search-index.html" onsubmit="soso2();return false" class="clearfix" id="form_search2">
@@ -26,14 +28,14 @@
                 <button type="submit"><u>找一找</u></button>
             </a>
                 <div class="search-recom">热门搜索：
-                    <a href="/search-{$_channel}-Thinkphp.html">Thinkphp</a>
-                    <a href="/search-{$_channel}-商城.html">商城</a>
-                    <a href="/search-{$_channel}-dedecms.html">dedecms</a>
-                    <a href="/search-{$_channel}-响应式.html">响应式</a>
-                    <a href="/search-{$_channel}-金融.html">金融</a>
-                    <a href="/search-{$_channel}-分销.html">分销</a>
-                    <a href="/search-{$_channel}-素材.html">素材</a>
-                    <a href="/search-{$_channel}-o2o.html">o2o</a>
+                    <a href="/search-{$channel}-Thinkphp.html">Thinkphp</a>
+                    <a href="/search-{$channel}-商城.html">商城</a>
+                    <a href="/search-{$channel}-dedecms.html">dedecms</a>
+                    <a href="/search-{$channel}-响应式.html">响应式</a>
+                    <a href="/search-{$channel}-金融.html">金融</a>
+                    <a href="/search-{$channel}-分销.html">分销</a>
+                    <a href="/search-{$channel}-素材.html">素材</a>
+                    <a href="/search-{$channel}-o2o.html">o2o</a>
                 </div>
             </form>
         </div>
@@ -43,7 +45,7 @@
     <div class="hintCon">
         温馨提示：您的搜索内容已被分词为
         {foreach $wds as $v}
-        <a href="/search-{$_channel}-{$v}.html">{$v}</a>
+        <a href="/search-{$channel}-{$v}.html">{$v}</a>
         {/foreach}
         减少关键词可以提高搜索的精度。
     </div>

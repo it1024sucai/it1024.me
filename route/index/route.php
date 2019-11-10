@@ -44,6 +44,8 @@ Route::get('search-jquery-<wd>', 'search/index')->append(['channel' => 'jquery']
 Route::get('search-source-<wd>', 'search/index')->append(['channel' => 'source']);
 Route::get('search-templates-<wd>', 'search/index')->append(['channel' => 'templates']);
 
+Route::get('tags/:tag', 'search/tags');
+
 Route::get('search-templates', 'search/index')->append(['channel' => 'templates']);
 Route::get('search-source', 'search/index')->append(['channel' => 'source']);
 Route::get('search-jquery', 'search/index')->append(['channel' => 'jquery']);

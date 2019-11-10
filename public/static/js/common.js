@@ -1,5 +1,5 @@
 $(function () {
-    index          = -1;
+    var index          = -1;
     var search_box = $(".search_box");
     $("#search_input").keydown(function (event) {
         var key    = event.keyCode;
@@ -7,9 +7,9 @@ $(function () {
         if (key == 13) {
             $wd           = $('#search_input').val()
             if ($wd)
-                location.href = '/search-index-' + $wd + '.html';
+                location.href = '/search-'+channer+'-' + $wd + '.html';
             else
-                location.href = '/search-index.html';
+                location.href = '/search-'+channer+'.html';
             return false;
         }
         if (key == 38) {
@@ -83,18 +83,18 @@ $(function () {
 function soso() {
     $wd = $('#search_input').val()
     if ($wd)
-        location.href = '/search-index-' + $wd + '.html';
+        location.href = '/search-'+channel+'-' + $wd + '.html';
     else
-        location.href = '/search-index.html';
+        location.href = '/search-'+channel+'.html';
     return false;
 }
 
 function soso2() {
     $wd = $('#sh-text').val()
     if ($wd)
-        location.href = '/search-index-' + $wd + '.html';
+        location.href = '/search-'+channel+'-' + $wd + '.html';
     else
-        location.href = '/search-index.html';
+        location.href = '/search-'+channel+'.html';
     return false;
 }
 
