@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<!--[if IE 9]>
+<html class="ie9 no-focus" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!-->
+<html class="no-focus" lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <title>{:config('app.web_site_title')}后台管理</title>
+    <meta name="description"
+          content="OneUI - Admin Dashboard Template &amp; UI Framework created by pixelcave and published on Themeforest">
+    <meta name="author" content="pixelcave">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
+    
+    <!-- Icons -->
+    <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
+    <link rel="shortcut icon" href="/assets/img/favicons/favicon.png">
+    
+    <link rel="icon" type="image/png" href="/assets/img/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/assets/img/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/assets/img/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/assets/img/favicons/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="/assets/img/favicons/favicon-192x192.png" sizes="192x192">
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/img/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/img/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/img/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/img/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/img/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon-180x180.png">
+    <!-- END Icons -->
+    
+    <!-- Bootstrap and OneUI CSS framework -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/plugins/select2/select2.min.css">
+    <link rel="stylesheet" href="/plugins/select2/select2-bootstrap.min.css">
+    <link rel="stylesheet" href="/plugins/datatables/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="/plugins/sweetalert/sweetalert.min.css">
+    <link rel="stylesheet" href="/plugins/jquery-nestable/jquery.nestable.css">
+    
+    
+    {block name="meta"}{/block}
+    <link rel="stylesheet" id="css-main" href="/assets/css/oneui.css">
+    <link rel="stylesheet" href="/admin/css/admin.css">
+    <link rel="stylesheet" href="/plugins/viewer/viewer.min.css?v=20180327">
+    
+    <script>
+        var Quick = {
+            theme_url: "{:url('/common/settheme')}",
+            curr_url: window.location.pathname,
+            curr_params: {},
+            search_field: "{$_SERVER['PHP_SELF']}}",
+            quick_edit_url: "{:url('/'.$controller.'/quickedit')}",
+            _filter_list: "{:url('/common/filterlist')}",
+            _filter: GetUrlParam('_filter'),
+            _filter_content: GetUrlParam('_filter_content'),
+            _field_display: GetUrlParam('_field_display'),
+            _field_clear: GetUrlParam('_field_clear'),
+            'jcrop_upload_url': "{:url('/common/upload/dir/images/from/jcrop/module/admin')}",
+            'WebUploader_swf': '/plugins/webuploader/Uploader.swf',
+            'file_upload_url': "{:url('/upload/index/type/file/module/admin/action/uploadfile')}",
+            'image_upload_url': "{:url('/upload/index/type/images/module/admin/action/uploadimage')}",
+            'upload_check_url': "{:url('/upload/check')}",
+        };
+
+        var height = 100;
+        var tagsDefaultText = '添加标签';
+
+        //paraName 等找参数的名称
+        function GetUrlParam(paraName) {
+            var url = document.location.toString();
+            var arrObj = url.split("?");
+
+            if (arrObj.length > 1) {
+                var arrPara = arrObj[1].split("&");
+                var arr;
+
+                for (var i = 0; i < arrPara.length; i++) {
+                    arr = arrPara[i].split("=");
+
+                    if (arr != null && arr[0] == paraName) {
+                        return arr[1];
+                    }
+                }
+                return "";
+            } else {
+                return "";
+            }
+        }
+    </script>
+</head>
+<body>
+<!-- Page Container -->
+<div id="page-container" class="sidebar-l sidebar-o side-scroll header-navbar-fixed">
+    <!-- Sidebar -->
+    {block name="sidebars"}
+    {include file="sidebars"}
+    {/block}
+    
+    <!-- END Sidebar -->
+    
+    <!-- Header -->
+    {block name="header"}
+    {include file="header"}
+    {/block}
+    
+    <!-- END Header -->
+    
+    <!-- Main Container -->
+    <main id="main-container">
+        <!-- Page Header -->
+        {if(empty($_pop) && $_location[0]['url_value'] != 'admin/index/index')}
+        <div class="bg-gray-lighter">
+            <ol class="breadcrumb">
+                <li><i class="fa fa-map-marker"></i></li>
+                {if($_location)}
+                {foreach $_location as $v}
+                <li>
+                    <a class="link-effect" href="{if( $v['url_value'] )} {:url($v['url_value'])} {else/} javascript:void(0); {/if}"> {$v['title']} </a>
+                </li>
+                {/foreach}
+                {/if}
+            </ol>
+        </div>
+        {/if}
+        <!-- END Page Header -->
+        {block name="content"}{/block}
+        <!-- END Page Content -->
+    </main>
+    <!-- END Main Container -->
+    
+    <!-- Footer -->
+    <footer id="page-footer" class="content-mini content-mini-full font-s12 bg-gray-lighter clearfix">
+        <div class="pull-right">
+            Crafted with <i class="fa fa-heart text-city"></i> by <a class="font-w600" href="http://goo.gl/vNS3I"
+                                                                     target="_blank">pixelcave</a>
+        </div>
+        <div class="pull-left">
+            <a class="font-w600" href="http://goo.gl/6LF10W" target="_blank">OneUI 3.4</a> &copy; <span
+                class="js-year-copy">2015</span>
+        </div>
+    </footer>
+    <!-- END Footer -->
+</div>
+<!-- END Page Container -->
+
+<!-- Apps Modal -->
+<!-- Opens from the button in the header -->
+<div class="modal fade" id="apps-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-sm modal-dialog modal-dialog-top">
+        <div class="modal-content">
+            <!-- Apps Block -->
+            <div class="block block-themed block-transparent">
+                <div class="block-header bg-primary-dark">
+                    <ul class="block-options">
+                        <li>
+                            <button data-dismiss="modal" type="button"><i class="si si-close"></i></button>
+                        </li>
+                    </ul>
+                    <h3 class="block-title">Apps</h3>
+                </div>
+                <div class="block-content">
+                    <div class="row text-center">
+                        <div class="col-xs-6">
+                            <a class="block block-rounded" href="base_pages_dashboard.html">
+                                <div class="block-content text-white bg-default">
+                                    <i class="si si-speedometer fa-2x"></i>
+                                    <div class="font-w600 push-15-t push-15">Backend</div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-xs-6">
+                            <a class="block block-rounded" href="bd_dashboard.html">
+                                <div class="block-content text-white bg-modern">
+                                    <i class="si si-rocket fa-2x"></i>
+                                    <div class="font-w600 push-15-t push-15">Boxed</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END Apps Block -->
+        </div>
+    </div>
+</div>
+<!-- END Apps Modal -->
+
+{block name="icons"}
+{include file="icons"}
+{/block}
+
+<!-- OneUI Core JS: jQuery, Bootstrap, slimScroll, scrollLock, Appear, CountTo, Placeholder, Cookie and App.js -->
+<script src="/assets/js/core/jquery.min.js"></script>
+<script src="/assets/js/core/bootstrap.min.js"></script>
+<script src="/assets/js/core/jquery.slimscroll.min.js"></script>
+<script src="/assets/js/core/jquery.scrollLock.min.js"></script>
+<script src="/assets/js/core/jquery.appear.min.js"></script>
+<script src="/assets/js/core/jquery.countTo.min.js"></script>
+<script src="/assets/js/core/jquery.placeholder.min.js"></script>
+<script src="/assets/js/core/js.cookie.min.js"></script>
+<script src="/assets/js/app.js"></script>
+<script src="/admin/js/admin-base.js"></script>
+
+<script src="/plugins/layer/layer.js"></script>
+<script src="/plugins/bootstrap-notify/bootstrap-notify.min.js"></script>
+<script src="/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="/plugins/select2/select2.full.min.js"></script>
+<script src="/plugins/viewer/viewer.min.js?v=20180327"></script>
+<script src="/admin/js/form.js"></script>
+<script src="/admin/js/table.js"></script>
+<script src="/assets/js/pages/base_ui_icons.js"></script>
+
+{block name="footer"}
+<!-- Page Plugins -->
+<script src="/plugins/chartjs/Chart.min.js"></script>
+<!-- Page JS Code -->
+<script src="/assets/js/pages/base_pages_dashboard_v2.js"></script>
+<script>
+    jQuery(function () {
+        // Init page helpers (CountTo plugin)
+        App.initHelpers('appear-countTo');
+    });
+</script>
+{/block}
+
+</body>
+</html>

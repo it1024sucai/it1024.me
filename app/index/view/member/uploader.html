@@ -1,0 +1,430 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" type="text/css" href="/plugins/layui/css/layui.css"/>
+    {include file="meta"/}
+    <link rel="stylesheet" type="text/css" href="/static/css/member.css?v=20190904-1"/>
+    <script type="text/javascript" src="/static/js/jquery.SuperSlide.2.1.1.js"></script>
+    <script type="text/javascript" src="/plugins/layui/layui.all.js"></script>
+    <link rel="stylesheet" href="/plugins/webuploader/webuploader.css?v=20180327">
+    <link rel="stylesheet" href="/plugins/jquery-tags-input/jquery.tagsinput.min.css">
+    <meta name="csrf-token" content="{:token()}">
+    <style type="text/css">
+        .layui-form-pane .layui-input {
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        
+        .webuploader-pick {
+            border-radius: 3px;
+            background: #ff6600;
+            padding: 0px 13px;
+        }
+        
+        .webuploader-pick-hover {
+            background: #ff0000;
+        }
+    </style>
+</head>
+<body>
+
+<!--头部内容-->
+{include file="header"/}
+
+<div class="wrapper w1000">
+    <!--用户中心右边内容-->
+    {include file="member/member_right"}
+    <div class="member_main">
+        <ul class="info-title">
+            <li class="{$action == 'jquery' ? 'hover' : ''}">
+                <a href="/member/uploader/action/jquery.html">网页特效</a></li>
+            <li class="{$action == 'templates' ? 'hover' : ''}">
+                <a href="/member/uploader/action/templates.html">网页模板</a></li>
+            <li class="{$action == 'source' ? 'hover' : ''}">
+                <a href="/member/uploader/action/source.html">整站源码</a></li>
+            <!--<li class="{$action == 'index' ? 'hover' : ''}"><a href="/member/bind.html"><i class="fa fa-weixin" aria-hidden="true"></i> 关联微信</a></li>-->
+        </ul>
+        
+        <div class="addfoem">
+            <form class="layui-form layui-form-pane" id="myForm" name="myForm" method="post" action="">
+                <div class="intsCon">发布素材奖励IT积分，提供详细素材说明有助于用户下载。用户下载您所发布的资源您还会获得对应IT积分。</div>
+                <input type="hidden" id="id" name="id" value="{$id}"/>
+                <div class="form-group">
+                    <label>素材标题：</label>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="标题格式为3到100字之间">
+                </div>
+                
+                <div class="form-group">
+                    <label class="">素材分类：</label>
+                    <div class="n-midel">
+                        <input id="type" name="type" type="hidden"/>
+                        <ul>
+                            {foreach $sourceAttr['type'] as $k=>$v}
+                            <li class="type" value="{$v.id}"><a href="javascript:;"> {$v.value}</a></li>
+                            {/foreach}
+                            <div class="clear"></div>
+                        </ul>
+                    </div>
+                </div>
+                
+                {if $sourceAttr['layout']}
+                <div class="form-group">
+                    <label class="">网页布局：</label>
+                    <div class="n-midel">
+                        <input id="layout" name="layout" type="hidden"/>
+                        <ul>
+                            {foreach $sourceAttr['layout'] as $v}
+                            <li class="layout" value="{$v.id}"><a href="javascript:;"> {$v.value}</a></li>
+                            {/foreach}
+                            <div class="clear"></div>
+                        </ul>
+                    </div>
+                </div>
+                {/if}
+                
+                {if $sourceAttr['color']}
+                <div class="form-group">
+                    <label class="">模板颜色：</label>
+                    <div class="n-midel">
+                        <input id="color" name="color" type="hidden"/>
+                        <ul>
+                            {foreach $sourceAttr['color'] as $v}
+                            <li class="color" value="{$v.id}"><a href="javascript:;"> {$v.value}</a></li>
+                            {/foreach}
+                            <div class="clear"></div>
+                        </ul>
+                    </div>
+                </div>
+                {/if}
+                
+                {if $sourceAttr['system']}
+                <div class="form-group">
+                    <label class="">程序内核：</label>
+                    <div class="n-midel">
+                        <input id="system" name="system" type="hidden"/>
+                        <ul>
+                            {foreach $sourceAttr['system'] as $v}
+                            <li class="system" value="{$v.id}"><a href="javascript:;"> {$v.value}</a></li>
+                            {/foreach}
+                            <div class="clear"></div>
+                        </ul>
+                    </div>
+                </div>
+                {/if}
+                {if $action == 'templates'}
+                <div class="form-group">
+                    <label class="">模板语言：</label>
+                    <div class="n-midel">
+                        <input id="language" name="language" type="hidden" value="zh"/>
+                        <ul>
+                            <li class="language" value="zh"><a class="hover" href="javascript:;"> 中文</a></li>
+                            <li class="language" value="en"><a href="javascript:;"> 英文</a></li>
+                            <div class="clear"></div>
+                        </ul>
+                    </div>
+                </div>
+                {/if}
+                
+                <div class="row">
+                    <div class="form-group fl">
+                        <label>IE兼容：（不涉及兼容可默认0）</label>
+                        <label for="ie"></label>
+                        <select name="ie" id="ie" class="layui-input-block">
+                            <option value="0">0</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                        </select>
+                    </div>
+                    <div class="form-group fr">
+                        <label>下载所需积分：</label>
+                        <input type="text" class="form-control" id="points" name="points" value="0">
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                
+                <div class="form-group js-upload-image">
+                    <label>素材封面图：</label>
+                    <div id="file_list_thumb">
+                        <div class="file-item thumbnail">
+                            <img src="{if $thumb}{:get_thumb($thumb)}{else /}/static/images/835x500.png{/if}" width="150">
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="uplpadModel" style="position: relative; margin-top: 0">
+                        <input type="hidden" name="thumb" id="thumb">
+                        <a class="uplpadButton thumb" name="thumb" data-multiple="0" data-thumb="275|180" data-size="1048576" data-ext="jpg,jpeg,bmp,png"><i class="fa fa-cloud-upload"></i> &nbsp;本地上传</a>
+                        <span class="red">支持上传格式jpg,jpeg,png。最大支持1Mb。</span>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                
+                <div class="form-group js-upload-file">
+                    <label>素材下载地址：</label>
+                    <input type="hidden" id="file_id" name="file_id"/>
+                    <input type="text" id="down_url" class="form-control" disabled name="down_url" placeholder="上传后显示">
+                    <div id="file_list" class="uploader-list">
+                    
+                    </div>
+                    <div class="uplpadModel" style="position: relative;">
+                        <a id="file_btn" class="uplpadButton" name="file_upload" data-multiple="false" data-size="52428800" data-ext="zip,rar"><i class="fa fa-cloud-upload"></i> &nbsp;本地上传</a>
+                        <span class="red">支持上传格式rar、zip。最大支持50M。</span>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label>添加标签：按英文逗号隔开，或者敲一下回车键（标签不得超过5个）</label>
+                    <input class="form-control js-tags-input" type="text" id="tags" name="tags" value="">
+                    <div class="clear"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label>素材简介：</label>
+                    <input type="text" id="description" class="form-control" name="description" placeholder="简介不能为空！">
+                </div>
+                
+                <div class="form-group">
+                    <label>素材详情介绍\使用方法\截图说明：</label>
+                    <script id="content" class="js-ueditor" name="content" type="text/plain"></script>
+                </div>
+                <div class="form-group" style="text-align:right">
+                    <span class="fl"><span id="formReminder"></span></span>
+                    <button type="submit" id="myButton" class="formAddButton" autocomplete="off">
+                        <i class="fa fa-check"></i> 提 交
+                    </button>
+                    <div class="clear"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="clear b10"></div>
+</div>
+
+<!--尾部内容-->
+{include file="footer"/}
+<script src="/plugins/webuploader/webuploader.min.js?v=20180327"></script>
+<script src="/plugins/jquery-tags-input/jquery.tagsinput.min.js"></script>
+<script src="/plugins/ueditor/ueditor.config.js"></script>
+<script src="/plugins/ueditor/ueditor.all.js"></script>
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    // ueditor编辑器集合
+    var Quick = {
+        'jcrop_upload_url':   "{:url('/upload/index/type/images/from/jcrop/module/admin')}",
+        'WebUploader_swf':    '/plugins/webuploader/Uploader.swf',
+        'file_upload_url':    "{:url('/upload/index/type/file/module/admin/action/uploadfile')}",
+        'image_upload_url':   "{:url('/upload/index/type/images/module/admin/action/uploadimage')}",
+        'ueditor_upload_url': "{:url('/upload/index/type/images/module/admin/from/ueditor')}",
+        'upload_check_url':   "{:url('/upload/check')}",
+    };
+
+    // ueditor编辑器
+    var ue = UE.getEditor('content', {
+        initialFrameHeight: 400,  //初始化编辑器高度,默认320
+        autoHeightEnabled:  false,  //是否自动长高
+        maximumWords:       50000, //允许的最大字符数
+        serverUrl:          Quick.ueditor_upload_url,
+        toolbars:           [
+            [
+                'fullscreen', //全屏
+                'source', //源代码
+                'undo', //撤销
+                'redo', //重做
+
+                '|',
+
+                'bold', //加粗
+                'italic', //斜体
+                'underline', //下划线
+                'strikethrough', //删除线
+
+                '|',
+
+                'indent', //首行缩进
+                'lineheight', //行间距
+                'fontborder', //字符边框
+                'subscript', //下标
+                'superscript', //上标
+
+                '|',
+
+                'forecolor', //字体颜色
+                'backcolor', //背景色
+                // 'emotion', //表情
+                'time', //时间
+                'date', //日期
+                'simpleupload', //单图上传
+
+                '|',
+
+                'insertorderedlist', //有序列表
+                'insertunorderedlist', //无序列表
+                'justifyleft', //居左对齐
+                'justifyright', //居右对齐
+                'justifycenter', //居中对齐
+                'justifyjustify', //两端对齐
+
+                '|',
+
+                'autotypeset', //自动排版
+                'template', //模板
+                'insertcode', //代码语言
+                'paragraph', //段落格式
+            ]
+        ],
+    });
+
+    var $action = '{$action}';
+    $('#myForm').submit(function () {
+        var $token       = $('#token').val();
+        var $title       = $('#title').val();
+        var $type        = $('#type').val();
+        var $ie          = $('#ie').val();
+        var $points      = $('#points').val();
+        var $tags        = $('#tags').val();
+        var $description = $('#description').val();
+        var $content     = ue.getContent();
+        var $thumb       = $('#thumb').val();
+        var $file_id     = $('#file_id').val();
+
+
+        var $data = {
+            '__token__':   $token,
+            'title':       $title,
+            'type':        $type,
+            'ie':          $ie,
+            'points':      $points,
+            'tags':        $tags,
+            'description': $description,
+            'content':     $content,
+            'thumb':       $thumb,
+            'file_id':     $file_id,
+        };
+
+        var $layout   = $('#layout').val();
+        var $system   = $('#system').val();
+        var $color    = $('#color').val();
+        var $language = $('#language').val();
+
+
+        if ($title == '') {
+            layer.msg('素材标题不能为空！');
+            return false;
+        }
+
+        if (!$type) {
+            layer.msg('请选择素材分类！');
+            return false;
+        }
+
+        if ($description == '') {
+            layer.msg('素材简介不能为空！');
+            return false;
+        }
+
+        if ($tags == '') {
+            layer.msg('请添加素材标签！');
+            return false;
+        }
+
+        if (!$thumb) {
+            layer.msg('请上传素材封面图！');
+            return false;
+        }
+
+        if (!$file_id) {
+            layer.msg('请上传素材文件！');
+            return false;
+        }
+
+        if ($action == 'templates' || $action == 'source') {
+            if (!$layout) {
+                layer.msg('请选择素材网页布局！');
+                return false;
+            } else {
+                $data['layout'] = $layout;
+            }
+
+            if ($action == 'templates') {
+                if (!$color) {
+                    layer.msg('请选择素材主题颜色！');
+                    return false;
+                } else {
+                    $data['color'] = $color;
+                }
+                if (!$language) {
+                    layer.msg('请选择模板语言！');
+                    return false;
+                } else {
+                    $data['language'] = $language;
+                }
+            }
+
+            if ($action == 'source') {
+                /*if (!$industry) {
+                 layer.msg('请选择源码用途！');
+                 return false;
+                 } else {
+                 $data['industry'] = $industry;
+                 }*/
+                if (!$system) {
+                    layer.msg('请选择源码程序内核！');
+                    return false;
+                } else {
+                    $data['system'] = $system;
+                }
+            }
+        }
+
+        layer.load();
+        $.post('', $data, function (res) {
+            layer.closeAll();
+            layer.msg(res.msg);
+            if (res.status == 1) {
+                setTimeout(function () {
+                    location.reload();
+                }, 3000)
+            }
+
+        }, 'json').fail(function () {
+            layer.closeAll();
+            layer.msg('网络繁忙，请重试！');
+        });
+
+        return false;
+    })
+
+    layui.use(['element', 'form'], function () {
+        var element = layui.element, form = layui.form;
+        form.render();
+    });
+    jQuery('.js-tags-input').tagsInput({
+        height:              '25px',
+        width:               'calc(100% - 15px)',
+        defaultText:         '添加标签',
+        removeWithBackspace: true,
+        delimiter:           [',']
+    });
+
+    $('.n-midel li').click(function () {
+        $class = $(this).attr('class');
+        $value = $(this).attr('value');
+        $('.n-midel li.' + $class).find('a').removeClass('hover');
+        $(this).find('a').addClass('hover');
+        $('input[name=' + $class + ']').val($value);
+        console.log($class)
+    })
+
+
+</script>
+<script type="application/javascript" src="/static/js/uploader.js"></script>
+</body>
+</html>

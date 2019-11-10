@@ -1,0 +1,298 @@
+{extend name="layout"/}
+{block name="meta"}
+<link rel="stylesheet" href="/admin/cdkey/style.css">
+{/block}
+{block name="content"}
+<!-- Page Content -->
+<div class="content">
+    <!-- Dashboard Charts -->
+    <div class="newserver">
+        <div class="container-fluid">
+            <form target="_self" method="post" action="https://pwdg.mctime.cn/" onsubmit="return runcode();">
+                <div class="row">
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <input type="text" id="prefix" class="form-control" name="prefix" value="">
+                            <label class="placeholder">卡号前缀</label>
+                            <ul class="common-options">
+                                <li data-value="rika">rika</li>
+                                <li data-value="yueka">yueka</li>
+                                <li data-value="jika">jika</li>
+                                <li data-value="nianka">nianka</li>
+                            </ul>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="suffix" class="form-control" name="suffix" value="">
+                            <label class="placeholder">卡号后缀</label>
+                            <ul class="common-options">
+                                <li data-value="rika">rika</li>
+                                <li data-value="yueka">yueka</li>
+                                <li data-value="jika">jika</li>
+                                <li data-value="nianka">nianka</li>
+                            </ul>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" id="startpos" class="form-control" min="1" name="startpos" value="1">
+                            <label class="placeholder">卡序号起始值</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" id="number" class="form-control" min="1" max="99999" name="number" value="500">
+                            <label class="placeholder">生成条数</label>
+                            <ul class="common-options">
+                                <li data-value="1">1</li>
+                                <li data-value="100">100</li>
+                                <li data-value="500">500</li>
+                                <li data-value="800">800</li>
+                                <li data-value="1000">1000</li>
+                                <li data-value="1500">1500</li>
+                                <li data-value="2400">2400</li>
+                                <li data-value="3600">3600</li>
+                            </ul>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" id="length" class="form-control" min="1" max="1024" name="length" value="15">
+                            <label class="placeholder">密码位数</label>
+                            <ul class="common-options">
+                                <li data-value="8">8</li>
+                                <li data-value="12">12</li>
+                                <li data-value="16">16</li>
+                                <li data-value="18">18</li>
+                                <li data-value="24">24</li>
+                                <li data-value="32">32</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="line"></div>
+                </div>
+                <div class="row">
+                    <div class="combination">
+                        <div>请选择密码要包含的字符：</div>
+                        <fieldset class="character pull-left c-3">
+                            <legend><label>常用符号 <input type="checkbox" class="check-all" checked=""></label></legend>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="inlineCheckbox1" class="schar" value="1" checked="">
+                                数字 </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="inlineCheckbox2" class="schar" value="2" checked="">
+                                小写字母 </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="inlineCheckbox3" class="schar" value="3" checked="">
+                                大写字母 </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="inlineCheckbox19" class="schar" value="19">
+                                八进制 </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="inlineCheckbox20" class="schar" value="20">
+                                十六进制-小写 </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="inlineCheckbox21" class="schar" value="21">
+                                十六进制-大写 </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="inlineCheckbox22" class="schar" value="22">
+                                二进制 </label>
+                        </fieldset>
+                        <fieldset class="character pull-left c-3">
+                            <legend><label>标点符号 <input type="checkbox" class="check-all"></label></legend>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="inlineCheckbox8" class="schar" value="8">
+                                点号"." </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="inlineCheckbox10" class="schar" value="10">
+                                单引号 </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="inlineCheckbox12" class="schar" value="12">
+                                叹号"!" </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="inlineCheckbox13" class="schar" value="13">
+                                小括号 </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="inlineCheckbox14" class="schar" value="14">
+                                中括号 </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="inlineCheckbox15" class="schar" value="15">
+                                花括号 </label>
+                        </fieldset>
+                        <fieldset class="character pull-left c-3">
+                            <legend><label>特殊符号 <input type="checkbox" class="check-all"></label></legend>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="inlineCheckbox4" class="schar" value="4">
+                                下划线"_" </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="inlineCheckbox5" class="schar" value="5">
+                                减号"-" </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="inlineCheckbox6" class="schar" value="6">
+                                井号"#" </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="inlineCheckbox7" class="schar" value="7">
+                                斜线"/" </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="inlineCheckbox17" class="schar" value="17">
+                                美元符号"$" </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="inlineCheckbox18" class="schar" value="18">
+                                百分号"%" </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="inlineCheckbox9" class="schar" value="9">
+                                @ </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="inlineCheckbox11" class="schar" value="11">
+                                &amp; </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="inlineCheckbox16" class="schar" value="16">
+                                ^ </label>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group action-btn">
+                        <button type="submit" class="btn btn-info" id="generator" data-loading-text="努力生成中...">生成</button>
+                        <button type="reset" class="btn btn-default reset" id="resetG">重置</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <fieldset class="output-section c-3">
+                        <div class="buttons" title="生成卡密数据后，按钮自动激活。">
+                            <legend>卡密</legend>
+                            <button type="button" class="btn btn-info copy" data-clipboard-target="code" id="copy_1" disabled="disabled">复制</button>
+                            <button type="button" class="btn btn-default selectall" disabled="disabled" id="select_all_1">全选</button>
+                            <button type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-code-modal-sm" disabled="disabled" id="export_1">
+                                导出为TXT文档
+                            </button>
+                        </div>
+                        <textarea id="code" name="code" class="form-control" placeholder="卡密对儿，用于发卡平台等批量导入的卡密数据。" readonly=""></textarea>
+                    </fieldset>
+                    <fieldset class="output-section c-3">
+                        <div class="buttons" title="生成卡密数据后，按钮自动激活。">
+                            <legend>卡号</legend>
+                            <button type="button" class="btn btn-info copy" data-clipboard-target="cnum" disabled="disabled" id="copy_2">复制</button>
+                            <button type="button" class="btn btn-default selectall" disabled="disabled" id="select_all_2">全选</button>
+                            <button type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-cnum-modal-sm" disabled="disabled" id="export_2">
+                                导出为TXT文档
+                            </button>
+                        </div>
+                        <textarea id="cnum" name="cnum" class="form-control" placeholder="单独列出的卡号数据。" readonly=""></textarea>
+                    </fieldset>
+                    <fieldset class="output-section c-3">
+                        <div class="buttons" title="生成卡密数据后，按钮自动激活。">
+                            <legend>密码</legend>
+                            <button type="button" class="btn btn-info copy" data-clipboard-target="passn" disabled="disabled" id="copy_3">复制</button>
+                            <button type="button" class="btn btn-default selectall" disabled="disabled" id="select_all_3">全选</button>
+                            <button type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-passn-modal-sm" disabled="disabled" id="export_3">
+                                导出为TXT文档
+                            </button>
+                        </div>
+                        <textarea id="passn" name="passn" class="form-control" placeholder="单独列出的密码数据，在某些仅需要密码作为激活码等的情况下使用。" readonly=""></textarea>
+                    </fieldset>
+                </div>
+            </form>
+            <div class="row">
+                <h5><strong>使用说明</strong></h5>
+            </div>
+            <div class="row">
+                <div class="alert alert-info alert-dismissible copy-tip">如果 <strong>复制</strong> 按钮失效，请点击
+                    <strong>全选</strong> 按钮然后使用 <code>Ctrl + C</code> 快捷键手动复制，或换用支持 Flash 的浏览器。
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="row">
+                <ul class="tips">
+                    <li>本工具为“卡密对儿”生成工具，用于生成适用于类似飞鸿网科1889等平台的卡密数据。</li>
+                    <li>本工具支持生成卡的数量为1~9999999。制作新一批卡时请估计最终出卡数量，通过卡号前缀补零，以免较早的卡号位数与较晚的卡号位数不同。</li>
+                    <li>卡号前后缀如果不填写，则卡号形式默认为起始值~起始值+生成条数的数字序列。</li>
+                    <li>为已存在的卡生成新卡，须填写卡序号起始值。例如前期已拥有500张卡，则新生成卡序号起始值为501，以免卡号重复。</li>
+                    <li>如一次性生成的卡数量较大，页面可能会出现卡顿，请耐心等待。</li>
+                    <li>生成的卡可以手动复制或者直接导出为txt文本文档，支持自定义文件名。</li>
+                </ul>
+            </div>
+        </div>
+        <div class="modal fade bs-code-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title">导出卡密对儿为TXT文档</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p style="color: red"><strong>注:</strong> 下载后请点击删除按钮，否则服务器上将保留该份卡密文档。</p>
+                        <input type="text" class="form-control filename" name="filename" placeholder="自定义文件名（默认文件名为日期）" value="">
+                        <div class="row dli">
+                            <div class="alert alert-info alert-dismissible copy-tip">点击文件名直接下载，或在文件名上点鼠标右键，选择
+                                <strong>另存为</strong></div>
+                        </div>
+                        <div class="dli">
+                            <ul class="downloadlist" style="list-style: none; padding-left:0; margin-bottom:0;"></ul>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" ttt="code" class="btn btn-default export" id="create_file_1">生成卡密对儿数据的文档</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade bs-cnum-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title">导出卡号为TXT文档</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p style="color: red"><strong>注:</strong> 下载后请点击删除按钮，否则服务器上将保留该份卡密文档。</p>
+                        <input type="text" class="form-control filename" name="filename" placeholder="自定义文件名（默认文件名为日期）" value="">
+                        <div class="row dli">
+                            <div class="alert alert-info alert-dismissible copy-tip">点击文件名直接下载，或在文件名上点鼠标右键，选择
+                                <strong>另存为</strong></div>
+                        </div>
+                        <div class="dli">
+                            <ul class="downloadlist" style="list-style: none; padding-left:0; margin-bottom:0;"></ul>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" ttt="cnum" class="btn btn-default export" id="create_file_2">生成只包含卡号数据的文档</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade bs-passn-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title">导出密码为TXT文档</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p style="color: red"><strong>注:</strong> 下载后请点击删除按钮，否则服务器上将保留该份卡密文档。</p>
+                        <input type="text" class="form-control filename" name="filename" placeholder="自定义文件名（默认文件名为日期）" value="">
+                        <div class="row dli">
+                            <div class="alert alert-info alert-dismissible copy-tip">点击文件名直接下载，或在文件名上点鼠标右键，选择
+                                <strong>另存为</strong></div>
+                        </div>
+                        <div class="dli">
+                            <ul class="downloadlist"></ul>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" ttt="passn" class="btn btn-default export" id="create_file_3">生成只包含密码数据的文档</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END Dashboard Charts -->
+</div>
+<!-- Page Header -->
+{/block}
+
+
+{block name="footer"}
+<script src="/admin/cdkey/main-source.js"></script>
+{/block}

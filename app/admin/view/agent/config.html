@@ -1,0 +1,225 @@
+{extend name="layout"/}
+
+{block name="content"}
+<style>
+    .form-inline .form-group {
+        margin-bottom: 15px;
+    }
+    
+    .form-inline input.form-control {
+        width: 100px
+    }
+</style>
+
+
+<!-- Page Content -->
+<div class="content">
+    <!-- Dashboard Charts -->
+    <div class="row">
+        <!-- Inline -->
+        <div class="block">
+            <div class="block-header bg-gray-lighter">
+                <h3 class="block-title">会员充值项配置</h3>
+            </div>
+            <div class="block-content block-content-full">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <!-- Form Inline - Default Style -->
+                        <form class="form-inline mb-4 user_recharge" method="POST" onsubmit="submit_recharge('user_recharge');return false;">
+                            <div class="form-group form-item col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-4">
+                                一天VIP<input type="hidden" class="form-control mb-2 name" value="一天VIP">，
+                                现价<input type="text" class="form-control mb-2 price">，
+                                原价<input type="text" class="form-control mb-2 price1">
+                            </div>
+                            <div class="form-group form-item col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-4">
+                                一个月VIP<input type="hidden" class="form-control mb-2 name" value="一个月VIP">，
+                                现价<input type="text" class="form-control mb-2 price">，
+                                原价<input type="text" class="form-control mb-2 price1">
+                            </div>
+                            <div class="form-group form-item col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-4">
+                                三个月VIP<input type="hidden" class="form-control mb-2 name" value="三个月VIP">，
+                                现价<input type="text" class="form-control mb-2 price">，
+                                原价<input type="text" class="form-control mb-2 price1">
+                            </div>
+                            <div class="form-group form-item col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-4">
+                                半年VIP<input type="hidden" class="form-control mb-2 name" value="半年VIP">，
+                                现价<input type="text" class="form-control mb-2 price">，
+                                原价<input type="text" class="form-control mb-2 price1">
+                            </div>
+                            <div class="form-group form-item col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-4">
+                                一年VIP<input type="hidden" class="form-control mb-2 name" value="一年VIP">，
+                                现价<input type="text" class="form-control mb-2 price">，
+                                原价<input type="text" class="form-control mb-2 price1">
+                            </div>
+                            <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <button class="btn btn-minw btn-primary" type="submit">提交</button>
+                            </div>
+                        </form>
+                        <!-- END Form Inline - Default Style -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END Inline -->
+        
+        <!-- Inline -->
+        <div class="block">
+            <div class="block-header bg-gray-lighter">
+                <h3 class="block-title">会员返利配置</h3>
+            </div>
+            <div class="block-content block-content-full">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <!-- Form Inline - Default Style -->
+                        <form class="form-inline mb-4 agent_profit" method="POST" onsubmit="submit_agent('agent_profit');return false;">
+                            <div class="form-group form-item col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-4">
+                                一级<input type="hidden" class="form-control mb-2 level" value="1">，推广<input type="text" class="form-control mb-2 number">人，返利<input type="text" class="form-control mb-2 rebate">%
+                            </div>
+                            <div class="form-group form-item col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-4">
+                                二级<input type="hidden" class="form-control mb-2 level" value="2">，推广<input type="text" class="form-control mb-2 number">人，返利<input type="text" class="form-control mb-2 rebate">%
+                            </div>
+                            <div class="form-group form-item col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-4">
+                                三级<input type="hidden" class="form-control mb-2 level" value="3">，推广<input type="text" class="form-control mb-2 number">人，返利<input type="text" class="form-control mb-2 rebate">%
+                            </div>
+                            <div class="form-group form-item col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-4">
+                                四级<input type="hidden" class="form-control mb-2 level" value="4">，推广<input type="text" class="form-control mb-2 number">人，返利<input type="text" class="form-control mb-2 rebate">%
+                            </div>
+                            <div class="form-group form-item col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-4">
+                                五级<input type="hidden" class="form-control mb-2 level" value="5">，推广<input type="text" class="form-control mb-2 number">人，返利<input type="text" class="form-control mb-2 rebate">%
+                            </div>
+                            <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <button class="btn btn-minw btn-primary" type="submit">提交</button>
+                            </div>
+                        </form>
+                        <!-- END Form Inline - Default Style -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END Inline -->
+        
+        
+        <!-- Inline -->
+        <div class="block">
+            <div class="block-header bg-gray-lighter">
+                <h3 class="block-title">代理返利配置</h3>
+            </div>
+            <div class="block-content block-content-full">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <!-- Form Inline - Default Style -->
+                        <form class="form-inline mb-4 agent_uplevel" method="POST" onsubmit="submit_agent('agent_uplevel');return false;">
+                            <div class="form-group form-item col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-4">
+                                一级代理<input type="hidden" class="form-control mb-2 level" value="1">，返利<input type="text" class="form-control mb-2 rebate">%
+                            </div>
+                            <div class="form-group form-item col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-4">
+                                二级代理<input type="hidden" class="form-control mb-2 level" value="2">，返利<input type="text" class="form-control mb-2 rebate">%
+                            </div>
+                            <div class="form-group form-item col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-4">
+                                三级代理<input type="hidden" class="form-control mb-2 level" value="3">，返利<input type="text" class="form-control mb-2 rebate">%
+                            </div>
+                            <div class="form-group form-item col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-4">
+                                四级代理<input type="hidden" class="form-control mb-2 level" value="4">，返利<input type="text" class="form-control mb-2 rebate">%
+                            </div>
+                            <div class="form-group form-item col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-4">
+                                五级代理<input type="hidden" class="form-control mb-2 level" value="5">，返利<input type="text" class="form-control mb-2 rebate">%
+                            </div>
+                            <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <button class="btn btn-minw btn-primary" type="submit">提交</button>
+                            </div>
+                        </form>
+                        <!-- END Form Inline - Default Style -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END Inline -->
+    </div>
+    <!-- END Dashboard Charts -->
+</div>
+<!-- Page Header -->
+{/block}
+
+{block name="footer"}
+
+<script>
+    var configs = {$configs|raw};
+
+    console.log(configs)
+    for (var key in configs) {
+        var value = configs[key];
+        for (var i in value) {
+            if (key == 'user_recharge') {
+                $('.' + key + ' .price').eq(i).val(value[i].price);
+                $('.' + key + ' .price1').eq(i).val(value[i].price1);
+            } else {
+                if(key == 'agent_profit'){
+                    $('.' + key + ' .number').eq(i).val(value[i].number);
+                }
+                $('.' + key + ' .rebate').eq(i).val(value[i].rebate);
+            }
+
+
+        }
+    }
+
+    function show_tips(res) {
+        if (res.code == 1) {
+            tips(res.msg, 'success')
+        } else {
+            tips(res.msg, 'danger')
+        }
+    }
+
+
+    function submit_recharge(name1) {
+        var value = [];
+        $('.' + name1 + ' .form-group.form-item').each(function () {
+            var price1 = $(this).find('.price1').val();
+            var price = $(this).find('.price').val();
+            var name = $(this).find('.name').val();
+
+            value.push({'name': name, 'price': price, 'price1': price1});
+        });
+        var data = {'name': name1, 'value': value};
+
+        $.post('', data, function (res) {
+            show_tips(res)
+            setTimeout(function () {
+                window.location.reload()
+            }, 1000)
+        }, 'json');
+        return false;
+    }
+
+    /**
+     *
+     * @returns {boolean}
+     */
+    function submit_agent(name) {
+        var value = [];
+        $('.' + name + ' .form-group.form-item').each(function () {
+            var rebate = $(this).find('.rebate').val();
+            var level = $(this).find('.level').val();
+
+            var number = $(this).find('.number').val();
+            if (number) {
+                value.push({'level': level, 'rebate': rebate, number: number});
+            } else {
+                value.push({'level': level, 'rebate': rebate});
+            }
+
+        });
+        var data = {'name': name, 'value': value};
+
+        $.post('', data, function (res) {
+            show_tips(res)
+            setTimeout(function () {
+                window.location.reload()
+            }, 1000)
+        }, 'json');
+        return false;
+    }
+
+</script>
+{/block}

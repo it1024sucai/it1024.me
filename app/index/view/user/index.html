@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    {include file="meta"/}
+    
+    <link rel="stylesheet" type="text/css" href="/static/css/themes.css"/>
+<body>
+
+<!--头部内容-->
+{include file="header"/}
+<div class="userIndex">
+    <div class="w1000">
+        <div class="head fl"><img src="{$user.avatar}"></div>
+        <div class="con fl">
+            <div class="username">{$user.nickname}
+                <span>（拥有 {$user.points} 积分 - {$user.exp} 经验 - <span style=" color:#999999;">L{$user.level} {$user.level_name}</span>）</span>
+            </div>
+            <div class="job">
+                <span class="fl"><i class="fa fa-briefcase"></i> {$user.job|default='未填写职位'} - <i class="fa fa-map-marker"></i> {$user.area|default='未填写地区'}</span>
+                <span class="fr">{$user.remark|default='这位童鞋很懒，什么也没有留下～～！'}</span>
+            </div>
+            <div class="honeurl">
+                <a title="{$user.nickname}的主页地址" href="{:request()->domain()}/u{$user_id}.html"><i class="fa fa-globe"></i> {:request()->domain()}/u{$user_id}.html</a>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="wrapper w1000 user-center">
+    <div class="contentShow fl">
+        <ul class="info-title">
+            <li class="{$action == 'index' ? 'hover' : ''}"><a href="/u{$user_id}/index.html">他的资源</a></li>
+            <!--<li class="{$action == 'forum' ? 'hover' : ''}"><a href="/u{$user_id}/forum.html">他的帖子</a></li>-->
+            <li class="{$action == 'collect' ? 'hover' : ''}"><a href="/u{$user_id}/collect.html">他的收藏</a></li>
+        </ul>
+        <div class="u-con-list">
+            {if !$list}
+            <div class="no_result">
+                <p><img width="96" height="120" src="/static/images/no_result.png" alt="暂无相关网站模板"></p>
+                <p class="words"><span class="line">暂无相关数据</span></p>
+            </div>
+            {/if}
+            {foreach $list as $v}
+            <div class="u-con-item">
+                <span class="pic">
+                    <a target="_blank" href="/{$v.id}.html">
+                        <img style="margin-top:0px" alt="{$v.title}" src="{$v.thumb}">
+                    </a>
+                </span>
+                <div class="u-con-info">
+                    <span class="objTitle">
+                        <a class="title2" target="_blank" href="/{$v.id}.html">{$v.title}</a>
+                    </span>
+                    <p class="m-tags">所属分类：[{:getChannelName($v['channel'])}]</p>
+                    <p class="m-info">
+                        {$v.description}
+                    </p>
+                </div>
+            </div>
+            {/foreach}
+            <!--<div class="u-con-item">
+                <div class="u-con-info1">
+                    <span class="objTitle">
+                        <a class="title2" target="_blank" href="/7128.html">TP5零食小程序带微信支付</a>
+                    </span>
+                    <p class="m-tags">所属分类：[综合素材]</p>
+                    <p class="m-info">
+                        前几天，有个非计算机专业的同学问我，如何快速找出1亿之内的孪生素数——所谓孪生素数，就是差值为2的两个素数。原本以为这是一个很简单的问题，
+                        随便用python写了一个方法，没想到却要跑17分钟左右。改用C++试试，受限于我对C/C++的理解程度，仍
+                    </p>
+                </div>
+            </div>-->
+        </div>
+    </div>
+    
+    <div class="sidebar fr">
+        <!--<div class="b20"></div>-->
+        {include file="tags"/}
+    </div>
+    <div class="clear"></div>
+</div>
+<!--尾部内容-->
+{include file="footer"/}
+</body>
+</html>

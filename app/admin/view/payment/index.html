@@ -1,0 +1,102 @@
+{extend name="layout"}
+
+{block name="meta"}
+<link rel="stylesheet" href="/plugins/bootstrap3-editable/css/bootstrap-editable.css">
+<style>
+    .textarea{min-width: 20%;word-wrap:break-word;table-layout:fixed;word-break:break-all;}
+    .textarea-edit.editable.editable-click {
+        display: block;
+        width: 100%;
+        max-height: 20px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
+{/block}
+
+{block name="content"}
+    <div class="content animated">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <div class="block-header bg-gray-lighter">
+                        <ul class="block-options">
+                            <li>
+                                <button type="button" data-toggle="block-option" data-action="refresh_toggle" data-action-mode="demo"><i class="si si-refresh"></i></button>
+                            </li>
+                            <li>
+                                <button type="button" data-toggle="block-option" data-action="fullscreen_toggle"><i class="si si-size-fullscreen"></i></button>
+                            </li>
+                        </ul>
+                        <h3 class="block-title">支付方式</h3>
+                    </div>
+                    <div class="block-content tab-content">
+                        <div class="tab-pane active">
+                            <div class="row data-table-toolbar">
+                                <div class="col-sm-12">
+                                    <div class="toolbar-btn-action">
+                                        <a title="新增" icon="fa fa-plus-circle" class="btn btn-primary" href="{:url('/payment/create')}"><i class="fa fa-plus-circle"></i> 新增</a>
+                                     </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-builder table-hover table-bordered table-striped js-table-checkable">
+                                    <thead>
+                                    <tr>
+                                        <th class="column-title  ">
+                                            支付名称
+                                        </th>
+                                        <th class="column-status  ">
+                                            添加时间
+                                        </th>
+                                        <th class="column-status  ">
+                                            状态
+                                        </th>
+                                        <th class="column-right_button  ">操作 <span></span></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {foreach($list as $v)}
+                                        <tr class="text-c">
+                                            <td class="textarea">
+                                                {$v.name}
+                                            </td>
+                                            <td>
+                                                {:date('Y-m-d H:i:s',$v['create_time'])}
+                                            </td>
+                                            <td>
+                                                <label class="css-input switch switch-sm switch-primary" title="开启/关闭">
+                                                    <input data-table="payments" data-id="{$v['id']}" data-field="status" {if($v['status'] == 1)} checked {/if} type="checkbox">
+                                                    <span></span>
+                                                </label>
+                                            </td>
+                                            <td class="f-14 td-manage">
+                                                <div class="btn-group">
+                                                    <a title="" class="btn btn-s btn-default"
+                                                       href="{:url('/payment/edit',['id'=>$v['id']])}" target="_self"
+                                                       data-toggle="tooltip" data-original-title="查看"><i class="fa fa-pencil"></i></a>
+                                                    <a title=""
+                                                       class="btn btn-s btn-default ajax-get confirm"
+                                                       href="{:url('/payment/delete',['ids'=>$v['id']])}?table=payments" data-toggle="tooltip"
+                                                       data-original-title="删除"><i class="fa fa-times"></i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {/foreach}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{/block}
+
+{block name="footer"}
+    <script src="/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="/plugins/bootstrap3-editable/js/bootstrap-editable.js"></script>
+    <script src="/plugins/jquery-validation/additional-methods.js"></script>
+    <script src="/admin/js/table.js"></script>
+{/block}

@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    {include file="meta"/}
+    <link rel="stylesheet" type="text/css" href="/static/css/member.css?v=20190904-1"/>
+    <script type="text/javascript" src="/static/js/jquery.SuperSlide.2.1.1.js"></script>
+</head>
+<body>
+
+<!--头部内容-->
+{include file="header"/}
+
+
+<div class="wrapper w1000">
+    <!--用户中心右边内容-->
+    {include file="member/member_right"}
+    <div class="member_main">
+        <div class="integral-mdoel clearfix">
+            <div class="integral-info">
+                <div class="tit">我的积分</div>
+                <div class="con"><i class="fa fa-money"></i>
+                    <span class="number">{$user.points}</span><!--<a target="_blank" href="/recharge-index/1.html" class="pay-btn">充值</a>-->
+                </div>
+            </div>
+            <div class="integral-info">
+                <div class="tit">我的金币</div>
+                <div class="con"><i class="fa fa-life-bouy"></i>
+                    <span class="number">{$user.coin}</span><!--<a target="_blank" href="/recharge-index/2.html" class="pay-btn">充值</a>-->
+                </div>
+            </div>
+            <div class="integral-info">
+                <div class="tit">我的等级</div>
+                <div class="con">经验：<span class="number">{$user.exp}</span> -
+                    <span class="m-level" style="color:#999999;">Lv{$user.level} {$user.level_name}</span></div>
+            </div>
+            <div class="integral-info">
+                <div class="tit">会员特权</div>
+                <div class="con">普通会员<a target="_blank" href="javascript:;" class="pay-btn">暂未开通</a></div>
+            </div>
+        </div>
+        <div class="quick-nav clearfix">
+            <ul>
+                <li><a href="/member/favorite.html"><i class="fa fa-heart-o"></i>
+                    <p>我的收藏</p></a></li>
+                <li><a href="/member/info.html"><i class="fa fa-user-o"></i>
+                    <p>资料管理</p></a></li>
+                <li><a href="/member/signin.html"><i class="fa fa-pencil-square-o"></i>
+                    <p>每日签到</p></a></li>
+                <li><a href="/member/mysoft.html"><i class="fa fa-folder-open-o"></i>
+                    <p>我的投稿</p></a></li>
+                <li><a href="javascript:;"><i class="fa fa-comments-o"></i>
+                    <p>我的帖子</p></a></li>
+                <li><a href="javascript:;"><i class="fa fa-bullhorn"></i>
+                    <p>站务公告</p></a></li>
+            </ul>
+        </div>
+        <div class="bianqian-model">
+            <!--<div class="s-url">我的网络便签：<a href="/s/813658.html">/s/813658.html</a></div>
+            <div class="s-con">
+                <a target="_blank" href="/web-note.html">使用说明</a>
+                <a target="_blank" href="/read/3422.html">问题反馈</a>
+            </div>-->
+        </div>
+        <ul class="info-title">
+            <li class="hover"><i class="fa fa-users"></i> 最新VIP会员</li>
+            <li class="sm">（每6小时更新一次数据）</li>
+            <li class="more-r"><a target="_blank" href="javascript:;">查看会员特权？</a></li>
+        </ul>
+        <div class="picMarquee-left">
+            <div class="bd clearfix">
+                <div class="stylesgoleft"><i class="fa fa-chevron-left"></i></div>
+                <div class="tempWrap" style="overflow:hidden; position:relative; width:867px">
+                    <div class="no_result" style="text-align: center">
+                        <p><img width="96" height="120" src="/static/images/no_result.png" alt="暂无相关网站模板"></p>
+                        <p class="words"><span class="line">暂无相关数据</span></p>
+                    </div>
+                    <!--<ul class="picList" style="width: 7225px; position: relative; overflow: hidden; padding: 0px; margin: 0px; left: -1391px;">
+                        <li class="clone" style="float: left; width: 274px;">
+                            <a target="_blank" href="/recharge-vip.html">
+                                <div class="pic-model">
+                                    <div class="p-headimg"><img src="/themes/index/images/headImg/3.png"></div>
+                                    <div class="p-con">
+                                        <div class="p-uname">黄***艺</div>
+                                        <div class="p-sm">已购买VIP1特权（30元）</div>
+                                        <div class="p-time">2019-10-28 04:43</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>-->
+                </div>
+                <div class="stylesgoright"><i class="fa fa-chevron-right"></i></div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+
+<!--尾部内容-->
+{include file="footer"/}
+
+<script type="text/javascript">
+    jQuery(".picMarquee-left").
+        slide({mainCell: ".bd ul", autoPlay: true, effect: "leftMarquee", vis: 3, interTime: 50, trigger: "click"});
+</script>
+</body>
+</html>

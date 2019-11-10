@@ -1,0 +1,81 @@
+{extend name="layout"/}
+
+{block name="content"}
+    <!-- Page Content -->
+    <div class="content content-narrow">
+        <!-- Stats -->
+        <div class="row text-uppercase">
+            <div class="col-xs-6 col-sm-3">
+                <div class="block block-rounded">
+                    <div class="block-content block-content-full">
+                        <div class="font-s12 font-w700">充值金额</div>
+                        <a class="h2 font-w300 text-primary" href="base_comp_charts.html" data-toggle="countTo" data-to="{$recharges}"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <div class="block block-rounded">
+                    <div class="block-content block-content-full">
+                        <div class="font-s12 font-w700">返利金额</div>
+                        <a class="h2 font-w300 text-primary" href="base_comp_charts.html" data-toggle="countTo" data-to="{$rebates}"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <div class="block block-rounded">
+                    <div class="block-content block-content-full">
+                        <div class="font-s12 font-w700">提现金额</div>
+                        <a class="h2 font-w300 text-primary" href="base_comp_charts.html" data-toggle="countTo" data-to="{$extracts}" data-before=""></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <div class="block block-rounded">
+                    <div class="block-content block-content-full">
+                        <div class="font-s12 font-w700">总收益</div>
+                        <a class="h2 font-w300 text-primary" href="base_comp_charts.html" data-toggle="countTo" data-to="{$profits}" data-before=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END Stats -->
+
+        <!-- Dashboard Charts -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="block block-rounded block-opt-refresh-icon8">
+                    <div class="block-header">
+                        <ul class="block-options">
+                            <li>
+                                <button type="button" data-toggle="block-option" data-action="refresh_toggle" data-action-mode="demo"><i class="si si-refresh"></i></button>
+                            </li>
+                        </ul>
+                        <h3 class="block-title">收入</h3>
+                    </div>
+                    <div class="block-content block-content-full bg-gray-lighter text-center">
+                        <!-- Chart.js Charts (initialized in js/pages/base_pages_dashboard_v2.js), for more examples you can check out http://www.chartjs.org/docs/ -->
+                        <div style="height: 340px;"><canvas class="js-dash-chartjs-earnings"></canvas></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="block block-rounded block-opt-refresh-icon8">
+                    <div class="block-header">
+                        <ul class="block-options">
+                            <li>
+                                <button type="button" data-toggle="block-option" data-action="refresh_toggle" data-action-mode="demo"><i class="si si-refresh"></i></button>
+                            </li>
+                        </ul>
+                        <h3 class="block-title">支出</h3>
+                    </div>
+                    <div class="block-content block-content-full bg-gray-lighter text-center">
+                        <!-- Chart.js Charts (initialized in js/pages/base_pages_dashboard_v2.js), for more examples you can check out http://www.chartjs.org/docs/ -->
+                        <div style="height: 340px;"><canvas class="js-dash-chartjs-sales"></canvas></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END Dashboard Charts -->
+    </div>
+    <!-- Page Header -->
+{/block}

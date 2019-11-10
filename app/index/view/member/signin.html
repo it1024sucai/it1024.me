@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    {include file="meta"/}
+    <link rel="stylesheet" type="text/css" href="/static/css/member.css?v=20190904-1"/>
+
+<body>
+
+<!--头部内容-->
+{include file="header"/}
+
+
+<div class="wrapper w1000">
+    <!--用户中心右边内容-->
+    {include file="member/member_right"}
+    <div class="member_main">
+        <ul class="info-title">
+            <li class="hover"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> 签到</li>
+            <!--<li class="sm">成为VIP可免积分下载素材 <a target="_blank" href="/recharge-vip.html">[查看详情]</a></li>-->
+            <li class="more-r">
+                <a target="_blank" href="https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=etxd8sor">😉 阿里云幸运券，戳我领取</a>
+            </li>
+        </ul>
+        <div class="tishi">
+            <p class="tishi_text">
+                <span class="tishi_span">签到奖励提示</span>
+            </p>
+            <p class="tishi_text">
+                <span class="tishi_span">      1：</span>
+                每天签到，获得 <b>20</b> 积分、<b>20</b> 经验值奖励
+            </p>
+            <p class="tishi_text">
+                <span class="tishi_span">      2：</span>
+                一个月内签到满 <b>20</b> 次，获得签到奖励 <b>200</b> 积分、<b>200</b> 经验值（立即到账，不是下个月发放，可查看积分记录）
+            </p>
+            <!--<p class="tishi_text">
+                <span class="tishi_span">      3：</span>
+                <b>VIP</b> 签到/评论 <b>双倍</b>积分
+            </p>-->
+        </div>
+        <table width="100%" class="qiandao layui-table table_sign">
+            <tbody>
+            <tr>
+                <th>星期日</th>
+                <th>星期一</th>
+                <th>星期二</th>
+                <th>星期三</th>
+                <th>星期四</th>
+                <th>星期五</th>
+                <th>星期六</th>
+            </tr>
+            <tr>
+                {foreach $days as $k=>$v}
+                {if $v['day']==$day}
+                    {if $v['sign']=='yes'}
+                        <td class="yes">{$v.day}</td>
+                    {else/}
+                        <td onclick="qiandao()" id="qiandao" class="allow">
+                            <span id="day">{$v.day}</span><span id="tips">签到</span>
+                        </td>
+                    {/if}
+                {else/}
+                <td class="{$v['day']>=1?'no':''} {$v['sign']=='yes'?'yes':''}">{$v.day}</td>
+                {/if}
+                {if ($k+1)%7==0}
+                </tr><tr>
+                {/if}
+                {/foreach}
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="clear"></div>
+</div>
+
+
+<!--尾部内容-->
+{include file="footer"/}
+<script type="application/javascript">
+    function qiandao() {
+        var day = $('#day').html()
+        layer.load();
+        $.post('',function (res) {
+            layer.closeAll();
+            layer.msg(res.msg)
+            if(res.status == 1){
+                $('#qiandao').removeClass('allow');
+                $('#qiandao').addClass('yes');
+                $('#qiandao').html('');
+                $('#qiandao').html(day);
+            }
+        },'json')
+    }
+</script>
+</body>
+</html>

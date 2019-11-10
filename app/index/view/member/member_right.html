@@ -1,0 +1,51 @@
+<div class="member_right">
+    <div class="member_per">
+        <div class="panel clearfix">
+            <div class="panel-info clearfix">
+                <a class="round-image" href="/member/info/action/picture.html">
+                    <img id="headimg" width="50" height="50" src="{$user.avatar}" alt="头像">
+                </a>
+                <div class="name-job">
+                    <h4 class="myname">{$user.nickname}</h4>
+                    <p class="job-title">{$user.job|default='未填写'}</p>
+                </div>
+            </div>
+            <div class="rank-points">
+                <ul>
+                    <li class="mp-item">
+                        <a class="mp-atag" href="javascript:;">
+                            <span class="mp-title">IT积分</span>
+                            <span class="mp-num"><i class="fa fa-money" aria-hidden="true"></i> {$user.points|default=0}</span>
+                        </a>
+                    </li>
+                    <li class="mp-item">
+                        <a class="mp-atag" href="javascript:;">
+                            <span class="mp-title">IT金币</span>
+                            <span class="mp-num"><i class="fa fa-life-bouy" aria-hidden="true"></i> {$user.coin|default=0}</span>
+                        </a>
+                    </li>
+                    <div class="clear"></div>
+                </ul>
+            </div>
+            <div class="rank-up">经验值：{$user.exp|default=0} - <span class="m-level" style="color:#999999;">Lv{$user.level} {$user.level_name}</span></div>
+        </div>
+        <div class="vip-sign-bg vip0-sign-bg"></div>
+    </div>
+    <div class="member_per">
+        <ul class="nav panel">
+            <li><a class="{$_active == 'index' ? 'active' : ''}" href="/member.html"><i class="fa fa-home"></i>会员主页</a></li>
+            <li><a class="{$_active == 'info' ? 'active' : ''}" href="/member/info.html"><i class="fa fa-user"></i>资料管理</a></li>
+            <li><a class="{$_active == 'uploader' ? 'active' : ''}" href="/member/uploader.html"><i class="fa fa-cloud-upload" aria-hidden="true"></i>发布素材</a></li>
+            <li><a class="{$_active == 'signin' ? 'active' : ''}" href="/member/signin.html"><i class="fa fa-pencil-square-o"></i>我要签到</a></li>
+            <li><a class="{$_active == 'favorite' ? 'active' : ''}" href="/member/favorite.html"><i class="fa fa-heart-o"></i>我的收藏</a></li>
+            <li><a class="{$_active == 'mysoft' ? 'active' : ''}" href="/member/mysoft.html"><i class="fa fa-folder-open-o"></i>我的资源</a></li>
+            <!--<li><a class="{$_active == 'order' ? 'active' : ''}" href="/member/order.html"><i class="fa fa-file-text" aria-hidden="true"></i>我的订单</a></li>-->
+            <li><a class="{$_active == 'comment' ? 'active' : ''}" href="/member/comment.html"><i class="fa fa-commenting"></i>我的评论</a></li>
+            <li><a class="{$_active == 'message' ? 'active' : ''}" href="/member/message.html"><i class="fa fa-envelope"></i>我的消息</a></li>
+            <li><a class="{$_active == 'download' ? 'active' : ''}" href="/member/download.html"><i class="fa fa-cloud-download"></i>下载记录</a></li>
+        </ul>
+        <!--<div class="sign-wrap">
+            <div class="signed_textarea">成为VIP会员可永久免费下载素材、源码、视频&nbsp;&nbsp;&nbsp;<a href="/main/vip.html" target="_blank">[查看详情]</a></div>
+        </div>-->
+    </div>
+</div>

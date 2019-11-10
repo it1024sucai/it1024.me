@@ -1,0 +1,431 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    {include file="meta"/}
+    <link rel="stylesheet" type="text/css" href="/static/css/themes.css"/>
+</head>
+<body>
+<!--头部内容-->
+{include file="header"/}
+<div class="wrapper w1000">
+    <div class="breadcrumb"><strong>当前位置：</strong> <a href="/"><i class="fa fa-home"></i> 首页</a> &raquo;
+        <a href="{:url('/'.$_channel)}">{:getChannelName($_channel)}</a> &raquo; {$title}
+    </div>
+    <div class="contentShow fl">
+        <div class="project-header"><h1>{$title}</h1>
+            <p><i class="fa fa-folder"></i> &nbsp;所属分类：{:getSourceById($type)['value']}</p>
+            <div class="project-line fl">
+                <span><i class="fa fa-eye"></i> &nbsp;浏览：{$clicks}次</span>
+                <span class="transverse">-</span>
+                <span><i class="fa fa-cloud-download"></i> &nbsp;下载：{$downs}次</span>
+                <span class="transverse">-</span>
+                <span><i class="fa fa-comment"></i> &nbsp;评论：{$comments}次</span>
+                <span class="transverse">-</span>
+                <span><i class="fa fa-calendar"></i> &nbsp;更新时间：{$create_time}</span>
+            </div>
+            <div class="project-share fr">
+                <div class="bdsharebuttonbox" data-tag="share_1">
+                    <a class="ttqq" data-cmd="sqq" title="分享到QQ好友"></a>
+                    <a class="ttwx" data-cmd="weixin" href="#"></a>
+                    <a class="ttqzone" data-cmd="qzone"></a>
+                    <a class="ttsina" data-cmd="tsina"></a>
+                    <a class="tthuaban" data-cmd="huaban"></a>
+                    <a class="ttfbook" data-cmd="fbook"></a>
+                    <div id="fxcode">
+                        <div class="f fxjg">分享到微信朋友圈</div>
+                        <div id="fxcolse" class="r fxjg"><b>X</b></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="project-content demo-pic">
+            <img src="{$image_src}" alt="{$title}" class="project-thumbile">
+            {if $ie}<img src="/static/images/ie{$ie}.png" class="thumbile" alt="ie兼容{$ie}">{/if}
+        </div>
+        <div class="google-ad">
+            广告位置
+        </div>
+        <div class="project-content">
+            <div class="thumbile">
+                {if in_array($channel,['jquery','templates'])}
+                <a href="/demo/{$id}" target="_blank" class="btn btn-success" rel="nofollow"><i class="fa fa-eye"></i> &nbsp;查看演示</a>
+                {/if}
+                <a href="javascript:void(0)" onclick="openDownModel('1');" class="btn btn-danger"><i class="fa fa-cloud-download"></i> &nbsp;立即下载</a>
+                <a class="btn btn-jiance"><img src="/static/picture/jiance.png" width="149" height="27"/></a>
+            </div>
+            <!--<div class="intsCon">积分说明：注册即送15牛币，每日签到可获得5牛币，成为VIP会员可永久免积分下载！   
+                <a href="/recharge-index.html" target="_blank">充值积分</a>   
+                <a href="/main/vip.html" target="_blank">充值会员</a>   
+                <a href="/info/28.html">更多说明»</a>
+            </div>-->
+            <div class="description">素材简介：{$description}</div>
+            <div class="keyword">
+                <i class="fa fa-tags"></i> &nbsp;标签：
+                                           {foreach $tags as $v}
+                <a class="tag" href="/tags/{$v}.html">{$v}</a>
+                                           {/foreach}
+            </div>
+        </div>
+        {if $content}
+        <div class="in2-tit"><h4><i class="fa fa-check-square-o"></i> 详情介绍及使用方法</h4></div>
+        <div class="project-content">
+            {$content|raw}
+        </div>
+        {/if}
+        <!-- <div class="in2-tit"><h4><i class="fa fa-sitemap"></i> 文件目录结构</h4></div>
+         <div class="project-content">
+             <div class="dir">
+                 <div class="con">
+                     <ul>
+                         <li class='folder'><i class='fa fa-folder-open-o' aria-hidden='true'></i> css</li>
+                         <ul>
+                             <li>┝ demo.css</li>
+                             <li>┝ normalize.css</li>
+                             <li>┝ style.css</li>
+                         </ul>
+                         <li class='folder'><i class='fa fa-folder-open-o' aria-hidden='true'></i> images</li>
+                         <ul>
+                             <li>┝ anhui.png</li>
+                             <li>┝ beijing.png</li>
+                             <li>┝ chongqing.png</li>
+                             <li>┝ fujian.png</li>
+                         </ul>
+                         <li>┝ index.html</li>
+                         <li class='folder'><i class='fa fa-folder-open-o' aria-hidden='true'></i> js</li>
+                         <ul>
+                             <li>┝ DD_belatedPNG.js</li>
+                             <li>┝ jquery-1.11.0.min.js</li>
+                             <li>┝ main.js</li>
+                         </ul>
+                     </ul>
+                 </div>
+             </div>
+         </div>-->
+        <div class="project-content project-top-border">
+            <div class="social">
+                <div class="social-inner">
+                    <a class="social-left" href="{$prev->id ? '/'.$prev->id.'.html':'javascript:;'}"><i class="fa fa-chevron-left"></i><span>{$prev->title ?: '没有了'}</span></a>
+                    <div class="social-round">
+                        <div class="social-round-border"><span></span></div>
+                        <i onclick="Backtop();" class="social-round-inner fa fa-arrow-up"></i></div>
+                    <a class="social-right" href="{$next->id ? '/'.$next->id.'.html':'javascript:;'}"><span>{$next->title?:'没有了'}</span><i class="fa fa-chevron-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="xiangguan"><h4><i class="fa fa-coffee"></i> 相关素材 -
+            <span class="z14">{:getSourceById($type)['value']}</span></h4>
+            <!--<div class="xg">
+                <div class="xg-model">
+                    <div class="view">
+                        <a href="/corechart.html" target="_blank"><img src="/static/picture/0c97ff6977ff995299117b6105b46736_20161213140028.png" width="220" height="140" alt="jQuery圆形图表统计插件corechart.js">
+                            <div class="cover-info">
+                                <div class="tit">jQuery圆形图表统计插件corechart.js</div>
+                                <div class="des">jQuery圆形图表统计插件corechart.js，兼容性很好，使用起来也非常简单，看下代码就知道怎么用了。</div>
+                                <div class="column"><i class="fa fa-list-ul"></i> &nbsp;表格/统计/地图</div>
+                            </div>
+                            <div class="cover-stat">
+                                <i class="fa fa-comment"></i> &nbsp;<span>3</span>&nbsp;&nbsp;<i class="fa fa-cloud-download"></i> &nbsp;<span>13</span>
+                            </div>
+                        </a>
+                        <div class="user">
+                            <a title="Copyright的主页" href="/u/252.html" target="_blank"><i class="fa fa-user-secret"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="clear"></div>
+                </div>
+            </div>-->
+        </div>
+        <div class="in2-tit"><h4>
+            <i class="fa fa-comments-o"></i> 讨论这个素材（{$comments}）<span class="z14">回答他人问题或分享使用心得会奖励积分</span>
+        </h4></div>
+        
+        <div class="in2" id="meglist"><a name="anchor"></a>
+            {if !$comment_list}
+            <p id="no-m-data">〒_〒 居然一个评论都没有……</p>
+            {/if}
+            {foreach $comment_list as $v}
+            <div class="m-model">
+                <div class="m-head">
+                    <a href="javascript:;"><img src="{:get_avatar($v['avatar'],$v['default_avatar'])}"><span style="color:#333333;">L{$v.level} {$v.level_name}</span></a>
+                </div>
+                <div class="m-arrow"></div>
+                <div class="m-frame">
+                    <div class="m-tit">
+                        <div class="fl"><i class="fa fa-user-circle-o"></i> {$v.nickname}&nbsp;&nbsp;</div>
+                        <div class="fr"><span class="z12"><i class="fa fa-calendar"></i> {$v.create_time}</span>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="m-con"><p>{$v.content}</p>
+                        {foreach $v['data'] as $val}
+                        <div class="reply">
+                            <a href="javascript:;"><i class="fa fa-user-circle-o"></i> {$val.nickname}</a>：{$val.content}
+                        </div>
+                        {/foreach}
+                        <a class="hf" id="hf{$v.id}" onclick="replyButton('{$v.id}')"><i class="fa fa-share-square-o"></i> 回复</a>
+                        <div class="clear"></div>
+                        <div class="allmegForm" id="sonMeg{$v.id}"></div>
+                    </div>
+                </div>
+            </div>
+            {/foreach}
+        </div>
+        <div class="message in2">
+            <div class="alert-success" id="err"></div>
+            <textarea id='body' class="textarea" style='height:120px; width:100%;' placeholder="您有什么想法要说的吗？帮助他人、分享技术会获得积分奖励！"></textarea>
+            <div class="Mbutton">
+                <span class="fl"><i class="fa fa-exclamation-triangle"></i> &nbsp;文明上网，理性发言！&nbsp;&nbsp;&nbsp;😉 阿里云幸运券，
+                    <a style="color:#ff6600" target="_blank" href="https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=etxd8sor">戳我领取</a>
+                </span>
+                <span class="fr">
+                    <button onclick="getPlainTxt('{$id}',0)" type="button" id="myButton" class="btn btn-primary"><i class="fa fa-commenting"></i> &nbsp;发表评论</button>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar fr">
+        <ul class="zuozhe list-group"><h6>素材发布者信息</h6>
+            <a href="/u{$user_id}.html"><img src="{:get_avatar($avatar,$default_avatar)}"></a>
+            <div class="zuox f">
+                <h4><a href="/u{$user_id}.html">{$nickname}</a></h4>
+                <span class="job"><i class="fa fa-briefcase"></i> {$job|default='职位未填写'}</span>
+            </div>
+            <a class="btn btn-z" href="/u{$user_id}.html"><i class="fa fa-plus-circle"></i> TA发布的素材<!--<span>(3)</span>-->
+            </a>
+            <a class="btn btn-z" onclick="collect()"><span id="shoucang"><i class="fa fa-heart-o"></i> 收藏此素材</span></a>
+            <div class="df"></div>
+        </ul>
+        <ul class="s_nav">
+            <li><a href="/{$channel}/{$type}.html"><i class="fa fa-bar-chart ls"></i> &nbsp;&nbsp;{:getSourceById($type)['value']}
+            </a></li>
+        </ul>
+        <div class="b20"></div>
+        {include file="tags"/}
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="replyFormModel">
+    <div class="replyForm">
+        <input type="hidden" name="parent_id" id="parent_id"/>
+        <input type="text" name="replyBody" id="replyBody" class="inp fl" placeholder="请输入回复内容……"/>
+        <button onclick="getPlainTxt('{$id}', 1)" type="button" id="myReplyButton" class="sub fr">
+            <i class="fa fa-commenting"></i> &nbsp;提交回复
+        </button>
+        <div class="clear"></div>
+    </div>
+</div>
+<div id="openDownModel">
+    <div class="downModel">
+        <div class="tit">
+            <i class="fa fa-money red"></i> 我的{if $buy_type == 1}IT积分{else/}IT币{/if}余额：<span class="download_mymoney" id="download_mymoney">{if $buy_type == 1 } {$user_points} {else/} {$user_coin}{/if}</span>
+            <i class="fa fa-download"></i> 已下载次数：<span class="download_times">{$downs}</span>
+        </div>
+        <div class="con">
+            <span class="download_money fl" id="download_money">{if $is_buy}此资源下载过，免费下载{else}所需{if $buy_type == 1}IT积分{else/}IT币{/if}：{/if}<span id="points_money" class="en">{$points}</span></span>
+            <a href="javascript:void(0)" onclick="downloads('{$id}');" class="download_btn fr" id="download_btn"><i class="fa fa-download"></i>
+                <span id="download_start">开始下载</span></a></div>
+        <div class="instructions"><p>
+            <strong><i class="fa fa-money red"></i> 积分获取：</strong>签到、评论、发布素材、素材被下载...&nbsp;&nbsp;&nbsp;&nbsp;<!--<a target="_blank" href="/recharge-index/1.html"><span class="u">» 在线充值</span></a>（10牛币=1元）-->
+        </p>
+            <!--<div class="viptips"><a href="/recharge-vip.html" target="_blank">成为VIP可永久免积分下载素材
+                <span class="u">» 查看详情</span></a>
+            </div>-->
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    var $title = '{$title}';
+    var id     = '{$id}';
+
+    function collect() {
+        var id = '{$id}';
+        if (!'{:session("user.id")}') {
+            return login(1);
+        }
+        layer.load()
+        $.post("/index/collect.html", {'id': id}, function (res) {
+            layer.closeAll();
+            if (res.status == 2) {
+                login('1');
+            } else {
+                layer.msg(res.msg)
+            }
+        }, 'json')
+    }
+
+    function openDownModel() {
+        if (!'{:session("user.id")}') {
+            return login(1);
+        }
+        layer.open({
+            type:      1,
+            title:     $title,
+            skin:      'layui-layer-lan',
+            area:      ['600px'],
+            scrollbar: false,
+            content:   $('#openDownModel')
+        });
+    }
+
+    function downloads(id) {
+        $("#download_btn").html('<i class="fa fa-spinner fa-pulse fa-fw margin-bottom"></i>&nbsp;下载中…');
+        $.post("/index/download.html", {'id': id}, function (json) {
+            if (json.status == 2) {
+                login('1');
+            } else if (json.status == 0) {
+                layer.msg(json.msg)
+            } else if (json.status == 1) {
+                layer.closeAll();
+                window.location.href = json.data.url
+            } else if (json.status == 100) {
+                layer.closeAll();
+                layer.alert('抱歉，今天的下载次数已经达到上限！', {title: '友情提示', btn: ['关闭'], btnAlign: 'c'})
+            }
+            $("#download_btn").
+                html('<i class="fa fa-download"></i> <span id="download_start" data-tip="开始下载">开始下载</span>');
+        }, 'json');
+    }
+
+    function getPlainTxt(aid, type) {
+        var mBody     = $("#body").val();
+        var parent_id = 0;
+        if (type) {
+            parent_id = $("#parent_id").val();
+            mBody     = $('#replyBody').val()
+        }
+
+
+        if (mBody.length < 4) {
+            $("#err").html('评论内容不得少于4个字符');
+            $("#err").css("display", "block");
+            return false;
+        }
+        $.post("/index/createComment.html", {
+            'res_id':    aid,
+            'parent_id': parent_id,
+            'content':   mBody,
+        }, function (json) {
+            if (json.status == 2) {
+                $("#err").html(json.msg);
+                $("#err").css("display", "block");
+                login('1')
+            } else if (json.status == 1) {
+                if (parent_id) {
+                    layer.msg('评论提交成功')
+                    $("#hf" + parent_id).before(json.data.tpl)
+                } else {
+                    $("#err").css("display", "block");
+                    $("#err").html('<i class="fa fa-check"></i> &nbsp;评论提交成功！');
+                    $("#meglist").append(json.data.tpl);
+                    $("#no-m-data").css("display", "none");
+                    setTimeout(function () {
+                        $("#err").css("display", "none");
+                    }, 3000)
+                }
+
+            } else {
+                $("#err").html(json.msg);
+                $("#err").css("display", "block")
+            }
+        }, 'json')
+    }
+
+
+    function replyButton(parent_id) {
+        $(".allmegForm").html('');
+        $("#parent_id").val(parent_id);
+        var formHtml = $(".replyFormModel").html();
+        $("#sonMeg" + parent_id).html(formHtml);
+    }
+
+    function shoucang() {
+        var aid  = '7030';
+        var type = '1';
+        $.getJSON("/home/shoucangPost.html", {'aid': aid, 'type': type}, function (json) {
+            if (json.status == 'nologin') {
+                login('1');
+            } else if (json.status == 'no') {
+                $("#shoucang").html('<i class="fa fa-heart-o"></i> 收藏此素材');
+                layer.msg(json.meg);
+            } else if (json.status == 'yes') {
+                $("#shoucang").html('<i class="fa fa-heart"></i> 您已收藏');
+                layer.msg(json.meg);
+            }
+        })
+    }
+</script>
+
+
+<script type="text/javascript" src="/static/js/shCore.js"></script>
+<script type="text/javascript" src="/static/js/shBrushXml.js"></script>
+<script type="text/javascript">SyntaxHighlighter.highlight();</script>
+<!--尾部内容-->
+{include file="footer"/}
+
+<script src="/static/js/jquery.qrcode.min.js"></script>
+<script type="application/javascript">
+    var sharrul   = window.location;
+    var shartitle = "{$title}";
+    var sharpic   = "{:request()->domain()}{$image_src}";
+
+    jQuery('#fxcode').qrcode({
+        render: "canvas",
+        width:  175,
+        height: 175,
+        text:   sharrul
+    });
+
+    $(".ttwx").click(function () {
+        $("#fxcode").css("display", "block")
+    });
+    $("#fxcolse").click(function () {
+        $("#fxcode").css("display", "none")
+    });
+    $(".ttqq").click(function () {
+        shareqq(shartitle, sharrul, sharpic)
+    });
+    $(".ttqzone").click(function () {
+        shareToQq(shartitle, sharrul, sharpic)
+    });
+    $(".ttsina").click(function () {
+        shareToXl(shartitle, sharrul, sharpic)
+    });
+    $(".tthuaban").click(function () {
+        sharehuaban(shartitle, sharrul, sharpic)
+    });
+    $(".ttfbook").click(function () {
+        sharefb(shartitle, sharrul, sharpic)
+    });
+
+    function shareqq(title, url, picurl) {
+        var shareqqzonestring = 'https://connect.qq.com/widget/shareqq/index.html?summary=' + title + '&url=' + url + '&pics=' + picurl;
+        window.open(shareqqzonestring, 'newwindow', 'height=595,width=785,top=100,left=100')
+    }
+
+    function shareToQq(title, url, picurl) {
+        var shareqqzonestring = 'https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?title=' + title + '&url=' + url + '&pics=' + picurl;
+        window.open(shareqqzonestring, 'newwindow', 'height=400,width=400,top=100,left=100')
+    }
+
+    function shareToXl(title, url, picurl) {
+        var sharesinastring = 'http://v.t.sina.com.cn/share/share.php?title=' + title + '&url=' + url + '&content=utf-8&sourceUrl=' + url + '&pic=' + picurl;
+        window.open(sharesinastring, 'newwindow', 'height=400,width=400,top=100,left=100')
+    }
+
+    function sharehuaban(title, url, picurl) {
+        var sharesinastring = 'https://huaban.com/bookmarklet/?title=' + title + '&url=' + url + '&content=utf-8&sourceUrl=' + url + '&media=' + picurl;
+        window.open(sharesinastring, 'newwindow', 'height=400,width=400,top=100,left=100')
+    }
+
+    function sharefb(title, url, picurl) {
+        var sharesinastring = 'https://www.facebook.com/share.php?t=' + title + '&u=' + url + '&content=utf-8&sourceUrl=' + url + '&pic=' + picurl;
+        window.open(sharesinastring, 'newwindow', 'height=400,width=400,top=100,left=100')
+    }
+
+</script>
+</body>
+</html>

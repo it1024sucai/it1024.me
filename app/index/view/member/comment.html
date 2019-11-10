@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    {include file="meta"/}
+    <link rel="stylesheet" type="text/css" href="/static/css/member.css?v=20190904-1"/>
+    <script type="text/javascript" src="/static/js/jquery.SuperSlide.2.1.1.js"></script>
+</head>
+<body>
+
+<!--头部内容-->
+{include file="header"/}
+
+
+<div class="wrapper w1000">
+    <!--用户中心右边内容-->
+    {include file="member/member_right"}
+    <div class="member_main">
+        <ul class="info-title">
+            <li class="hover"><i class="fa fa-commenting"></i> 评论记录</li>
+            <li class="more-r">
+                <a target="_blank" href="https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=etxd8sor">😉 阿里云幸运券，戳我领取</a>
+            </li>
+        </ul>
+        <div class="b20"></div>
+        {foreach $list as $v}
+        <div class="infoPerBlock infoCommentBlock ">
+            <div class="leftPicBlock2">
+                <a href="/member/comment.html">
+                    <img src="{:get_avatar_by_id($v['user_id'])}" title="头像" alt="头像">
+                </a>
+            </div>
+            <div class="centerBlock2">
+                <span class="title">我评论说：</span>
+                <div class="infoNews">{$v.content}</div>
+                <div class="objectBlock">
+                    <span class="pic">
+                        <a target="_blank" href="/{$v.res_id}.html">
+                        <img width="70px" height="50px" style="margin-top:0px" alt="{$v.title}" src="{$v.thumb}">
+                        </a>
+                    </span>
+                    <span class="objTitle">
+                        <a class="title2" target="_blank" href="/{$v.res_id}.html">{$v.title}</a>
+                    </span>
+                    <p class="m-tags"><i class="fa fa-arrow-right"></i> &nbsp;所属分类：[{:getChannelName($v['channel'])}]</p>
+                </div>
+            </div>
+            <div class="rightBlock">
+                <span class="time">{$v.create_time}</span>
+            </div>
+            <div class="clear"></div>
+        </div>
+        {/foreach}
+    </div>
+    <div class="clear"></div>
+</div>
+
+
+<!--尾部内容-->
+{include file="footer"/}
+
+<script type="text/javascript">
+    jQuery(".picMarquee-left").
+        slide({mainCell: ".bd ul", autoPlay: true, effect: "leftMarquee", vis: 3, interTime: 50, trigger: "click"});
+</script>
+</body>
+</html>

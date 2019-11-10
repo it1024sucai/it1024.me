@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" type="text/css" href="/plugins/layui/css/layui.css"/>
+    {include file="meta"/}
+    <link rel="stylesheet" type="text/css" href="/static/css/member.css?v=20190904-1"/>
+    <script type="text/javascript" src="/plugins/layui/layui.all.js"></script>
+</head>
+<body>
+
+<!--头部内容-->
+{include file="header"/}
+
+
+<div class="wrapper w1000">
+    <!--用户中心右边内容-->
+    {include file="member/member_right"}
+    <div class="member_main">
+        <ul class="info-title">
+            <li class="{$action == 'index' ? 'hover' : ''}">
+                <a href="/member/info/action/index.html"><i class="fa fa-id-card-o"></i> 个人资料</a></li>
+            <li class="{$action == 'picture' ? 'hover' : ''}">
+                <a href="/member/info/action/picture.html"><i class="fa fa-picture-o"></i> 头像设置</a></li>
+            <li class="{$action == 'setpass' ? 'hover' : ''}">
+                <a href="/member/info/action/setpass.html"><i class="fa fa-key"></i> 修改密码</a></li>
+            <!--<li class="{$action == 'index' ? 'hover' : ''}"><a href="/member/bind.html"><i class="fa fa-weixin" aria-hidden="true"></i> 关联微信</a></li>-->
+        </ul>
+        <div class="b20"></div>
+        {if $action == 'index'}
+        <form id="userUpdate" name="userUpdate" class="layui-form layui-form-pane" method="post" action="">
+            <div class="layui-form-item">
+                <label class="layui-form-label">账号</label>
+                <div class="layui-input-block">
+                    <input type="text" class="layui-input layui-disabled" value="{$username}" disabled="">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">昵称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="nickname" class="layui-input" lay-verify="required" value="{$nickname}" autocomplete="off">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">职位</label>
+                <div class="layui-input-block">
+                    <select id="job" name="job">
+                        <option value="">暂无，请选择</option>
+                        <option value="页面重构设计">页面重构设计</option>
+                        <option value="交互设计师">交互设计师</option>
+                        <option value="产品经理">产品经理</option>
+                        <option value="UI设计师">UI设计师</option>
+                        <option value="JS工程师">JS工程师</option>
+                        <option value="Web前端工程师">Web前端工程师</option>
+                        <option value="移动开发工程师">移动开发工程师</option>
+                        <option value="PHP开发工程师">PHP开发工程师</option>
+                        <option value="软件测试工程师">软件测试工程师</option>
+                        <option value="Linux系统工程师">Linux系统工程师</option>
+                        <option value="JAVA开发工程师">JAVA开发工程师</option>
+                        <option value="技术总监">技术总监</option>
+                        <option value="CEO">CEO</option>
+                        <option value="学生">学生</option>
+                        <option value="其它">其它</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">区域</label>
+                <div class="layui-input-block">
+                    <select id="area" name="area">
+                        <option value="广东">广东</option>
+                        <option value="北京">北京</option>
+                        <option value="天津">天津</option>
+                        <option value="河北">河北</option>
+                        <option value="山西">山西</option>
+                        <option value="内蒙古">内蒙古</option>
+                        <option value="辽宁">辽宁</option>
+                        <option value="吉林">吉林</option>
+                        <option value="黑龙江">黑龙江</option>
+                        <option value="上海">上海</option>
+                        <option value="江苏">江苏</option>
+                        <option value="浙江">浙江</option>
+                        <option value="安徽">安徽</option>
+                        <option value="福建">福建</option>
+                        <option value="江西">江西</option>
+                        <option value="山东">山东</option>
+                        <option value="河南">河南</option>
+                        <option value="湖北">湖北</option>
+                        <option value="湖南">湖南</option>
+                        <option value="广东">广东</option>
+                        <option value="广西">广西</option>
+                        <option value="海南">海南</option>
+                        <option value="重庆">重庆</option>
+                        <option value="四川">四川</option>
+                        <option value="贵州">贵州</option>
+                        <option value="云南">云南</option>
+                        <option value="西藏">西藏</option>
+                        <option value="陕西">陕西</option>
+                        <option value="甘肃">甘肃</option>
+                        <option value="青海">青海</option>
+                        <option value="宁夏">宁夏</option>
+                        <option value="新疆">新疆</option>
+                        <option value="香港">香港</option>
+                        <option value="澳门">澳门</option>
+                        <option value="台湾">台湾</option>
+                        <option value="国外">国外</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item" pane="">
+                <label class="layui-form-label">性别</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="sex" value="保密" checked="checked" title="保密">
+                    <div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i>
+                        <div>保密</div>
+                    </div>
+                    <input type="radio" name="sex" value="男" title="男">
+                    <div class="layui-unselect layui-form-radio layui-form-radioed">
+                        <i class="layui-anim layui-icon layui-anim-scaleSpring"></i>
+                        <div>男</div>
+                    </div>
+                    <input type="radio" name="sex" value="女" title="女">
+                    <div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i>
+                        <div>女</div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">个性签名</label>
+                <div class="layui-input-block">
+                    <textarea name="signature" placeholder="请输入内容" class="layui-textarea">这位童鞋很懒，什么也没有留下～～！</textarea>
+                </div>
+            </div>
+            <input type="hidden" name="submit" id="submit" value="yes">
+            <div class="layui-form-item">
+                <button class="layui-btn layui-btn-normal layui-btn-fluid" lay-submit="" lay-filter="formSubmit">
+                    <i class="fa fa-check"></i> 立即提交
+                </button>
+            </div>
+        </form>
+        
+        {elseif $action == 'picture' /}
+        <fieldset class="layui-elem-field layui-field-title">
+            <legend>使用1024素材网头像</legend>
+        </fieldset>
+        <div class="headModel">
+            <ul class="headList">
+                {foreach $piclist as $v}
+                <li onclick="updateHead('{$v}');" class="{$v < 61 ? 'show page1' : 'page2'}">
+                    <img src="/static/images/picture/{$v}.jpg"></li>
+                {/foreach}
+                <div class="clear"></div>
+            </ul>
+        </div>
+        <div class="headModel_page"><a class="" id="page1" href="javascript:;">上一页</a><a class="show" id="page2" href="javascript:;">下一页</a></div>
+        {elseif $action == 'setpass'/}
+        
+        <form id="UserPassword" name="UserPassword" class="layui-form layui-form-pane" method="post" action="/member/password.html">
+            <div class="layui-form-item">
+                <label class="layui-form-label">账号</label>
+                <div class="layui-input-block">
+                    <input type="text" class="layui-input layui-disabled" value="qq_6OQmj-813658" disabled="">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">旧密码</label>
+                <div class="layui-input-block">
+                    <input type="text" class="layui-input" name="oldpassword" value="" lay-verify="required">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">新密码</label>
+                <div class="layui-input-block">
+                    <input type="text" class="layui-input" name="newpassword" value="" lay-verify="required">
+                </div>
+            </div>
+            <input type="hidden" name="submit" id="submit" value="yes">
+            <div class="layui-form-item">
+                <button class="layui-btn layui-btn-normal layui-btn-fluid" lay-submit="" lay-filter="formSubmit">
+                    <i class="fa fa-check"></i> 立即提交
+                </button>
+            </div>
+        </form>
+        {/if}
+    </div>
+    <div class="clear"></div>
+</div>
+
+<!--尾部内容-->
+{include file="footer"/}
+
+<script type="text/javascript">
+
+    function updateHead(img) {
+        layer.load();
+        $.post("/member/setPicture", {img: img}, function (json) {
+            layer.closeAll();
+            if (json.status == 1) {
+                layer.msg(json.msg);
+                $("#headimg").attr("src", json.data.url+'?'+Math.random());
+            } else {
+                layer.msg(json.msg);
+            }
+        },'json');
+    }
+    $('.headModel_page a').click(function () {
+        $id = $(this).attr('id');
+        $('.headList li').hide();
+        $('.headModel_page a').removeClass('show');
+        $('.headList li.'+$id).show();
+        if($id == 'page1'){
+            $('.headModel_page a#page2').addClass('show');
+        }else {
+            $('.headModel_page a#page1').addClass('show');
+        }
+    })
+
+    function form1() {
+        var form = document.userUpdate;
+        if (form.nickname.value.replace(/ /g, "") == "") {
+            layer.msg('昵称不能为空');
+            form.nickname.focus();
+            return false;
+        }
+    }
+
+    function form2() {
+        var form = document.UserPassword;
+        if (form.oldpassword.value.replace(/ /g, "") == "") {
+            layer.msg('旧密码不能为空');
+            form.oldpassword.focus();
+            return false;
+        }
+        if (form.newpassword.value.replace(/ /g, "") == "") {
+            layer.msg('新密码不能为空');
+            form.newpassword.focus();
+            return false;
+        }
+    }
+</script>
+<script>
+    layui.use(['element', 'form'], function () {
+        var element = layui.element, form = layui.form;
+        form.render();
+    });
+</script>
+</body>
+</html>

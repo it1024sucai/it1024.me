@@ -1,0 +1,182 @@
+{extend name="layout"}
+
+{block name="meta"}
+<link rel="stylesheet" href="/plugins/bootstrap3-editable/css/bootstrap-editable.css">
+<style>
+    .textarea {
+        min-width: 20%;
+        word-wrap: break-word;
+        table-layout: fixed;
+        word-break: break-all;
+    }
+    
+    .textarea-edit.editable.editable-click {
+        display: block;
+        width: 100%;
+        max-height: 20px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
+{/block}
+
+{block name="content"}
+<div class="content animated">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="block">
+                <div class="block-header bg-gray-lighter">
+                    <ul class="block-options">
+                        <li>
+                            <button type="button" data-toggle="block-option" data-action="refresh_toggle" data-action-mode="demo">
+                                <i class="si si-refresh"></i>
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" data-toggle="block-option" data-action="fullscreen_toggle">
+                                <i class="si si-size-fullscreen"></i>
+                            </button>
+                        </li>
+                    </ul>
+                    <h3 class="block-title">充值管理</h3>
+                </div>
+                <div class="block-content tab-content">
+                    <div class="tab-pane active">
+                        <div class="row data-table-toolbar">
+                            <div class="col-sm-12">
+                                <form class="pull-right search-bar" method="get" role="form">
+                                    <input type="hidden" name="search_field" id="search-field" value="username">
+                                    <div class="input-group">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-default" id="search-btn" data-toggle="dropdown" type="button" aria-expanded="false">
+                                                搜索 <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a tabindex="-1" href="javascript:void(0)" data-field="username">搜索</a>
+                                                </li>
+                                                <li>
+                                                    <a tabindex="-1" href="javascript:void(0)" data-field="username">用户名</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <input type="text" class="form-control" value="" name="keyword" placeholder="用户名/昵称">
+                                    </div>
+                                </form>
+                                
+                                <div class="toolbar-btn-action">
+                                    <a title="删除" icon="fa fa-times-circle-o" class="btn btn-danger ajax-post confirm" target-form="ids" href="{:url('/extract/delete')}?table=extract_logs"><i class="fa fa-times-circle-o"></i> 删除</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-builder table-hover table-bordered table-striped js-table-checkable">
+                                <thead>
+                                <tr>
+                                    <th class="text-center">
+                                        <label class="css-input css-checkbox css-checkbox-primary remove-margin-t remove-margin-b">
+                                            <input type="checkbox" id="check-all"><span></span>
+                                        </label>
+                                    </th>
+                                    <th class="column-title  ">用户名</th>
+                                    <th class="column-name  ">姓名</th>
+                                    <th class="column-name  ">提现金额</th>
+                                    <th class="column-name  ">银行</th>
+                                    <th class="column-name  ">卡号</th>
+                                    <th class="column-status  ">时间</th>
+                                    <th class="column-status  ">状态</th>
+                                    <th class="column-right_button  ">操作 <span></span></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {foreach($list as $v)}
+                                <tr class="text-c">
+                                    <td class="text-center">
+                                        <label class="css-input css-checkbox css-checkbox-primary">
+                                            <input class="ids" name="ids[]" value="{$v['id']}"
+                                                   type="checkbox"><span></span>
+                                        </label>
+                                    </td>
+                                    <td>{$v['username']}</td>
+                                    <td class="textarea">{$v.name}</td>
+                                    <td class="textarea">{$v.money}</td>
+                                    <td class="textarea">{$v.bank_name}</td>
+                                    <td class="textarea">{$v.bank_no}</td>
+                                    <td>{:date('Y-m-d H:i:s',$v['create_time'])}</td>
+                                    <td>{$v.status|raw}</td>
+                                    <td class="f-14 td-manage">
+                                        <div class="btn-group">
+                                            <a title="" class="btn btn-s btn-default"
+                                               href="JavaScript:;" onclick="setAgent('{$v.id}')"  target="_self"
+                                               data-toggle="tooltip" data-original-title="审核"><i class="si si-wrench"></i></a>
+                                            <a title="" icon="fa fa-times"
+                                               class="btn btn-s btn-default ajax-get confirm"
+                                               href="{:url('/extract/delete',['ids'=>$v['id']])}?table=extract_logs" data-toggle="tooltip"
+                                               data-original-title="删除"><i class="fa fa-times"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {/foreach}
+                                {if($list->render())}
+                                <tr>
+                                    <td colspan="9" class="text-center">
+                                        {$list->render()|raw}
+                                    </td>
+                                </tr>
+                                {/if}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+
+{block name="footer"}
+<script src="/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/plugins/bootstrap3-editable/js/bootstrap-editable.js"></script>
+<script src="/plugins/jquery-validation/additional-methods.js"></script>
+<script src="/admin/js/table.js"></script>
+<script>
+    function setAgent($id) {
+        layer.open({
+            type: 2,
+            title: '代理审核',
+            area: ['500px', '460px'],
+            content: "{:url('/extract/setstatus')}?id=" + $id,
+            success: function (layero, index) {
+                var body = layer.getChildFrame('body', index);
+                body.find('.form-builder').submit(function () {
+                    var $id = body.find('.id').val();
+                    var $level = body.find('select').val();
+                    var $status = body.find("input[type='radio']:checked").val();
+                    var $remark = body.find('.remark').val();
+
+                    if ($status != 0 && !$remark) {
+                        tips('备注不能为空，请输入通过或不通过的理由和信息。', 'danger');
+                        return false;
+                    }
+
+                    var $data = {'id': $id, 'level': $level, 'remark': $remark, 'status': $status}
+                    $.post('{:url(\'/extract/setstatus\')}', $data, function (data) {
+                        if (data.code == 1) {
+                            tips('设置成功~', 'success');
+                            //当你在iframe页面关闭自身时
+
+                            layer.close(index); //再执行关闭
+                        } else {
+                            tips('网络繁忙~', 'danger');
+                            layer.close(index); //再执行关闭
+                        }
+                    }, 'json')
+
+                    return false;
+                })
+            }
+        })
+    }
+</script>
+{/block}

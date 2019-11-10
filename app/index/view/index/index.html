@@ -1,0 +1,306 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    {include file="meta"/}
+    <link rel="stylesheet" type="text/css" href="static/css/index.css"/>
+    <script type="text/javascript" src="static/js/index.js"></script>
+    <script type="text/javascript">$(function () {
+        if ($("img.lazy").length > 0) {
+            $("img.lazy").lazyload({effect: "fadeIn"})
+        }
+    });</script>
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="static/js/html5shiv.min.js"></script><![endif]--></head>
+<body>
+
+<!--头部内容-->
+{include file="header"/}
+
+<div class="wrapper w1000">
+    <div class="model">
+        <div class="mNav fl">
+            <div class="tit"><h3>热门推荐导航</h3></div>
+            <div class="con">
+                <a href="/templates/60-0-0-0-0-1.html">
+                    <i class="merchant_arrow merchant_arrow_right"></i>
+                    <span class="icon_merchant icon_merchant_fire"></span>
+                    <span class="name">后台模板</span>
+                    <i class="merchant_arrow_left"></i>
+                </a>
+                <a href="/templates/0-82-0-0-0-1.html">
+                    <i class="merchant_arrow merchant_arrow_right"></i>
+                    <span class="icon_merchant icon_merchant_mobile"></span>
+                    <span class="name">手机模板</span>
+                    <i class="merchant_arrow_left"></i>
+                </a>
+                <a href="/jquery.html">
+                    <i class="merchant_arrow merchant_arrow_right"></i>
+                    <span class="icon_merchant icon_merchant_js"></span>
+                    <span class="name">网页特效</span>
+                    <i class="merchant_arrow_left"></i>
+                </a>
+                <a href="/source/0-94-0-0-1.html">
+                    <i class="merchant_arrow merchant_arrow_right"></i>
+                    <span class="icon_merchant icon_merchant_png"></span>
+                    <span class="name">ThinkPhp</span>
+                    <i class="merchant_arrow_left"></i>
+                </a>
+                <a href="/source.html">
+                    <i class="merchant_arrow merchant_arrow_right"></i>
+                    <span class="icon_merchant icon_merchant_typeface"></span>
+                    <span class="name">源码推荐</span>
+                    <i class="merchant_arrow_left"></i>
+                </a>
+                <a href="/source/0-95-0-0-1.html">
+                    <i class="merchant_arrow merchant_arrow_right"></i>
+                    <span class="icon_merchant icon_merchant_code"></span>
+                    <span class="name">Laravel</span>
+                    <i class="merchant_arrow_left"></i>
+                </a>
+            </div>
+        </div>
+        <div class="banner fl">
+            <div id='sliderPlay' style="width:580px; height:250px; overflow:hidden;">
+                <a href='JavaScript:;' target="_blank"><img src='static/picture/20170422014135.png' alt='Thinkphp第三方登录演示与下载源码' width='580px' height='250px'/></a>
+                <a href='JavaScript:;' target="_blank"><img src='static/picture/20170312131659.png' alt='PHP原生微信扫码支付实例源码' width='580px' height='250px'/></a>
+                <a href='JavaScript:;' target="_blank"><img src='static/picture/20161017101110.jpg' alt='微信扫码支付接口、支付宝即时到帐接口二合一实例下载' width='580px' height='250px'/></a>
+                <a href='JavaScript:;' target="_blank"><img src='static/picture/20160816135819.jpg' alt='PHP留言板：随意留言板（SyGouestBook）v1.1 最新版免费下载' width='580px' height='250px'/></a>
+                <a href='JavaScript:;' target="_blank"><img src='static/picture/20160816232625.jpg' alt='PHP无刷新多图片预览上传功能' width='580px' height='250px'/></a>
+                <a href='JavaScript:;' target="_blank"><img src='static/picture/20160817093834.jpg' alt='PHP+jQuery+Ajax+Mysql实现文章阅后心情态度投票功能' width='580px' height='250px'/></a>
+                <a href='JavaScript:;' target="_blank"><img src='static/picture/02.jpg' alt='首页banner02' width='580px' height='250px'/></a>
+                <a href='JavaScript:;' target="_blank"><img src='static/picture/20160822112941.jpg' alt='WEB在线工具箱' width='580px' height='250px'/></a>
+            </div>
+        </div>
+        <div class="topRight fr">
+            <div class="tit">
+                <span class="fl"><h3><i class="fa fa-envira"></i> 热门素材</h3></span><span class="fr more"><a href="/search-index.html">更多 »</a></span>
+            </div>
+            <div class="con">
+                <ul>
+                    {foreach $hot as $v}
+                    <li>
+                        <span class="fl">
+                            <font class="t-name"><a href="/{$v.channel}.html">[{:getChannelName($v.channel)}]</a></font>
+                            <a href="/{$v.id}.html" target="_blank">{$v.title}</a>
+                        </span>
+                        <span class="fr"><font class="m-int"></font></span>
+                    </li>
+                    {/foreach}
+                </ul>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <!--<div class="b10"></div>
+    <div class="balance clearfix">
+        <div class="balance-info">
+            <div class="balance-title">收录素材</span></div>
+            <div class="balance-content"><span class="ints">6757</span><span class="unit">个</span></div>
+        </div>
+        <div class="balance-info"><a href="/codelist.html">
+            <div class="balance-title">常用代码</span></div>
+            <div class="balance-content"><span class="ints">1687</span><span class="unit">个</span></div>
+        </a></div>
+        <div class="balance-info"><a href="/video-view.html">
+            <div class="balance-title">视频教程</div>
+            <div class="balance-content clearfix"><span class="ints">168</span><span class="unit">个</span></div>
+        </a></div>
+        <div class="balance-info"><a href="/forum.html">
+            <div class="balance-title">论坛帖子</span></div>
+            <div class="balance-content"><span class="ints">3185</span><span class="unit">帖</span></div>
+        </a></div>
+        <div class="balance-info">
+            <div class="balance-title">提供下载</div>
+            <div class="balance-content clearfix"><span class="ints">120538</span></div>
+        </div>
+        <div class="balance-info">
+            <a onclick="diyJumpUrl('sucai');" class="button"><i class="fa fa-plus"></i> 发布素材</a>
+        </div>
+        <div class="balance-info-fr" style="border-right: none">
+            <div class="balance-title">欢迎新会员</div>
+            <div class="balance-content">
+                <span class="user"><a href="/u/813656.html">&nbsp;<i class="fa fa-user"></i> wx***56&nbsp;</a><a href="/u/813655.html">&nbsp;<i class="fa fa-user"></i> wx***55&nbsp;</a></span>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>-->
+    <div class="b10"></div>
+    <a name="jquery" id="jquery"></a>
+    <div class="model-list" style="overflow:inherit;">
+        <div class="m-wide-tit">
+            <span class="fl">
+                <i class="fa fa-code"></i> 最新素材发布
+            </span>
+            <span class="fr more scn-nav">
+                <a target="_blank" href="/jquery.html">网页特效</a>
+                <a target="_blank" href="/source.html">整站源码</a>
+                <a target="_blank" href="/templates.html">网站模版</a>
+            </span>
+            <div class="clear"></div>
+        </div>
+        <div class="con-wide-waterfall">
+            <div class="list">
+                {foreach $list as $v}
+                <div class="view">
+                    <a href="/{$v.id}.html" target="_blank">
+                        <div class="tuijian"></div>
+                        <div class="img-thumbnail">
+                            <img class="lazy" src="static/picture/grey.png" style="height:186px;" data-original="{$v.thumb}" alt="{$v.title}">
+                            <!--<div class="vip-tips">VIP免积分素材</div>-->
+                        </div>
+                        <div class="cover-info">
+                            <div class="tit">{$v.title}</div>
+                            <div class="des">{$v.description}</div>
+                            <div class="column"><i class="fa fa-list-ul"></i> &nbsp;{$v.tags}</div>
+                        </div>
+                        <div class="cover-stat">
+                            <i class="fa fa-eye"></i> &nbsp;<span>{$v.clicks}</span>&nbsp;&nbsp;<i class="fa fa-cloud-download"></i> &nbsp;<span>{$v.downs}</span>
+                        </div>
+                        <div class="time"><i class="fa fa-calendar"></i> {$v.create_time}</div>
+                    </a>
+                </div>
+                {/foreach}
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <!--<a name="video" id="video"></a>
+    <div class="model-list">
+        <div class="m-tit">
+            <span class="fl"><i class="fa fa-code"></i> 最新视频教程</span><span class="fr more"><a href="/video-view.html">查看更多 »</a></span>
+            <div class="clear"></div>
+        </div>
+        <div class="con">
+            <div class="view"><a href="/video/168.html" target="_blank">
+                <div class="img-thumbnail">
+                    <img class="lazy" src="static/picture/grey.png" data-original="/upload/image/20190923/d4cc735ff61b9c1a83c18f5d287d429b.jpg" width="220" height="140" alt="PHP高性能就业架构班">
+                    <div class="vip-tips">VIP免积分教程</div>
+                </div>
+                <div class="cover-info">
+                    <div class="tit">PHP高性能就业架构班</div>
+                    <div class="des">燕十八PHP高性能架构班视频教程之设计模式,PHP高级教程拓展,php高级架构师培训课程</div>
+                    <div class="column"><i class="fa fa-list-ul"></i> &nbsp;PHP</div>
+                </div>
+                <div class="cover-stat">
+                    <i class="fa fa-eye"></i> &nbsp;<span>148</span>&nbsp;&nbsp;<i class="fa fa-cloud-download"></i> &nbsp;<span>1</span>
+                </div>
+                <div class="time"><i class="fa fa-calendar"></i> 2019-09-23</div>
+            </a></div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <a name="code" id="code"></a>
+    <div class="model-list">
+        <div class="m-tit">
+            <span class="fl"><i class="fa fa-code"></i> 最新常用代码</span><span class="fr more"><a href="/codelist.html">查看更多 »</a></span>
+            <div class="clear"></div>
+        </div>
+        <div class="con">
+            <div class="view"><a href="/code/1685.html" target="_blank">
+                <div class="cover-info">
+                    <div class="tit">一款快递物流运费计算功能的特效代码，可自动统计首重</div>
+                    <div class="des">运费计算器，淘宝运费计算模板功能特效|首重续重费用和重量 一个可以实现输入首重、续重费用并自动按重量进行统计快递物流运费的特效。</div>
+                </div>
+                <div class="cover-stat">
+                    <i class="fa fa-comment"></i> &nbsp;<span>2</span>&nbsp;&nbsp;<i class="fa fa-eye"></i> &nbsp;<span>181</span>
+                </div>
+                <div class="time"><i class="fa fa-calendar"></i> 2019-09-05</div>
+            </a></div>
+            <div class="clear"></div>
+        </div>
+    </div>-->
+    <a name="tools" id="tools"></a>
+    <div class="model-list">
+        <div class="m-tit">
+            <span class="fl"><i class="fa fa-code"></i> 最新在线工具箱</span><span class="fr more"><a href="/tools.html">查看更多 »</a></span>
+            <div class="clear"></div>
+        </div>
+        <div class="con">
+            <div class="tool-list fl"><a target="_blank" href="/tools/md5.html">
+                <div class="tool-list-inner">
+                    <div class="tool-list-hd">
+                        <div class="tool-list-icon fl">
+                            <img src="static/picture/780a93890894b5ac15d82f9e8cc3cf08_20180528170908.jpg" width="48" height="48" alt="MD5在线加密">
+                        </div>
+                        <h3>MD5在线加密</h3><span class="tool-list-category">[加密解密类]</span></div>
+                    <div class="tool-list-bd">
+                        <div class="tool-list-desc">此工具可以在线MD5在线加密、MD5在线加密内容查看、MD5在线加密工具</div>
+                    </div>
+                    <div class="tool-list-ft"><span class="tool-list-link fl"><i class="fa fa-comment"></i> &nbsp;1&nbsp;&nbsp;<i class="fa fa-eye"></i> &nbsp;4540</span><span class="tool-list-btn fr">进入</span>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </a></div>
+            <div class="tool-list fl"><a target="_blank" href="/tools/pinyin.html">
+                <div class="tool-list-inner">
+                    <div class="tool-list-hd">
+                        <div class="tool-list-icon fl">
+                            <img src="static/picture/780a93890894b5ac15d82f9e8cc3cf08_20180528170908.jpg" width="48" height="48" alt="在线汉字转拼音工具">
+                        </div>
+                        <h3>在线汉字转拼音工具</h3><span class="tool-list-category">[汉字转拼音]</span></div>
+                    <div class="tool-list-bd">
+                        <div class="tool-list-desc">
+                            在线汉字转拼音工具，此工具具有将一段中文字转换成拼音的功能
+                        </div>
+                    </div>
+                    <div class="tool-list-ft"><span class="tool-list-link fl"><i class="fa fa-comment"></i> &nbsp;27&nbsp;&nbsp;<i class="fa fa-eye"></i> &nbsp;14863</span><span class="tool-list-btn fr">进入</span>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </a></div>
+            <div class="tool-list fl"><a target="_blank" href="/tools/seoai.html">
+                <div class="tool-list-inner">
+                    <div class="tool-list-hd">
+                        <div class="tool-list-icon fl">
+                            <img src="static/picture/780a93890894b5ac15d82f9e8cc3cf08_20180528170908.jpg" width="48" height="48" alt="智能AI文章伪原创">
+                        </div>
+                        <h3>智能AI文章伪原创</h3><span class="tool-list-category">[seo工具]</span></div>
+                    <div class="tool-list-bd">
+                        <div class="tool-list-desc">智能AI文章伪原创是专门生成原创及伪原创文章的在线工具，用不念智能AI文章伪原创工具可以把在互联网上复制的文章瞬间变成原创文章。本工具是一款免费的专通过伪原创工具生成的文章，
+                                                    会更好的被搜索引擎收录和索引到。此工具适合中,小型网站站长、网站编辑，网站将一直持续更新算法，为您更好的服务！</div>
+                    </div>
+                    <div class="tool-list-ft"><span class="tool-list-link fl"><i class="fa fa-comment"></i> &nbsp;9&nbsp;&nbsp;<i class="fa fa-eye"></i> &nbsp;6198</span><span class="tool-list-btn fr">进入</span>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </a></div>
+            <div class="tool-list fl"><a target="_blank" href="/tools/fenci.html">
+                <div class="tool-list-inner">
+                    <div class="tool-list-hd">
+                        <div class="tool-list-icon fl">
+                            <img src="static/picture/780a93890894b5ac15d82f9e8cc3cf08_20180528170908.jpg" width="48" height="48" alt="PHP中文在线分词">
+                        </div>
+                        <h3>PHP中文在线分词</h3><span class="tool-list-category">[中文分词]</span></div>
+                    <div class="tool-list-bd">
+                        <div class="tool-list-desc">phpanalysis分词工具，此工具可以实现PHP中文在线分词功能</div>
+                    </div>
+                    <div class="tool-list-ft"><span class="tool-list-link fl"><i class="fa fa-comment"></i> &nbsp;5&nbsp;&nbsp;<i class="fa fa-eye"></i> &nbsp;1072</span><span class="tool-list-btn fr">进入</span>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </a></div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<div class="link">
+    <strong><i class="fa fa-link"></i> 友情链接：</strong>
+    <a href="/templates.html" target="_blank" title="模板之家" href="">模板之家</a>
+    <a href="/templates.html" target="_blank" title="素材下载" href="/">素材下载</a>
+    <a href="/source.html" target="_blank" title="源码社区" href="/">源码社区</a>
+    <!--<a href="/read/270.html" target="_blank" style="color:#bdbdbd"><i class="fa fa-plus"></i> 申请友情链接</a>-->
+</div>
+
+<script type="text/javascript">$('#sliderPlay').sliderPlay({
+    speed:       300,
+    timeout:     4000,
+    moveType:    'randomMove',
+    mouseEvent:  'click',
+    isShowTitle: false,
+    isShowBtn:   true
+});</script>
+
+<!--尾部内容-->
+{include file="footer"/}
+</body>
+</html>

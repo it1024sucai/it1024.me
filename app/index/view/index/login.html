@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    {include file="meta"/}
+    
+    <link rel="stylesheet" type="text/css" href="/static/css/login_register.css">
+<body>
+
+<!--头部内容-->
+{include file="header"/}
+
+
+<div class="wrapper w1000">
+    <div class="tabNav">
+        <span class="fl">会员注册</span>
+        <span class="fr"><a href="/register.html">我要注册？</a></span>
+        <div class="clear"></div>
+    </div>
+    <div class="oauth-model  fl">
+        <div class="oauth-title">亲，您可以使用<span class="oauth-title-highlight">以下帐号</span>直接登录1024素材网，无需注册</div>
+        <div class="oauth-links">
+            <a class="oauth-link" href="/oauth/github_login" rel="nofollow">
+                <div class="oauth-icon-github"></div>
+                <div class="oauth-link-text">Github</div>
+            </a>
+            <!--<a class="oauth-link" href="avascript:;" rel="nofollow">
+                <div class="oauth-icon-qq"></div>
+                <div class="oauth-link-text">QQ</div>
+            </a>
+            <a class="oauth-link" href="javascript:;" rel="nofollow">
+                <div class="oauth-icon-wechat"></div>
+                <div class="oauth-link-text">微信</div>
+            </a>
+            <a class="oauth-link" href="avascript:;" rel="nofollow">
+                <div class="oauth-icon-weibo"></div>
+                <div class="oauth-link-text">微博</div>
+            </a>-->
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="loginRegister fr">
+        <div class="RegisterFormModel">
+            <div class="con">
+                <div class="l_inp"><span class="fl">会员账号</span><input type="text" name="username" id="username" class="inp fl" placeholder="请输入帐号……"></div>
+                <div class="l_inp"><span class="fl">会员密码</span><input type="password" name="password" id="password" class="inp fl" placeholder="请输入密码"></div>
+                <div class="l_inp">
+                    <span class="fl">安全验证</span>
+                    <input type="text" name="verifycode" id="verifycode" class="inp fl" style="width:130px;" placeholder="请输入验证码……">
+                    <img id="verify-img" title="点击刷新" src="{:captcha_src()}" class="verify-code fr"  onclick="reVerify()">
+                </div>
+                <input type="button" class="RegisterBtn" onclick="login(2);" value="提交注册">
+            </div>
+        </div>
+    </div>
+    <div class="clear b20"></div>
+</div>
+
+
+
+<!--尾部内容-->
+{include file="footer"/}
+</body>
+</html>

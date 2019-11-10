@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    {include file="meta"/}
+    <link rel="stylesheet" href="/static/css/themes.css"/>
+    <link rel="stylesheet" href="/static/css/tools.css"/>
+    <script src="/on-tools/pinyin2/pinyin.js"></script>
+</head>
+
+<body>
+
+<!--头部内容-->
+{include file="header"/}
+
+
+<div class="wrapper w1000">
+    <div class="breadcrumb">
+        <span class="fl"><strong>当前位置：</strong> <a href="/"><i class="fa fa-home"></i> 首页</a> &raquo; <a href="/tools.html">在线工具</a> &raquo; 在线汉字转拼音工具</span>
+        <div class="clear"></div>
+    </div>
+    
+    <div class="tool-model">
+        <div class="tool-main local"><span class="tool-title"><h4>在线汉字转拼音工具</h4>此工具具有将一段中文字转换成拼音的功能</span>
+            <div class="piece">
+                <div class="data-text">
+                    <textarea class="text-center-all mb" id="content" rows="10" spellcheck="false" placeholder="请输入中文汉字"></textarea>
+                </div>
+                <div class="bat">
+                    <button class="tool-btn" onclick="Trim('g')">删除结果空格</button>
+                    <button class="tool-btn" onclick="englishConvert('xd');">拼音转小写</button>
+                    <button class="tool-btn" onclick="englishConvert('dd');">拼音转大写</button>
+                    <button class="tool-btn del" onclick="Empty()">清空结果</button>
+                </div>
+                <div class="data-text">
+                    <textarea id="result" name="RawJson" class="text-center-all mb" rows="10" spellcheck="false" placeholder="转换后的拼音"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--尾部内容-->
+{include file="footer"/}
+<script type="application/javascript">
+    function Trim(is_global) {
+        var str = $("#result").val();
+        var result;
+        result  = str.replace(/(^\s+)|(\s+$)/g, "");
+        if (is_global.toLowerCase() == "g") {
+            result = result.replace(/\s/g, "")
+        }
+        $("#result").val(result)
+    }
+
+    function englishConvert(str) {
+        var text = $("#result").val();
+        if (text == "" || text == null) {
+            layer.msg("请输入要转换的内容");
+            return
+        }
+        if (str == "xd") {
+            $("#result").val(text.toLowerCase())
+        } else {
+            $("#result").val(text.toUpperCase())
+        }
+    }
+
+    $(function () {
+        $("#content").live("keyup keydown change blur", function () {
+            $("#result").val($(this).toPinyin())
+        })
+    });
+
+    function Empty() {
+        document.getElementById('content').value = '';
+        document.getElementById('result').value  = '';
+        document.getElementById('content').select()
+    }
+</script>
+</body>
+</html>

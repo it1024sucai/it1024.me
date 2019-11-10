@@ -1,0 +1,105 @@
+{extend name="layout" /}
+
+{block name="content"}
+    <div class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <div class="tab-content">
+                        <div class="tab-pane active">
+                            <div class="block-content">
+                                <form class="form-builder row" name="form-builder" method="post">
+                                    <div class="form-group hidden " id="form_group_id">
+                                        <input type="hidden" name="id" value="{$id}">
+                                    </div>
+                                    <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12 " id="form_group_group">
+                                        <label class="col-xs-12" >配置分组</label>
+                                        <div class="col-sm-6">
+                                            {foreach :config('config_group') as $k=>$v}
+                                            <label class="css-input css-radio css-radio-primary css-radio-sm push-10-r">
+                                                <input type="radio" name="group" id="group_{$k}" value="{$k}" {if($group == $k)} checked {/if}>
+                                                <span></span> {$v}
+                                            </label>
+                                            {/foreach}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12 " id="form_group_type">
+                                        <label class="col-xs-12" for="type">配置类型</label>
+                                        <div class="col-sm-6">
+                                            <select class="js-select2 form-control" id="type" name="type" data-allow-clear="true" data-placeholder="请选择一项">
+                                                <option></option>
+                                                {foreach :config('form_item_type') as $k=>$v}
+                                                <option value="{$k}" {if($k == $type)} selected {/if}>{$v}</option>
+                                                {/foreach}
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12 " id="form_group_title">
+                                        <label class="col-xs-12" for="title">配置标题</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" type="text" id="title" name="title" value="{$title}" placeholder="请输入配置标题">
+                                            <div class="help-block">一般由中文组成，仅用于显示</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12 " id="form_group_name">
+                                        <label class="col-xs-12" for="name">配置名称</label>
+                                        <div class="col-sm-12">
+                                            <input class="form-control" type="text" id="name" name="name" value="{$name}" placeholder="请输入配置名称">
+                                            <div class="help-block">{$tips}</div>
+                                            由英文字母和下划线组成，如 <code>web_site_title</code>，调用方法：<code>config('web_site_title')</code>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12 " id="form_group_value">
+                                        <label class="col-xs-12" for="value">配置值</label>
+                                        <div class="col-xs-12">
+                                            <textarea class="form-control" id="value" rows="7" name="value" placeholder="请输入配置值">{$value}</textarea>
+                                            <div class="help-block">该配置的具体内容</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12 " id="form_group_options">
+                                        <label class="col-xs-12" for="options">配置项</label>
+                                        <div class="col-xs-12">
+                                            <textarea class="form-control" id="options" rows="7" name="options" placeholder="请输入配置项">{$options}</textarea>
+                                            <div class="help-block">用于单选、多选、下拉、联动等类型</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12 " id="form_group_tips">
+                                        <label class="col-xs-12" for="tips">配置说明</label>
+                                        <div class="col-sm-12">
+                                            <input class="form-control" type="text" id="tips" name="tips" value="{$tips}" placeholder="请输入配置说明">
+                                            <div class="help-block">该配置的具体说明</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12 " id="form_group_sort">
+                                        <label class="col-xs-12" for="sort">排序</label>
+                                        <div class="col-sm-12">
+                                            <input class="form-control" type="number" id="sort" name="sort" value="{if(!empty($sort))}{$sort}{else /} 100 {/if}" placeholder="请输入排序">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12 col-xs-12">
+                                        <div class="col-xs-12">
+                                            <button class="btn btn-minw btn-primary ajax-post" target-form="form-builder" type="submit">提交</button>
+                                            <button class="btn btn-default" type="button" onclick="javascript:history.back(-1);return false;">返回</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{/block}
+{block name="footer"}
+    <script>
+        App.initHelpers(["select2"]);
+    </script>
+{/block}

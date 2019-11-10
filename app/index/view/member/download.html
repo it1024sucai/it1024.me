@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" type="text/css" href="/plugins/layui/css/layui.css"/>
+    {include file="meta"/}
+    <link rel="stylesheet" type="text/css" href="/static/css/member.css?v=20190904-1"/>
+    <script type="text/javascript" src="/static/js/jquery.SuperSlide.2.1.1.js"></script>
+    <script type="text/javascript" src="/plugins/layui/layui.all.js"></script>
+</head>
+<body>
+
+<!--头部内容-->
+{include file="header"/}
+
+
+<div class="wrapper w1000">
+    <!--用户中心右边内容-->
+    {include file="member/member_right"}
+    <div class="member_main">
+        <ul class="info-title">
+            <li class="hover"><i class="fa fa-cloud-download"></i> 下载记录</li>
+            <li class="more-r"><a target="_blank" href="https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=etxd8sor">😉 阿里云幸运券，戳我领取</a></li>
+        </ul>
+        <div class="b20"></div>
+        <table class="layui-table">
+            <thead>
+            <tr>
+                <th align="center">素材名称</th>
+                <th align="center">支出积分</th>
+                <th align="center">操作时间</th>
+            </tr>
+            </thead>
+            <tbody>
+            {foreach $list as $v}
+            <tr><td>{:getChannelName('channel')} <a href="/{$v.res_id}.html" target="_blank">{$v.title}</a></td><td>{$v.points}</td><td>{$v.create_time}</td></tr>
+            {/foreach}
+            </tbody>
+        </table>
+    </div>
+    <div class="clear"></div>
+</div>
+
+<!--尾部内容-->
+{include file="footer"/}
+</body>
+</html>

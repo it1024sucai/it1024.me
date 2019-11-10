@@ -1,0 +1,136 @@
+{extend name="layout"}
+
+{block name="meta"}
+<link rel="stylesheet" href="/plugins/bootstrap3-editable/css/bootstrap-editable.css">
+<style>
+    .textarea {
+        min-width: 20%;
+        word-wrap: break-word;
+        table-layout: fixed;
+        word-break: break-all;
+    }
+    
+    .textarea-edit.editable.editable-click {
+        display: block;
+        width: 100%;
+        max-height: 20px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
+{/block}
+
+{block name="content"}
+<div class="content animated">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="block">
+                <div class="block-header bg-gray-lighter">
+                    <ul class="block-options">
+                        <li>
+                            <button type="button" data-toggle="block-option" data-action="refresh_toggle" data-action-mode="demo">
+                                <i class="si si-refresh"></i></button>
+                        </li>
+                        <li>
+                            <button type="button" data-toggle="block-option" data-action="fullscreen_toggle">
+                                <i class="si si-size-fullscreen"></i></button>
+                        </li>
+                    </ul>
+                    <h3 class="block-title">内容管理</h3>
+                </div>
+                <div class="block-content tab-content">
+                    <div class="tab-pane active">
+                        <div class="row data-table-toolbar">
+                            <div class="col-sm-12">
+                                <div class="toolbar-btn-action">
+                                    <a title="新增" icon="fa fa-plus-circle" class="btn btn-primary" href="{:url('/level/create')}"><i class="fa fa-plus-circle"></i> 新增</a>
+                                    <a title="删除" icon="fa fa-times-circle-o" class="btn btn-danger ajax-post confirm" target-form="ids" href="{:url('/level/delete',['table'=>'users_levels'])}"><i class="fa fa-times-circle-o"></i> 全部删除</a>
+                                   </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-builder table-hover table-bordered table-striped js-table-checkable">
+                                <thead>
+                                <tr>
+                                    <th class="text-center">
+                                        <label class="css-input css-checkbox css-checkbox-primary remove-margin-t remove-margin-b">
+                                            <input type="checkbox" id="check-all"><span></span>
+                                        </label>
+                                    </th>
+                                    <th class="column-title">等级</th>
+                                    <th class="column-name">头衔</th>
+                                    <th class="column-name">经验</th>
+                                    <th class="column-name">图标</th>
+                                    <th class="column-right_button  ">操作 <span></span></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {foreach($list as $v)}
+                                <tr class="text-c">
+                                    <td class="text-center">
+                                        <label class="css-input css-checkbox css-checkbox-primary">
+                                            <input class="ids" name="ids[]" value="{$v['id']}"
+                                                   type="checkbox"><span></span>
+                                        </label>
+                                    </td>
+                                    <td style="max-width: 650px;">
+                                        <a href="javascript:void(0);" class="text-edit editable editable-click"
+                                           data-placeholder="等级" data-table="users_levels" data-type="text"
+                                           data-pk="{$v['id']}" data-name="level" data-original-title="" title="">
+                                            {$v['level']}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="javascript:void(0);" class="text-edit editable editable-click"
+                                           data-placeholder="等级" data-table="users_levels" data-type="text"
+                                           data-pk="{$v['id']}" data-name="name" data-original-title="" title="">
+                                            {$v['name']}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="javascript:void(0);" class="text-edit editable editable-click"
+                                           data-placeholder="等级" data-table="users_levels" data-type="text"
+                                           data-pk="{$v['id']}" data-name="exp" data-original-title="" title="">
+                                            {$v['exp']}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        {$v.icon}
+                                    </td>
+                                    <td class="f-14 td-manage">
+                                        <div class="btn-group">
+                                            <a title="" icon="fa fa-pencil" class="btn btn-s btn-default"
+                                               href="{:url('/level/edit',['id'=>$v['id']])}" target="_self"
+                                               data-toggle="tooltip" data-original-title="编辑"><i class="fa fa-pencil"></i></a>
+                                            <a title="" icon="fa fa-times"
+                                               class="btn btn-s btn-default ajax-get confirm"
+                                               href="{:url('/level/delete',['ids'=>$v['id']])}?table=users_levels" data-toggle="tooltip"
+                                               data-original-title="删除"><i class="fa fa-times"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {/foreach}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+
+{block name="footer"}
+<script src="/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/plugins/bootstrap3-editable/js/bootstrap-editable.js"></script>
+<script src="/plugins/jquery-validation/additional-methods.js"></script>
+<script>
+    $('.creatJson').click(function () {
+        $.post("{:url('/image/createJson')}", function (res) {
+
+        })
+        return false;
+    })
+</script>
+{/block}

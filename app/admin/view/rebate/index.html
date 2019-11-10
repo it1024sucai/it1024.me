@@ -1,0 +1,144 @@
+{extend name="layout"}
+
+{block name="meta"}
+<link rel="stylesheet" href="/plugins/bootstrap3-editable/css/bootstrap-editable.css">
+<style>
+    .textarea{min-width: 20%;word-wrap:break-word;table-layout:fixed;word-break:break-all;}
+    .textarea-edit.editable.editable-click {
+        display: block;
+        width: 100%;
+        max-height: 20px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
+{/block}
+
+{block name="content"}
+    <div class="content animated">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <div class="block-header bg-gray-lighter">
+                        <ul class="block-options">
+                            <li>
+                                <button type="button" data-toggle="block-option" data-action="refresh_toggle" data-action-mode="demo"><i class="si si-refresh"></i></button>
+                            </li>
+                            <li>
+                                <button type="button" data-toggle="block-option" data-action="fullscreen_toggle"><i class="si si-size-fullscreen"></i></button>
+                            </li>
+                        </ul>
+                        <h3 class="block-title">返利记录</h3>
+                    </div>
+                    <div class="block-content tab-content">
+                        <div class="tab-pane active">
+                            <div class="row data-table-toolbar">
+                                <div class="col-sm-12">
+                                    <form class="pull-right search-bar" method="get" role="form">
+                                        <input type="hidden" name="search_field" id="search-field" value="username">
+                                        <div class="input-group">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-default" id="search-btn" data-toggle="dropdown" type="button" aria-expanded="false">
+                                                    搜索 <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li>
+                                                        <a tabindex="-1" href="javascript:void(0)" data-field="username">搜索</a>
+                                                    </li>
+                                                    <li>
+                                                        <a tabindex="-1" href="javascript:void(0)" data-field="username">用户名</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <input type="text" class="form-control" value="" name="keyword" placeholder="用户名/昵称">
+                                        </div>
+                                    </form>
+
+
+                                    <div class="toolbar-btn-action">
+                                        <a title="删除" icon="fa fa-times-circle-o" class="btn btn-danger ajax-post confirm" target-form="ids" href="{:url('/rebate/delete')}?table=rebate_logs"><i class="fa fa-times-circle-o"></i> 删除</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-builder table-hover table-bordered table-striped js-table-checkable">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-center">
+                                            <label class="css-input css-checkbox css-checkbox-primary remove-margin-t remove-margin-b">
+                                                <input type="checkbox" id="check-all"><span></span>
+                                            </label>
+                                        </th>
+                                        <th class="column-title  ">
+                                            用户名
+                                        </th>
+                                        <th class="column-name  ">
+                                            名称
+                                        </th>
+                                        <th class="column-name  ">
+                                            返利金额
+                                        </th>
+                                        <th class="column-status  ">
+                                            时间
+                                        </th>
+                                        <th class="column-right_button  ">操作 <span></span></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {foreach($list as $v)}
+                                        <tr class="text-c">
+                                            <td class="text-center">
+                                                <label class="css-input css-checkbox css-checkbox-primary">
+                                                    <input class="ids" name="ids[]" value="{$v['id']}"
+                                                           type="checkbox"><span></span>
+                                                </label>
+                                            </td>
+                                            <td>
+                                                {$v['username']}
+                                            </td>
+                                            <td class="textarea">
+                                                {$v.name}
+                                            </td>
+                                            <td class="textarea">
+                                                {$v.money}
+                                            </td>
+                                            <td>
+                                                {:date('Y-m-d H:i:s',$v['create_time'])}
+                                            </td>
+                                            <td class="f-14 td-manage">
+                                                <div class="btn-group">
+                                                    <a title="" icon="fa fa-pencil" class="btn btn-s btn-default"
+                                                       href="{:url('/rebate/edit',['id'=>$v['id']])}" target="_self"
+                                                       data-toggle="tooltip" data-original-title="查看"><i class="fa fa-pencil"></i></a>
+                                                    <a title="" icon="fa fa-times"
+                                                       class="btn btn-s btn-default ajax-get confirm"
+                                                       href="{:url('/rebate/delete',['ids'=>$v['id']])}?table=rebate_logs" data-toggle="tooltip"
+                                                       data-original-title="删除"><i class="fa fa-times"></i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {/foreach}
+                                    {if($list->render())}
+                                    <tr>
+                                        <td  colspan="9" class="text-center">
+                                            {$list->render()|raw}
+                                        </td>
+                                    </tr>
+                                    {/if}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{/block}
+
+{block name="footer"}
+    <script src="/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="/plugins/bootstrap3-editable/js/bootstrap-editable.js"></script>
+    <script src="/plugins/jquery-validation/additional-methods.js"></script>
+    <script src="/admin/js/table.js"></script>
+{/block}

@@ -1,0 +1,135 @@
+<div class="top">
+    <div class="sn_container clearfix">
+        {if session('user.nickname')}
+        <ul class="tg_tools fr">
+            <li class="no-hover"><a href="/member/message.html"><i class="fa fa-envelope-o"></i> 消息(0)</a></li>
+            <li class="tg-line icon"></li>
+            <li class="no-hover"><a href="/member/signin.html"><i class="fa fa-pencil-square-o"></i> 签到</a></li>
+            <li class="tg-line icon"></li>
+            <li class="no-hover"><a href="/member/uploader.html"><i class="fa fa-cloud-upload"></i> 上传</a></li>
+            <!--<li class="no-hover">
+                <a class="mp-atag" href="/recharge-index/1.html"><i class="fa fa-btc" aria-hidden="true"></i> 充值牛币</a>
+            </li>
+            <li class="tg-line icon"></li>
+            <li class="no-hover">
+                <a class="mp-atag" href="/recharge-index/2.html"><i class="fa fa-diamond" aria-hidden="true"></i> 充值钻石</a>
+            </li>
+            <li class="tg-line icon"></li>
+            <li class="no-hover">
+                <a class="mp-atag red" href="/recharge-vip.html"><i class="fa fa-user-plus" aria-hidden="true"></i> 充值会员</a>
+            </li>-->
+            <li class="tg-line icon"></li>
+            <li class="box_color nav_home"><span><a href="/member.html">个人中心</a></span><b class="icon"></b>
+                <ul>
+                    <li><a href="/member.html"><span>会员中心</span></a></li>
+                    <li><a href="/u{$user.id}.html"><span>我的主页</span></a></li>
+                    <!--<li><a href="javascript:layer.msg('正在开发中');"><span>我要发帖</span></a></li>-->
+                    <li><a href="/member/info.html"><span>资料管理</span></a></li>
+                    <li><a href="/member/download.html"><span>下载记录</span></a></li>
+                    <li><a href="/logout.html"><span>退出登录</span></a></li>
+                </ul>
+            </li>
+            <li class="tg-line icon"></li>
+            <li class="box_color"><span>帮助中心</span><b class="icon"></b>
+                <ul>
+                    <li><a href="/helps/points.html"><i class="fa fa-money"></i>获取积分</a></li>
+                    <li><a href="/helps/contact.html"><i class="fa fa-phone"></i>联系我们</a></li>
+                    <li><a href="/helps/about.html"><i class="fa fa-meh-o"></i>关于我们</a></li>
+                    <li><a href="/helps/copyright.html"><i class="fa fa-folder"></i>版权声明</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="tg_tools fl" id="login_area">
+            <li class="tg_tools_home no-hover"><i class="icon-more"></i><span><a href="/">1024素材网首页</a></span></li>
+            <li class="tg-line icon"></li>
+            <li class="no-hover haslogin">
+                <span><a href="/member.html">
+                    <font class="sn_login username"><i class="fa fa-user"></i> {$user.username}（{$user.nickname}） <span style=" color:#999999;">Lv{$user.level} {$user.level_name}</span></font>
+                </a></span>
+            </li>
+            <li class="tg-line icon"></li>
+            <li class="no-hover haslogin"><span><a href="/logout.html">注销</a></span></li>
+        </ul>
+        {else /}
+        <script>var verify_src = '{:captcha_src()}'</script>
+        <ul class="tg_tools fr">
+            <li class='box_color'><span>帮助中心</span><b class="icon"></b>
+                <ul>
+                    <li><a href="/helps/points.html"><i class="fa fa-money"></i>获取积分</a></li>
+                    <li><a href="/helps/contact.html"><i class="fa fa-phone"></i>联系我们</a></li>
+                    <li><a href="/helps/about.html"><i class="fa fa-meh-o"></i>关于我们</a></li>
+                    <li><a href="/helps/copyright.html"><i class="fa fa-folder"></i>版权声明</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="tg_tools fl" id="login_area">
+            <li class="tg_tools_home no-hover"><i class="icon-more"></i><span><a href="/">1024首页</a></span></li>
+            <!--<li class="tg-line icon"></li>
+            <li class="no-hover nologin">
+                <span><a href="/login-weibo.html"><img alt="新浪微博一键登录" src="static/picture/weibologin.png" width="16" height="16" style="position: relative;top:3px;"> 微博登录</a></span>
+            </li>
+            <li class="tg-line icon"></li>
+            <li class="no-hover nologin">
+                <span><a href="/login-qq.html"><img alt="QQ一键登录" src="static/picture/qqlogin.png" width="16" height="16" style="position: relative;top:3px;"> QQ登录</a></span>
+            </li>
+            <li class="tg-line icon"></li>
+            <li class="no-hover nologin">
+                <span><a onclick="wxlogin();"><img alt="微信扫码登录" src="static/picture/weixinlogin.png" width="16" height="16" style="position: relative;top:3px;"> 微信扫码登录</a></span>
+            </li>-->
+            <li class="tg-line icon"></li>
+            <li class="no-hover nologin"><span><a href="/register.html">注册</a></span></li>
+            <li class='box_color nav_home' id="nav_login">
+                <span><a onclick="login('1');" class="sn_login">登录</a></span><b class="icon"></b>
+                <!--<ul>
+                    <li><a href="/login-weibo.html"><span>新浪微博</span></a></li>
+                    <li><a href="/login-qq.html"><span>QQ登陆</span></a></li>
+                    <li><a onclick="wxlogin();">微信登录</a></li>
+                </ul>-->
+            </li>
+        </ul>
+        {/if}
+    </div>
+</div>
+<div class="header">
+    <div class="tg_tools_home">
+        <div class="bbs_enter">
+            <a class="bbs-banner" href="javascript:;" target="_blank"><img style="height: 70px; margin-top: 10px" src="/static/picture/banner.png" alt="1024VIP会员"></a>
+        </div>
+        <div class="logo">
+            <a href="/" class="logo-bd" href=""><img style="height: 65px;margin-top: 6px" src="/logo.png" alt="1024LOGO"></a>
+        </div>
+        <form action="/search.html" method="get" onsubmit="soso();return false;" id="form_search">
+            <div class="search">
+                <div class="search_area"><input type="submit" value="搜 索" class="btn_search">
+                    <div class="search_select"><span class="icon-search"></span></div>
+                    <input name="keyword" type="text" value="" class="search_input" id="search_input" autocomplete="off" onkeyup="checkInputKeyup($(this))" placeholder="请输入搜索内容">
+                </div>
+                <div class="search_box hide" id="search_box"></div>
+                <div class="search_keywords">
+                    <span>热门搜索：</span>
+                    <a href="/jquery/26-0-1.html" class="red">大转盘</a>
+                    <a href="/templates/71-0-0-0-0-1.html">视频影视</a>
+                    <a href="/source/28-0-0-0-1.html" class="red">商城</a>
+                    <a href="/templates/60-0-0-0-0-1.html">后台模板</a>
+                    <a href="/search-index-上传" class="red">上传</a>
+                    <a href="/search-source-Thinkphp.html" class="red">Thinkphp</a>
+                    <a href="/source/0-95-0-0-1.html">Laravel</a>
+                    <a href="/jquery/1-0-1.html">轮播图</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div id="nav" class="nav">
+    <div class="nav_main clearfix">
+        <a href="/" class="{$_channel == 'home' ? 'current' : ''}">首 页</a>
+        <a href='/jquery.html' class="{$_channel == 'jquery' ? 'current' : ''}">网页特效</a>
+        <a href='/templates.html' class="{$_channel == 'templates' ? 'current' : ''}">网站模版</a>
+        <a href='/source.html' class="{$_channel == 'source' ? 'current' : ''}">整站源码
+            <span class="icon_hot"></span>
+        </a>
+        
+        <a style="float:right;" onclick="layer.msg('此功能正在开发中~');return false" href='/forum.html'>论坛</a>
+        <a class="{$_channel == 'tools' ? 'current' : ''}" style="float:right;" href='/tools.html'>在线工具箱</a>
+    </div>
+</div>

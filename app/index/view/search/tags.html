@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    {include file="meta"/}
+    
+    <link rel="stylesheet" type="text/css" href="/static/css/themes.css"/>
+    <script type="text/javascript" src="/static/js/blocksit.min.js"></script>
+</head>
+<body>
+<!--头部内容-->
+{include file="header"/}
+<div class="wrapper w1000">
+    <div class="breadcrumb">
+        <span class="fl"><strong>当前位置：</strong> <a href="/"><i class="fa fa-home"></i> 首页</a> » 综合素材搜索 » {$tag}</span>
+        <span class="fr">{if $tag}找到“{$tag}”{/if}相关综合素材{$list.total}个</span>
+        <div class="clear"></div>
+    </div>
+
+    
+    <div class="content-wide-waterfall">
+        <div class="contentShow fl">
+            <div class="search-list">
+                {if !$list}
+                <div class="no_result">
+                    <p><img width="96" height="120" src="/static/images/no_result.png" alt="暂无相关网站模板"></p>
+                    <p class="words"><span class="line">暂无相关数据</span></p>
+                </div>
+                {/if}
+                {foreach $list.data as $v}
+                <div class="u-con-item">
+                <span class="pic">
+                    <a target="_blank" href="/{$v.id}.html">
+                        <img style="margin-top:0px" alt="{$v.title}" src="{$v.thumb}">
+                    </a>
+                </span>
+                    <div class="u-con-info">
+                    <span class="objTitle">
+                        <a class="title2" target="_blank" href="/{$v.id}.html">{$v.title}</a>
+                    </span>
+                        <p class="m-tags">所属分类：[{:getChannelName($v['channel'])}]</p>
+                        <p class="m-info">
+                            {$v.description}
+                        </p>
+                    </div>
+                </div>
+                {/foreach}
+                <!--<div class="u-con-item">
+                <div class="u-con-info1">
+                    <span class="objTitle">
+                        <a class="title2" target="_blank" href="/7128.html">TP5零食小程序带微信支付</a>
+                    </span>
+                    <p class="m-tags">所属分类：[综合素材]</p>
+                    <p class="m-info">
+                        前几天，有个非计算机专业的同学问我，如何快速找出1亿之内的孪生素数——所谓孪生素数，就是差值为2的两个素数。原本以为这是一个很简单的问题，
+                        随便用python写了一个方法，没想到却要跑17分钟左右。改用C++试试，受限于我对C/C++的理解程度，仍
+                    </p>
+                </div>
+            </div>-->
+                {if $path_tpl}
+                <div class="b20"></div>
+                <div class="pageModel-1">{$path_tpl|raw}</div>
+                {/if}
+            </div>
+        </div>
+        <div class="sidebar fr">
+            <!--<div class="b20"></div>-->
+            {include file="tags"/}
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<!--尾部内容-->
+{include file="footer"/}
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" type="text/css" href="/plugins/layui/css/layui.css"/>
+    {include file="meta"/}
+    <link rel="stylesheet" type="text/css" href="/static/css/member.css?v=20190904-1"/>
+    <script type="text/javascript" src="/static/js/jquery.SuperSlide.2.1.1.js"></script>
+    <script type="text/javascript" src="/plugins/layui/layui.all.js"></script>
+</head>
+<body>
+
+<!--头部内容-->
+{include file="header"/}
+
+
+<div class="wrapper w1000">
+    <!--用户中心右边内容-->
+    {include file="member/member_right"}
+    <div class="member_main">
+        <ul class="info-title">
+            <li class="hover"><i class="fa fa-file-text" aria-hidden="true"></i> 充值记录</li>
+            <li class="sm"><a href="/recharge-index.html">去充值？</a></li>
+            <li class="more-r"><a target="_blank" href="https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=etxd8sor">😉 阿里云幸运券，戳我领取</a></li>
+        </ul>
+        <div class="b20"></div>
+        <table class="layui-table">
+            <thead>
+            <tr>
+                <th align="center"><strong>订单编号</strong></th>
+                <th align="center" style="text-align:center;"><strong>充值金额</strong></th>
+                <th align="center">&nbsp;</th>
+                <th align="center" style="text-align:center;"><strong>下单时间</strong></th>
+                <th align="center" style="text-align:center;"><strong>支付时间</strong></th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <div class="clear b10"></div>
+</div>
+
+
+<!--尾部内容-->
+{include file="footer"/}
+</body>
+</html>

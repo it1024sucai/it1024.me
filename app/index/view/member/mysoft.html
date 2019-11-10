@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" type="text/css" href="/plugins/layui/css/layui.css"/>
+    {include file="meta"/}
+    <link rel="stylesheet" type="text/css" href="/static/css/member.css?v=20190904-1"/>
+    <script type="text/javascript" src="/static/js/jquery.SuperSlide.2.1.1.js"></script>
+    <script type="text/javascript" src="/plugins/layui/layui.all.js"></script>
+    <style type="text/css">
+        .infoPerBlock .btn{
+            padding: 0 4px;
+        }
+    </style>
+</head>
+<body>
+
+<!--头部内容-->
+{include file="header"/}
+
+<div class="wrapper w1000">
+    {include file="member/member_right"/}
+    <div class="member_main">
+        <div class="perInfo">
+            <div class="titleInfoBorder">
+                <span><i class="fa fa-folder-open"></i> 我的素材</span>
+                <a class="archivesAdd" href="/member/uploader.html"><i class="fa fa-plus"></i> &nbsp;发布素材</a>
+            </div>
+        </div>
+        {if count($list)}
+        {foreach $list as $v}
+        <div class="infoPerBlock ">
+            <div class="leftPicBlock wh40">
+                <a href="{:url('/'.$v['id'])}" target="_blank">
+                    <img alt="{$v}" src="{:get_thumb($v['thumb'])}">
+                </a>
+            </div>
+            <div class="centerBlock w490">
+                <a class="title" target="_blank" href="{:url('/'.$v['id'])}"><span class="red">[{$v.status|raw}]</span>{$v.title}</a>
+                <p class="lanmu">所属栏目：{:getChannelName($v['channel'])}</p>
+                <p class="sm">
+                    <span><i class="fa fa-eye"></i> &nbsp;浏览：{$v.clicks}次</span>
+                    <span><i class="fa fa-calendar"></i> &nbsp;发布时间：{$v.create_time}</span>
+                </p>
+            </div>
+            <div class="rightBlock">
+                <span class="infoEdit"><i class="fa fa-comment"></i> &nbsp;评论：{$v.comments}次</span>
+                <div class="infoEdit"><i class="fa fa-cloud-download"></i> &nbsp;下载：{$v.downs}次</div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        {/foreach}
+        {else/}
+        <div class="intsCon" style="padding:20px; text-align:left;">
+            <p>您还没有发布过素材 <a href="/member/uploader.html">发布素材 »</a></p>
+            <p>发布素材，一经录用给予高额积分奖励（最低 +20 积分，按素材质量发放）</p>
+        </div>
+        {/if}
+    </div>
+    <div class="clear"></div>
+</div>
+
+
+<!--尾部内容-->
+{include file="footer"/}
+</body>
+</html>

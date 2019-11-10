@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" id="css-main" href="/assets/css/oneui.css">
+    <link rel="stylesheet" href="/admin/css/admin.css">
+    <style>
+        .level {
+            padding: 25px;
+            height: 100%;
+            position: relative;
+        }
+        
+        .btn-primary {
+            position: absolute;
+            right: 25px;
+            bottom: 25px;
+        }
+    </style>
+</head>
+<body>
+<form method="post" class="level" name="form-builder">
+    <input type="hidden" class="id" name="id" value="{$id}">
+    <label class="css-input css-radio css-radio-primary css-radio-sm push-10-r">
+        <input type="radio" name="level" value="-1">
+        <span></span> 普通用户
+    </label>
+    {foreach $levels as $k=>$v}
+    <label class="css-input css-radio css-radio-primary css-radio-sm push-10-r">
+        <input type="radio" name="level" value="{$k}">
+        <span></span> 体验{$v.name}
+    </label>
+    {/foreach}
+    <button class="btn btn-minw btn-primary ajax-post" target-form="form-builder" type="button">提交</button>
+</form>
+<script src="/assets/js/core/jquery.min.js"></script>
+<script src="/assets/js/core/bootstrap.min.js"></script>
+<script src="/assets/js/core/jquery.scrollLock.min.js"></script>
+<script src="/assets/js/core/jquery.placeholder.min.js"></script>
+<script src="/assets/js/app.js"></script>
+<script src="/plugins/bootstrap-notify/bootstrap-notify.min.js"></script>
+</body>
+</html>

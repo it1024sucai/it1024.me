@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    {include file="meta"/}
+    <link rel="stylesheet" type="text/css" href="/static/css/member.css?v=20190904-1"/>
+    <script type="text/javascript" src="/static/js/jquery.SuperSlide.2.1.1.js"></script>
+</head>
+<body>
+
+<!--头部内容-->
+{include file="header"/}
+
+
+
+<div class="wrapper w1000">
+    <!--用户中心右边内容-->
+    {include file="member/member_right"}
+    <div class="member_main">
+        <ul class="info-title">
+            <li class="hover"><a href="/member/myfavorite/type/1.html"><i class="fa fa-code" aria-hidden="true"></i> 素材收藏</a></li>
+            <!--<li><a href="/member/myfavorite/type/2.html"><i class="fa fa-file-code-o" aria-hidden="true"></i> 代码收藏</a></li>-->
+            <!--<li><a href="/member/myfavorite/type/4.html"><i class="fa fa-th-large" aria-hidden="true"></i> 帖子收藏</a></li>-->
+        </ul>
+        <div class="breadcrumb">共有记录3条</div>
+        <div class="l-k">
+            {foreach $list as $v}
+            <div class="infoPerBlock ">
+                <div class="leftPicBlock wh40">
+                    <a href="{:url('/'.$v['res_id'])}" target="_blank">
+                        <img alt="{$v}" src="{:get_thumb($v['thumb'])}">
+                    </a>
+                </div>
+                <div class="centerBlock w490">
+                    <a class="title" target="_blank" href="{:url('/'.$v['res_id'])}">{$v.title}</a>
+                    <p class="lanmu">所属栏目：{:getChannelName($v['channel'])}</p>
+                    <p class="sm">
+                        <span><i class="fa fa-calendar"></i> &nbsp;收藏时间：{$v.create_time}</span>
+                    </p>
+                </div>
+                <div class="clear"></div>
+            </div>
+            {/foreach}
+        </div>
+    
+        <!--<table class="table_member">-->
+            <!--<tbody>-->
+            <!--<tr>-->
+                <!--<th align="center"><strong>帖子标题</strong></th>-->
+                <!--<th width="80" align="center"><strong>回帖数</strong></th>-->
+                <!--<th width="80" align="center"><strong>阅读量</strong></th>-->
+                <!--<th align="center"><strong>发布时间</strong></th>-->
+            <!--</tr>-->
+            <!--</tbody>-->
+            <!--<tbody>-->
+            <!--<tr>-->
+                <!--<td><a href="/read/3232.html" target="_blank">HTML5新增元素、标签总结</a></td>-->
+                <!--<td>3</td>-->
+                <!--<td>425</td>-->
+                <!--<td width="150">2019-01-22 08:50</td>-->
+            <!--</tr>-->
+            <!--</tbody>-->
+        <!--</table>-->
+        <!--<div class="l-k">-->
+            <!--<div class="list">-->
+                <!--<div class="shoucang-nd">-->
+                    <!--<a href="/codelist.html" target="_blank">还没有收藏常用代码，去这里添加一些吧 (^_^)！</a><br>-->
+                    <!--<span style="color:#808080">加好记得刷新下页面</span>-->
+                <!--</div>-->
+                <!--<div class="clear"></div>-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+    <div class="clear"></div>
+</div>
+
+
+<!--尾部内容-->
+{include file="footer"/}
+
+<script type="text/javascript">
+    jQuery(".picMarquee-left").slide({mainCell:".bd ul",autoPlay:true,effect:"leftMarquee",vis:3,interTime:50,trigger:"click"});
+</script>
+</body>
+</html>

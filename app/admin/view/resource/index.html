@@ -1,0 +1,202 @@
+{extend name="layout"}
+
+{block name="meta"}
+<link rel="stylesheet" href="/plugins/bootstrap3-editable/css/bootstrap-editable.css">
+<style>
+    .textarea {
+        min-width: 20%;
+        word-wrap: break-word;
+        table-layout: fixed;
+        word-break: break-all;
+    }
+    
+    .textarea-edit.editable.editable-click {
+        display: block;
+        width: 100%;
+        max-height: 20px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
+{/block}
+
+{block name="content"}
+<div class="content animated">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="block">
+                <div class="block-header bg-gray-lighter">
+                    <ul class="block-options">
+                        <li>
+                            <button type="button" data-toggle="block-option" data-action="refresh_toggle" data-action-mode="demo">
+                                <i class="si si-refresh"></i></button>
+                        </li>
+                        <li>
+                            <button type="button" data-toggle="block-option" data-action="fullscreen_toggle">
+                                <i class="si si-size-fullscreen"></i></button>
+                        </li>
+                    </ul>
+                    <h3 class="block-title">内容管理</h3>
+                </div>
+                <div class="block-content tab-content">
+                    <div class="tab-pane active">
+                        <div class="row data-table-toolbar">
+                            <div class="col-sm-12">
+                                <form class="pull-right search-bar" method="get" action="" role="form">
+                                    <input type="hidden" name="search_field" id="search-field" value="title|tags">
+                                    <div class="input-group">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-default" id="search-btn" data-toggle="dropdown" type="button" aria-expanded="false">
+                                                搜索 <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a tabindex="-1" href="javascript:void(0)" data-field="title|tags">搜索</a>
+                                                </li>
+                                                <li>
+                                                    <a tabindex="-1" href="javascript:void(0)" data-field="title">标题</a>
+                                                </li>
+                                                <li>
+                                                    <a tabindex="-1" href="javascript:void(0)" data-field="tags">标签</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <input type="text" class="form-control" value="" name="keyword" placeholder="标题/标签">
+                                    </div>
+                                </form>
+                                
+                                
+                                <div class="toolbar-btn-action">
+                                    <a title="新增" icon="fa fa-plus-circle" class="btn btn-primary" href="{:url('/resource/create')}"><i class="fa fa-plus-circle"></i> 新增</a>
+                                    <a title="推荐" icon="fa fa-plus-circle" class="btn btn-success ajax-post confirm" target-form="ids" href="{:url('/resource/flag',['table'=>'resources','value'=>1])}"><i class="fa fa-star-o"></i> 推荐</a>
+                                    <a title="启用" icon="fa fa-check-circle-o" class="btn btn-success ajax-post confirm" target-form="ids" href="{:url('/resource/status',['table'=>'resources','value'=>1])}"><i class="fa fa-check-circle-o"></i> 启用</a>
+                                    <a title="禁用" icon="fa fa-ban" class="btn btn-warning ajax-post confirm" target-form="ids" href="{:url('/resource/status',['table'=>'resources','value'=>0])}"><i class="fa fa-ban"></i> 禁用</a>
+                                    <a title="删除" icon="fa fa-times-circle-o" class="btn btn-danger ajax-post confirm" target-form="ids" href="{:url('/resource/delete')}?table=resources"><i class="fa fa-times-circle-o"></i> 删除</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-builder table-hover table-bordered table-striped js-table-checkable">
+                                <thead>
+                                <tr>
+                                    <th class="text-center">
+                                        <label class="css-input css-checkbox css-checkbox-primary remove-margin-t remove-margin-b">
+                                            <input type="checkbox" id="check-all"><span></span>
+                                        </label>
+                                    </th>
+                                    <th class="column-name">ID</th>
+                                    <th class="column-title " style="max-width: 650px;">
+                                        标题
+                                        <span>
+                                                <a href="{:url('/resource/index')}?_by={$_by}&_order=title" data-toggle="tooltip" data-original-title="标题"><i class="fa {if(empty(input('_by')) || $field != 'title' )} fa-sort text-muted {elseif($_by == 'asc' && $field == 'title') /} fa-caret-up {elseif($_by == 'desc' && $field == 'title') /} fa-caret-down {/if}"></i></a>
+                                            </span>
+                                    </th>
+                                    <th class="column-name">分类</th>
+                                    <th class="column-name">封面图</th>
+                                    <th class="column-name">创建时间</th>
+                                    <th class="column-name">生成实例</th>
+                                    <th class="column-status">审核状态</th>
+                                    <th class="column-right_button  ">操作 <span></span></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {foreach($list as $v)}
+                                <tr class="text-c">
+                                    <td class="text-center">
+                                        <label class="css-input css-checkbox css-checkbox-primary">
+                                            <input class="ids" name="ids[]" value="{$v['id']}"
+                                                   type="checkbox"><span></span>
+                                        </label>
+                                    </td>
+                                    <td>{$v.id}</td>
+                                    <td style="max-width: 650px;">
+                                        <a href="javascript:void(0);" class="text-edit editable editable-click"
+                                           data-placeholder="标题" data-table="resources" data-type="text"
+                                           data-pk="{$v['id']}" data-name="title" data-original-title="" title="">
+                                            {$v['title']}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        {:getChannelName($v['channel'])}
+                                    </td>
+                                    <td><img width="50" src="{$v.thumb}"></td>
+                                    <td>
+                                        {$v['create_time']}
+                                    </td>
+                                    <td>
+                                        {$v['state']|raw}
+                                    </td>
+                                    <td>
+                                        {$v.status|raw}
+                                        <!--<label class="css-input switch switch-sm switch-primary" title="开启/关闭">
+                                            <input data-table="resources" data-id="{$v['id']}" data-field="status" {if($v['status'] == 1)} checked {/if} type="checkbox">
+                                            <span></span>
+                                        </label>-->
+                                    </td>
+                                    <td class="f-14 td-manage">
+                                        <div class="btn-group">
+                                            {if $v->getData('state') != 0}
+                                            {if $v->getData('state') == -1}
+                                            <a class="btn btn-s btn-default" id="createDemo" data-id="{$v.id}" href="javascript:;" target="_self"
+                                               data-toggle="tooltip" data-original-title="生成实例"><i class="fa fa-gears"></i>
+                                            </a>
+                                            {else /}
+                                            <a class="btn btn-s btn-default" href="//it1024.me/demo/{$v.id}" target="_blank"
+                                               data-toggle="tooltip" data-original-title="查看实例"><i class="fa fa-eye"></i>
+                                            </a>
+                                            {/if}
+                                            {/if}
+                                            <a class="btn btn-s btn-default" href="{:url('/resource/edit',['id'=>$v['id']])}" target="_self"
+                                               data-toggle="tooltip" data-original-title="编辑"><i class="fa fa-pencil"></i>
+                                            </a>
+                                            <a class="btn btn-s btn-default ajax-get confirm"
+                                               href="{:url('/resource/delete',['ids'=>$v['id']])}?table=resources" data-toggle="tooltip"
+                                               data-original-title="删除"><i class="fa fa-times"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {/foreach}
+                                {if($list->render())}
+                                <tr>
+                                    <td colspan="8" class="text-center">
+                                        {$list->render()|raw}
+                                    </td>
+                                </tr>
+                                {/if}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+
+{block name="footer"}
+<script src="/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/plugins/bootstrap3-editable/js/bootstrap-editable.js"></script>
+<script src="/plugins/jquery-validation/additional-methods.js"></script>
+
+
+<script>
+    $('#createDemo').click(function () {
+        layer.load();
+        $.post("{:url('/resource/createDemo')}",{'id':$(this).data('id')}, function (res) {
+            layer.closeAll();
+            if(res.code == 1){
+                tips(res.msg,'success')
+                setTimeout(function () {
+                    location.reload();
+                },2000)
+            }else {
+                tips(res.msg)
+            }
+            
+        },'json')
+        return false;
+    })
+</script>
+{/block}

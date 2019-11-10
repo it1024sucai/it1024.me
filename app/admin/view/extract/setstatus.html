@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" id="css-main" href="/assets/css/oneui.css">
+    <link rel="stylesheet" href="/admin/css/admin.css">
+    <style>
+        .level {
+            padding: 25px;
+            height: 100%;
+            position: relative;
+        }
+        
+        .btn-primary {
+            position: absolute;
+            right: 25px;
+            bottom: 25px;
+        }
+    </style>
+</head>
+<body>
+<div class="tab-content">
+    <div class="tab-pane active">
+        <div class="block-content">
+            <form class="form-builder row " method="post">
+                <div class="form-group hidden " id="form_group_id">
+                    <input type="hidden" class="id" name="id" value="{$id}">
+                </div>
+                <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <label class="col-xs-12">申请人</label>
+                    <div class="col-xs-12">
+                        <input class="form-control" type="text" value="{$nickname}" disabled>
+                        <div class="help-block">不可更改</div>
+                    </div>
+                </div>
+                <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <label class="col-xs-12">提现金额</label>
+                    <div class="col-xs-12">
+                        <input class="form-control money" type="text" value="{$money}" disabled>
+                    </div>
+                </div>
+                <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <label class="col-xs-12">备注</label>
+                    <div class="col-xs-12">
+                        <textarea class="form-control remark" rows="3" type="text" name="remark" ></textarea>
+                    </div>
+                </div>
+                <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <label class="col-xs-12">审核状态</label>
+                    <div class="col-xs-12">
+                        <label class="css-input css-radio css-radio-primary css-radio-sm push-10-r  ">
+                            <input type="radio" name="status" value="-1" {if($status == -1)} checked {/if}>
+                            <span></span> 不通过
+                        </label>
+                        <label class="css-input css-radio css-radio-primary css-radio-sm push-10-r  ">
+                            <input type="radio" name="status" value="0"  {if($status == 0)} checked {/if}>
+                            <span></span> 审核中
+                        </label>
+                        <label class="css-input css-radio css-radio-primary css-radio-sm push-10-r  ">
+                            <input type="radio" name="status" value="1"  {if($status == 1)} checked {/if}>
+                            <span></span> 通过
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group col-md-12 col-xs-12">
+                    <div class="col-xs-12">
+                        <button class="btn btn-minw btn-primary" type="submit">提交</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="/assets/js/core/jquery.min.js"></script>
+<script src="/assets/js/core/bootstrap.min.js"></script>
+<script src="/assets/js/core/jquery.scrollLock.min.js"></script>
+<script src="/assets/js/core/jquery.placeholder.min.js"></script>
+<script src="/assets/js/app.js"></script>
+<script src="/plugins/bootstrap-notify/bootstrap-notify.min.js"></script>
+</body>
+</html>
