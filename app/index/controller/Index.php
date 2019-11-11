@@ -30,8 +30,9 @@ class Index extends Common
      */
     public function index()
     {
+        $where[] = ['a.status','=',1];
         $list = Resources::alias('a')->field('a.id,title,channel,description,clicks,downs,tags,a.create_time,b.thumb')
-            ->leftJoin('attachments b', 'a.thumb=b.id')->order('a.create_time', 'desc')->limit(20)->select();
+            ->leftJoin('attachments b', 'a.thumb=b.id')->where($where)->order('a.create_time', 'desc')->limit(20)->select();
 
         $hot = Resources::field('id,channel,title')->where('status', 1)->order('clicks desc')->limit(7)->select();
 

@@ -240,7 +240,7 @@ function register() {
     var password   = $("#password").val();
     var repassword = $("#repassword").val();
     var email      = $("#email").val();
-    var mail_code  = $("#mail_code").val();
+    var verify  = $("#verifycode").val();
     if (username == '') {
         layer.msg('会员帐号不能为空');
         $("#username").addClass("Validform_error");
@@ -280,7 +280,7 @@ function register() {
         $("#email").focus();
         return false;
     }
-    var pattern = /^([\.a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/;
+    /*var pattern = /^([\.a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/;
     if (!pattern.test(email)) {
         layer.msg('邮箱格式不正确');
         $("#email").addClass("Validform_error");
@@ -288,14 +288,14 @@ function register() {
         return false;
     } else {
         $("#email").removeClass("Validform_error");
-    }
-    if (mail_code == '') {
+    }*/
+    if (verify == '') {
         layer.msg('验证码不能为空');
-        $("#mail_code").addClass("Validform_error");
-        $("#mail_code").focus();
+        $("#verifycode").addClass("Validform_error");
+        $("#verifycode").focus();
         return false;
     } else {
-        $("#mail_code").removeClass("Validform_error");
+        $("#verifycode").removeClass("Validform_error");
     }
     layer.load(2);
 
@@ -308,7 +308,7 @@ function register() {
             'password':   password,
             'repassword': repassword,
             'email':      email,
-            'mail_code':  mail_code
+            'verify':  verify
         },
         cache:   false,
         success: function (json) {

@@ -310,14 +310,14 @@ function curl_post($url, $data)
  *
  */
 
-
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 function send_email($toemail, $title, $content, $toname = '')
 {
-    //use PHPMailer\PHPMailer\SMTP;
-    //use PHPMailer\PHPMailer\Exception;
+
     $mail = new \PHPMailer\PHPMailer\PHPMailer();
     try {
-        //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // 启用详细调试输出
+        $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // 启用详细调试输出
         $mail->isSMTP();// 使用SMTP服务
         $mail->CharSet    = "utf8";// 编码格式为utf8，不设置编码的话，中文会出现乱码
         $mail->Host       = config('app.email_smtp');// 发送方的SMTP服务器地址

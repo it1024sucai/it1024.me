@@ -16,6 +16,7 @@ Route::get('jquery/<type>-<order>-<page>', 'index/channel');
 Route::get('templates/<type>', 'index/channel');
 Route::get('source/<type>', 'index/channel');
 Route::get('jquery/<type>', 'index/channel');
+Route::get('upload/index', 'upload/index');
 
 
 Route::get('u:id/forum', 'user/forum');

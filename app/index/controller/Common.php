@@ -299,21 +299,26 @@ class Common extends BaseController
      */
     public function getMailCode()
     {
-        $mail    = input('email/s');
-        $where[] = ['email', '=', $mail];
-        if (Users::where($where)->find()) {
-            return show(0, '该邮箱已被注册');
-        }
-        $code    = getAssignStr(6);
-        $content = str_replace(['-url-', '-code-', '-mail-'], [
-            request()->domain(), $code, $mail
-        ], $this->get_mail_code_tpl);
-        $res     = send_email($mail, '[IT1024素材网]：请查收您的验证码', $content);
+        try{
+            $mail    = input('email/s');
+            $where[] = ['email', '=', $mail];
+            if (Users::where($where)->find()) {
+                return show(0, '该邮箱已被注册');
+            }
+            $code    = getAssignStr(6);
+            $content = str_replace(['-url-', '-code-', '-mail-'], [
+                request()->domain(), $code, $mail
+            ], $this->get_mail_code_tpl);
+            $res     = send_email($mail, '[IT1024素材网]：请查收您的验证码', $content);
 
-        if ($res['code']) {
-            cache($mail . '_code', $code, ['expire' => 300]);
-            return show(1, '发送成功');
+            if ($res['code']) {
+                cache($mail . '_code', $code, ['expire' => 300]);
+                return show(1, '发送成功');
+            }
+        }catch (\Exception $e){
+            return show(0, $e->getMessage());
         }
+
         return show(0, '网络繁忙，请重试');
     }
 
@@ -329,6 +334,10 @@ class Common extends BaseController
 
             Db::startTrans();
             try {
+                if (!captcha_check($data['verify'])) {
+                    return show(0, '验证码错误');
+                };
+
                 $validate = new \app\index\validate\User;
                 if (!$validate->check($data)) {
                     return show(0, $validate->getError());
@@ -339,9 +348,9 @@ class Common extends BaseController
                 if ($res) {
                     return show(0, '该账号已被注册');
                 }
-                if (!cache($data['email'] . '_code') == $data['mail_code']) {
+                /*if (!cache($data['email'] . '_code') == $data['mail_code']) {
                     return show(0, '验证码错误或过期~');
-                }
+                }*/
 
                 $time = time();
 
@@ -353,16 +362,18 @@ class Common extends BaseController
                 $data['update_time'] = $time;
                 $data['login_time']  = $time;
                 $data['login_ip']    = get_ip();
-                $id                  = Users::insertGetId($data);
 
+                unset($data['verify']);
+                unset($data['repassword']);
+                unset($data['password']);
+                $id                  = Users::insertGetId($data);
                 $data['id']          = $id;
                 $data['avatar']      = get_avatar($data['avatar'], 1);
                 $level               = UsersLevels::getLevel(0);
                 $data                = array_merge($data, $level);
 
-                unset($data['mail_code']);
-                unset($data['repassword']);
-                unset($data['password']);
+                //unset($data['mail_code']);
+
 
                 $points = 30;
                 $exp    = 30;
@@ -381,6 +392,7 @@ class Common extends BaseController
                 Db::commit();
             } catch (\Exception $e) {
                 Db::rollback();
+                return show(0, $e->getMessage());
                 return show(0, '注册失败~');
             }
 
