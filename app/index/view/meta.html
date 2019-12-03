@@ -12,8 +12,11 @@
 <script type="text/javascript" src="/static/js/lazyload.min.js"></script>
 <!--[if lt IE 9]>
 <script type="text/javascript" src="/static/js/html5shiv.min.js"></script><![endif]-->
-<script type="text/javascript">$(function () {
-    if ($("img.lazy").length > 0) {
-        $("img.lazy").lazyload({effect: "fadeIn"})
-    }
-});</script>
+<script type="text/javascript">
+    var channel = '{$channel}';
+    $(function () {
+        if ($("img.lazy").length > 0) {
+            $("img.lazy").lazyload({effect: "fadeIn"})
+        }
+    });
+</script>

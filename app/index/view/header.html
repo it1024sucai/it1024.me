@@ -98,11 +98,11 @@
         <div class="logo">
             <a href="/" class="logo-bd" href=""><img style="height: 65px;margin-top: 6px" src="/logo.png" alt="1024LOGO"></a>
         </div>
-        <form action="/search.html" method="get" onsubmit="soso();return false;" id="form_search">
+        <form action="/search.html" method="get" onsubmit="return soso();" id="form_search">
             <div class="search">
                 <div class="search_area"><input type="submit" value="搜 索" class="btn_search">
                     <div class="search_select"><span class="icon-search"></span></div>
-                    <input name="keyword" type="text" value="" class="search_input" id="search_input" autocomplete="off" onkeyup="checkInputKeyup($(this))" placeholder="请输入搜索内容">
+                    <input name="wd" type="text" value="" class="search_input" id="search_input" autocomplete="off" onkeyup="checkInputKeyup($(this))" placeholder="请输入搜索内容">
                 </div>
                 <div class="search_box hide" id="search_box"></div>
                 <div class="search_keywords">

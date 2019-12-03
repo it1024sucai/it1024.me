@@ -58,7 +58,6 @@ class Search extends Common
             $page_config['path'] = $path;
             $wds                 = $this->getPa($wd);
             foreach ($wds as $v) {
-
                 $map2[] = ['title','like', '%' . $v . '%'];
             }
 

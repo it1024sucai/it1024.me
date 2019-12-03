@@ -37,6 +37,14 @@ $(function () {
     });
     $("#search_input").keyup(function (event) {
         var key = event.keyCode;
+        if (key == 13) {
+            $wd           = $('#search_input').val()
+            if ($wd)
+                location.href = '/search-'+channer+'-' + $wd + '.html';
+            else
+                location.href = '/search-'+channer+'.html';
+            return false;
+        }
         if (key == 38 || key == 40) {
             return false
         }

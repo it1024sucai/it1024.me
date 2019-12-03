@@ -76,6 +76,7 @@ class Common extends BaseController
         if (is_login()) {
             View::assign('user', session('user'));
         }
+        View::assign('channel','index');
     }
 
     /**
